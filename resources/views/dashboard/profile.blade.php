@@ -137,7 +137,7 @@
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                 @if($vendor->count() < 1) 
                                 <div class="card">
-                                    <a href="#" class="btn btn-default">Register yourself as a vendor</a>
+                                    <a href="become-a-vendor" class="btn btn-default">Register yourself as a vendor</a>
                                 </div>
                             @endif
                             <div class="card">

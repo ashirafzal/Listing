@@ -23,6 +23,24 @@ class UserController extends Controller
     {
     }
 
+    public function BeAVendor()
+    {
+        $user = Auth::user();
+
+        $vendor = new Vendor();
+
+        $vendor->name = $user->name;
+        $vendor->email = $user->email;
+        $vendor->phone_number = $user->phone_number;
+        $vendor->user_id = $user->id;
+        $vendor->image = $user->image;
+        $vendor->status = Vendor::STATUS_NOT_BLOCKED;
+
+        $vendor->save();
+
+        return redirect()->back()->withSuccess('Congratulations now you are a vendor.');
+    }
+
     public function edit(Request $request)
     {
         if ($request->hasFile('image')) {

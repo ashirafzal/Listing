@@ -9,6 +9,9 @@ class Vendor extends Model
 {
     use HasFactory;
 
+    public const STATUS_NOT_BLOCKED = 0;
+    public const STATUS_BLOCKED = 1;
+
     protected $fillable = [
         'name',
         'email',

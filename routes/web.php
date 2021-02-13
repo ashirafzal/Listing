@@ -30,3 +30,5 @@ Route::get('reviews', '\App\Http\Controllers\ReviewsController@index');
 Route::post('edit', '\App\Http\Controllers\UserController@edit');
 
 Route::post('update-password', '\App\Http\Controllers\UserController@UpdatePassword');
+
+Route::get('become-a-vendor', '\App\Http\Controllers\UserController@BeAVendor');
