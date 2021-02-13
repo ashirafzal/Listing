@@ -135,11 +135,11 @@
                     <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                @if($vendor->count() < 1) 
-                                <div class="card">
-                                    <a href="become-a-vendor" class="btn btn-default">Register yourself as a vendor</a>
-                                </div>
-                            @endif
+                                @if($vendor->count() < 1)
+                                    <div class="card">
+                                        <a href="become-a-vendor" class="btn btn-default">Register yourself as a vendor</a>
+                                    </div>
+                                @endif
                             <div class="card">
                                 <div class="card-header">Profile</div>
                                 <div class="card-body">
@@ -155,21 +155,26 @@
                                             <strong>{{session('errors')}}</strong>
                                         </div>
                                     @endif
-                                    <div class="alert alert-danger alert-block" style="display:none;">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong></strong>
-                                    </div>
                                     <form action="edit" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <!-- Form Name -->
                                         <div class="profile-upload-img">
                                             <div class="row">
+                                                @if($user->image)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                    <div id="image-preview">
+                                                        <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                                                    </div>
+                                                    <input type="file" name="image" id="image" class="upload-profile-input">
+                                                </div>
+                                                @else
                                                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                                     <div id="image-preview">
                                                         <img src="#" alt="" class="rounded-circle">
                                                     </div>
                                                     <input type="file" name="image" id="image" class="upload-profile-input">
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="personal-form-info">

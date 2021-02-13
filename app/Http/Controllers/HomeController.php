@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $Vendor = Vendor::where('id', $user->id)->get();
+        $Vendor = Vendor::where('user_id', $user->id)->get();
 
         return view('dashboard.profile', [
             'user' => $user,
