@@ -39,16 +39,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone_number = $request->phone;
         $user->description = $request->description;
-        $user->image = $userimage;
+        $user->image = $userimage ?? '';
 
         $user->save();
 
-        $Vendor = Vendor::where('id', $user->id)->get();
-
-        return view('dashboard.profile', [
-            'user' => $user,
-            'vendor' => $Vendor,
-        ]);
+        return redirect()->back()->withSuccess('Your profile has been updated.');
     }
 
     public function UpdatePassword(Request $request)
