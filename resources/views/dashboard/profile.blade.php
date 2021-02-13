@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="wedding vendor directory HTML template">
-    <title> Wedding Vendor &amp; Supplier Directory HTML Template - RealWed </title>
+    <title>Dashboard - Profile</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/offcanvas.css') }}" rel="stylesheet">
 </head>
 
 <body class="body-bg">
@@ -55,15 +55,20 @@
                                 </li>
                                 <li class="nav-item dropdown dropleft user-vendor ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @if($user->image)
                                         <span class="user-icon">
-                                            <img src="" alt="" class="rounded-circle mb10">
+                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
                                         </span>
+                                        @else
+                                        <span class="user-icon">
+                                            <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                        </span>
+                                        @endif
                                         <span class="user-vendor-name">{{ $user->name }}</span>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
                                         <a class="dropdown-item" href="#"> My Listed Item </a>
-                                        <a class="dropdown-item" href="#">Pricing Plan</a>
                                         <a class="dropdown-item" href="#">Request Quotes</a>
                                         <a class="dropdown-item" href="#">Reviews </a>
                                         <a class="dropdown-item" href="{{ route('profile') }}">My Profile </a>
@@ -85,20 +90,25 @@
     <div class="dashboard-wrapper">
         <div class="dashboard-sidebar offcanvas-collapse">
             <div class="vendor-user-profile">
+                @if($user->image)
                 <div class="vendor-profile-img">
-                    <img src="#" alt="" class="rounded-circle">
+                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
                 </div>
+                @else
+                <div class="vendor-profile-img">
+                    <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle">
+                </div>
+                @endif
                 <h3 class="vendor-profile-name">{{ $user->name }}</h3>
                 <a href="#" class="edit-link">edit profile</a>
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li class="active"><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
-                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-calculator"></i></span>Pricing Plan</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
+                    <li class="active"><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="{{ route('logout') }}"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
@@ -125,206 +135,164 @@
                     <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                @if($vendor->count() < 1) 
                                 <div class="card">
-                                    <div class="card-header">Profile</div>
-                                    <div class="card-body">
-                                        <div class="alert alert-info alert-block" style="display:none;">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong></strong>
-                                        </div>
-                                        <div class="alert alert-danger alert-block" style="display:none;">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong></strong>
-                                        </div>
-                                        <form id="userupdateform" action="{{ url('updateuser') }}" method="post" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            {{ method_field('POST') }}
-                                            @if ($message = Session::get('success'))
-                                            <div class="alert alert-success alert-block">
-                                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                            <br>
-                                            @endif
-                                            <!-- Form Name -->
-                                            <div class="profile-upload-img">
-                                                <div class="row">
-                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                                        <div id="image-preview">
-                                                            <img src="#" alt="" class="rounded-circle">
-                                                        </div>
-                                                        <input type="file" name="image" id="image" class="upload-profile-input">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="personal-form-info">
-                                                <div class="row">
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <input id="vendorid" name="vendorid" type="hidden" placeholder="" value="" class="form-control ">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <input id="vendorpass" name="vendorpass" type="hidden" placeholder="" value="" class="form-control ">
-                                                        </div>
-                                                    </div>
-                                                    <!-- Text input-->
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="vendorname">User Name</label>
-                                                            <input id="vendorname" name="vendorname" type="text" placeholder="{{ $user->name }}" value="" class="form-control ">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="email">Email</label>
-                                                            <input id="email" name="email" type="email" placeholder="" value="{{ $user->email }}" class="form-control ">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="phone">Phone</label>
-                                                            <input id="phone" name="phone" type="text" placeholder="" value="" class="form-control ">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="summernote">Descriptions </label>
-                                                            <textarea class="form-control" id="editordata" name="editordata" rows="6" placeholder="Write Descriptions for your venue">description</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="social-form-info mb-0">
-                                                <div class="row">
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <h3>Social Media </h3>
-                                                        <div class="dashboard-section-line">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="facebook">Facebook</label>
-                                                            <input id="facebook" name="facebook" value="" type="url" placeholder="https://www.facebook.com" class="form-control ">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="twitter">Twitter</label>
-                                                            <input id="twitter" name="twitter" value="" type="url" placeholder="https://www.twitter.com" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="instagram">Instagram</label>
-                                                            <input id="instagram" name="instagram" value="" type="url" placeholder="https://www.instagram.com" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" for="youtube">Youtube</label>
-                                                            <input id="youtube" name="youtube" value="" type="url" placeholder="https://www.youtube.com" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                        <button class="btn btn-default" id="submit_profile" type="submit">Update profile</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <a href="#" class="btn btn-default">Register yourself as a vendor</a>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                <div class="card">
-                                    <div class="card-header">Password Change</div>
-                                    @if ($message = Session::get('success'))
-                                    <div class="alert alert-success alert-block">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong>{{ $message }}</strong>
-                                    </div>
-                                    <br>
+                            @endif
+                            <div class="card">
+                                <div class="card-header">Profile</div>
+                                <div class="card-body">
+                                    @if(session('success'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{session('success')}}</strong>
+                                        </div>
                                     @endif
-                                    <div class="card-body">
-                                        <form id="passwordupdate" action="updatepassword" class="row" method="POST">
-                                            {{ csrf_field() }}
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="currentpassword">Current Password</label>
-                                                    <input id="currentpassword" name="currentpassword" type="password" placeholder="" class="form-control ">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="newpassword">New Password</label>
-                                                    <input id="newpassword" name="newpassword" type="password" placeholder="" class="form-control ">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="retypepassword">Retype Password</label>
-                                                    <input id="retypepassword" name="retypepassword" type="password" placeholder="" class="form-control ">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <button class="btn btn-default" type="submit">Save Changes</button>
-                                            </div>
-                                        </form>
+                                    @if(session('errors'))
+                                        <div class="alert alert-danger alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{session('errors')}}</strong>
+                                        </div>
+                                    @endif
+                                    <div class="alert alert-danger alert-block" style="display:none;">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong></strong>
                                     </div>
+                                    <form action="edit" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <!-- Form Name -->
+                                        <div class="profile-upload-img">
+                                            <div class="row">
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                    <div id="image-preview">
+                                                        <img src="#" alt="" class="rounded-circle">
+                                                    </div>
+                                                    <input type="file" name="image" id="image" class="upload-profile-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="personal-form-info">
+                                            <div class="row">
+                                                <!-- Text input-->
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="vendorname">User Name</label>
+                                                        <input name="name" type="text" placeholder="" value="{{ $user->name }}" class="form-control ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="email">Email</label>
+                                                        <input name="email" type="email" placeholder="" value="{{ $user->email }}" class="form-control ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="phone">Phone</label>
+                                                        <input name="phone" type="text" placeholder="" value="{{ $user->phone }}" class="form-control ">
+                                                    </div>
+                                                </div>
+                                                @if($vendor->count() > 0)
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="summernote">Description</label>
+                                                        <textarea class="form-control" name="description" rows="6" placeholder="Write Descriptions for your venue"></textarea>
+                                                    </div>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="social-form-info mb-0">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <button class="btn btn-default" type="submit">Update profile</button>
+                                            </div>
+                                        </div>
                                 </div>
+                                </form>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                <div class="card">
-                                    <div class="card-header">Email Notifications</div>
-                                    <div class="">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #1
-                                                <div class="switch-notification">
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #2
-                                                <div class="switch-notification">
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #3
-                                                <div class="switch-notification">
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="card">
+                            <div class="card-header">Password Change</div>
+                            <div class="card-body">
+                                <form class="row" method="POST" action="update-password">
+                                    @csrf
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="currentpassword">Current Password</label>
+                                            <input name="currentpassword" type="password" placeholder="" class="form-control ">
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="newpassword">New Password</label>
+                                            <input name="newpassword" type="password" placeholder="" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="retypepassword">Retype Password</label>
+                                            <input name="retypepassword" type="password" placeholder="" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <button class="btn btn-default" type="submit">Save Changes</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                <div class="card">
-                                    <div class="card-header">Account Delete</div>
-                                    <div class="card-body">
-                                        <p>In the fields below, enter your new password.</p>
-                                        <form>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">Delete my account and data listing also.</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                <label class="custom-control-label" for="customCheck2">Delete my account only.</label>
-                                            </div>
-                                            <button class="btn btn-primary mt30" type="submit">Delete My Account</button>
-                                        </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="card">
+                            <div class="card-header">Email Notifications</div>
+                            <div class="">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #1
+                                        <div class="switch-notification">
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #2
+                                        <div class="switch-notification">
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #3
+                                        <div class="switch-notification">
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                        <div class="card">
+                            <div class="card-header">Account Delete</div>
+                            <div class="card-body">
+                                <p>In the fields below, enter your new password.</p>
+                                <form>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Delete my account and data listing also.</label>
                                     </div>
-                                </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                        <label class="custom-control-label" for="customCheck2">Delete my account only.</label>
+                                    </div>
+                                    <button class="btn btn-primary mt30" type="submit">Delete My Account</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -332,29 +300,23 @@
             </div>
         </div>
     </div>
+    </div>
+    </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/menumaker.min.js') }}"></script>
-    <script src="{{ asset('js/custom-script.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/offcanvas.js') }}"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/menumaker.min.js') }}"></script>
     <script src="{{ asset('js/custom-script.js') }}"></script>
     <script>
-    $(document).ready(function() {
-        $.uploadPreview({
-            input_field: "#image-upload", // Default: .image-upload
-            preview_box: "#image-preview", // Default: .image-preview
-            label_field: "#image-label", // Default: .image-label
-            label_default: "Choose File", // Default: Choose File
-            label_selected: "Change File", // Default: Change File
-            no_label: false // Default: false
+        $(document).ready(function() {
+            $.uploadPreview({
+                input_field: "#image-upload", // Default: .image-upload
+                preview_box: "#image-preview", // Default: .image-preview
+                label_field: "#image-label", // Default: .image-label
+                label_default: "Choose File", // Default: Choose File
+                label_selected: "Change File", // Default: Change File
+                no_label: false // Default: false
+            });
         });
-    });
     </script>
     <script src="{{ asset('js/jquery.uploadPreview.js') }}"></script>
     <script src="{{ asset('js/summernote-bs4.js') }}"></script>

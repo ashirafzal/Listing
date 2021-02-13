@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +23,12 @@ class HomeController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('dashboard.profile', ['user' => $user]);
+
+        $Vendor = Vendor::where('id', $user->id)->get();
+
+        return view('dashboard.profile', [
+            'user' => $user,
+            'vendor' => $Vendor
+        ]);
     }
 }

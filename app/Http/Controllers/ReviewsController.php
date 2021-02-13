@@ -12,12 +12,12 @@ class ReviewsController extends Controller
 
     public function index()
     {
-       $Reviews = Reviews::all();
+        $Reviews = Reviews::all();
     }
 
     public function view(Request $request)
     {
-        $Reviews = Reviews::where('id',$request->id)->get();
+        $Reviews = Reviews::where('id', $request->id)->get();
     }
 
     public function singlesearchview(Request $request)
@@ -27,7 +27,7 @@ class ReviewsController extends Controller
 
     public function create(Request $request)
     {
-        $user = User::where('id',Auth::id())->get();
+        $user = User::where('id', Auth::id())->get();
 
         $Reviews = new Reviews();
 
@@ -47,8 +47,8 @@ class ReviewsController extends Controller
 
     public function edit(Request $request)
     {
-        $user = User::where('id',Auth::id())->get();
-        
+        $user = User::where('id', Auth::id())->get();
+
         $Reviews = Reviews::find($request->id);
 
         $Reviews->vendor_id = $Reviews->vendor_id;
@@ -67,7 +67,6 @@ class ReviewsController extends Controller
 
     public function delete(Request $request)
     {
-        Reviews::where('id',$request->id)->delete();
+        Reviews::where('id', $request->id)->delete();
     }
-
 }
