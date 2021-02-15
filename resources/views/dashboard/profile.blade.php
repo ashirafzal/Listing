@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard - Profile</title>
+    <title>Profile</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
@@ -68,7 +68,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="#"> My Listed Item </a>
+                                        <a class="dropdown-item" href="listing"> My Listed Item </a>
                                         <a class="dropdown-item" href="#">Request Quotes</a>
                                         <a class="dropdown-item" href="#">Reviews </a>
                                         <a class="dropdown-item" href="{{ route('profile') }}">My Profile </a>
@@ -105,7 +105,7 @@
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
                     <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
+                    <li><a href="listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
                     <li class="active"><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>

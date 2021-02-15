@@ -32,3 +32,9 @@ Route::post('edit', '\App\Http\Controllers\UserController@edit');
 Route::post('update-password', '\App\Http\Controllers\UserController@UpdatePassword');
 
 Route::get('become-a-vendor', '\App\Http\Controllers\UserController@BeAVendor');
+
+Route::get('add-listing', '\App\Http\Controllers\ListingController@AddListingIndex');
+
+Route::get('listing', '\App\Http\Controllers\ListingController@index');
+
+Route::post('create-list', '\App\Http\Controllers\ListingController@create');
