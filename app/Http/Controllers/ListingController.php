@@ -84,6 +84,7 @@ class ListingController extends Controller
         $Listing->city = $request->city;
         $Listing->country = $request->country;
         $Listing->zipcode = $request->zipcode;
+        $Listing->address = $request->address;
         $Listing->description = $request->description;
         $Listing->latitude = $request->latitude;
         $Listing->longitude = $request->longitude;
@@ -107,6 +108,18 @@ class ListingController extends Controller
 
         return redirect()->back()->withSuccess('List has been created .');
 
+    }
+
+    public function EditView($id)
+    {
+        $Listing = Listing::where('id',$id)->first();
+
+        $user = Auth::user();
+
+        return view('dashboard.edit-listing', [
+            'user' => $user,
+            'listings' => $Listing,
+        ]);
     }
 
     public function edit(Request $request)

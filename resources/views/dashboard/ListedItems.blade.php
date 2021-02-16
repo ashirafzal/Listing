@@ -177,7 +177,7 @@
                                     </div>
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                         <div class="dashboard-list-btn">
-                                            <a href="#" class="btn btn-outline-violate btn-xs mr10">edit</a>
+                                            <a href="edit-listing/{{ $listing->id }}" class="btn btn-outline-violate btn-xs mr10">edit</a>
                                             <a href="#" class="btn btn-outline-pink btn-xs ">delete</a>
                                         </div>
                                     </div>
