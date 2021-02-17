@@ -41,4 +41,4 @@ Route::post('create-list', '\App\Http\Controllers\ListingController@create');
 
 Route::get('edit-listing/{id}', '\App\Http\Controllers\ListingController@EditView');
 
-Route::post('edit-list', '\App\Http\Controllers\ListingController@edit')->name('list-edit');
+Route::post('edit-list', '\App\Http\Controllers\ListingController@edit');
