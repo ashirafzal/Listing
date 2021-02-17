@@ -124,7 +124,61 @@ class ListingController extends Controller
 
     public function edit(Request $request)
     {
+        $listing = Listing::where('id',$request->id)->first();
 
+        if ($request->hasFile('hero_image')) {
+            $hero_image = $request->file('hero_image');
+            $extention = $hero_image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $hero_image->move('listing-image', $filename);
+            $hero_image = $filename;
+        }
+
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1');
+            $extention = $image1->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $image1->move('listing-image', $filename);
+            $image1 = $filename;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2');
+            $extention = $image2->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $image2->move('listing-image', $filename);
+            $image2 = $filename;
+        }
+
+        if ($request->hasFile('image3')) {
+            $image3 = $request->file('image3');
+            $extention = $image3->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $image3->move('listing-image', $filename);
+            $image3 = $filename;
+        }
+
+        $listing->title = $request->title ?? $listing->title;
+        $listing->category = $request->category ?? $listing->category;
+        $listing->city = $request->city ?? $listing->city;
+        $listing->country = $request->country ?? $listing->country;
+        $listing->zipcode = $request->zipcode ?? $listing->zipcode;
+        $listing->address = $request->address ?? $listing->address;
+        $listing->description = $request->description ?? $listing->description;
+        $listing->latitude = $request->latitude ?? $listing->latitude;
+        $listing->longitude = $request->longitude ?? $listing->longitude;
+        $listing->hero_image = $hero_image ?? $listing->hero_image;
+        $listing->image1 = $image1 ?? $listing->image1;
+        $listing->image2 = $image2 ?? $listing->image2;
+        $listing->image3 = $image3 ?? $listing->image3;
+        $listing->facebook = $request->facebook ?? $listing->facebook;
+        $listing->twitter = $request->twitter ?? $listing->twitter;
+        $listing->instagram = $request->instagram ?? $listing->instagram;
+        $listing->youtube = $request->youtube ?? $listing->youtube;
+
+        $listing->save();
+
+        return redirect()->back()->withSuccess('List has been updated .');
     }
 
     public function delete(Request $request)

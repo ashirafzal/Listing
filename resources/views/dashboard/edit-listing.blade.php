@@ -168,10 +168,15 @@
                         @endif
                     <div class="card-header"> <h4 class="mb0">About Listing</h4></div>
                     <div class="">
-                        <form action="create-list" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('edit-list') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="venue-form-info card-body">
                                 <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <input name="id" type="hidden" value="{{ $listings->id }}" class="form-control">
+                                        </div>
+                                    </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="form-group">
                                             <label class="control-label" for="title">Title</label>
