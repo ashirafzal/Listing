@@ -87,7 +87,7 @@
             border-color: #00a591;
         }
 
-        .dashboard-page-header{
+        .dashboard-page-header {
             color: #00a591;
         }
 
@@ -207,13 +207,12 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="user-icon"> <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10"></span><span class="user-vendor-name">John Deo</span></a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="vendor-dashboard-overview.html">Dashboard</a>
-                                        <a class="dropdown-item" href="vendor-dashboard-listing.html"> My Listed Item </a>
-                                        <a class="dropdown-item" href="vendor-dashboard-pricing.html">Pricing Plan</a>
-                                        <a class="dropdown-item" href="vendor-dashboard-request-quote.html">Request Quotes</a>
-                                        <a class="dropdown-item" href="vendor-dashboard-reviews.html">Reviews </a>
-                                        <a class="dropdown-item" href="vendor-dashboard-profile.html">My Profile </a>
-                                        <a class="dropdown-item" href="index-2.html">Log Out</a>
+                                        <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
+                                        <a class="dropdown-item" href="listing"> My Listed Item </a>
+                                        <a class="dropdown-item" href="request-quote">Request Quotes</a>
+                                        <a class="dropdown-item" href="#">Reviews </a>
+                                        <a class="dropdown-item" href="{{ route('profile') }}">My Profile </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -239,13 +238,12 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li><a href="vendor-dashboard-overview.html"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    <li><a href="vendor-dashboard-listing.html"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
-                    <li><a href="vendor-dashboard-pricing.html"><span class="dash-nav-icon"><i class="fas fa-calculator"></i></span>Pricing Plan</a></li>
-                    <li class="active"><a href="vendor-dashboard-request-quote.html"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
-                    <li><a href="vendor-dashboard-reviews.html"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="vendor-dashboard-profile.html"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
-                    <li><a href="index-2.html"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
+                    <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li class="active"><a href="listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
+                    <li><a href="request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
+                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    <li><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
+                    <li><a href="{{ route('logout') }}"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
         </div>
@@ -278,28 +276,28 @@
                                         <td class="wedding-date">26/10/2020</td>
                                         <td class="requester-id">jessicatitus@gmail.com</td>
                                         <td class="requester-phone">00000000</td>
-                                        <td class="requester-action"><a href="#" class="btn btn-danger">delete</a></td>
+                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
                                     </tr>
                                     <tr>
                                         <td class="requester-name">Anita Parmar</td>
                                         <td class="wedding-date">26/11/2020</td>
                                         <td class="requester-id">anita@gmail.com</td>
                                         <td class="requester-phone">111111111</td>
-                                        <td class="requester-action"><a href="#" class="btn btn-danger">delete</a></td>
+                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
                                     </tr>
                                     <tr>
                                         <td class="requester-name">Kim R. Wiley</td>
                                         <td class="wedding-date">26/12/2020</td>
                                         <td class="requester-id">kim@gmail.com</td>
                                         <td class="requester-phone">22222222</td>
-                                        <td class="requester-action"><a href="#" class="btn btn-danger">delete</a></td>
+                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
                                     </tr>
                                     <tr>
                                         <td class="requester-name">Betty L. Plain</td>
                                         <td class="wedding-date">28/12/2020</td>
                                         <td class="requester-id">plain@gmail.com</td>
                                         <td class="requester-phone">333333333 </td>
-                                        <td class="requester-action"><a href="#" class="btn btn-danger">delete</a></td>
+                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
                                     </tr>
                                 </tbody>
                             </table>
