@@ -46,3 +46,7 @@ Route::post('edit-list', '\App\Http\Controllers\ListingController@edit');
 Route::get('request-quote', function () {
     return view('dashboard.request-quote');
 });
+
+Route::get('list-detail', function () {
+    return view('list-detail');
+});
