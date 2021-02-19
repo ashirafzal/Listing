@@ -259,7 +259,7 @@
                 <ul class="list-unstyled">
                     <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
                     <li class="active"><a href="listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
-                    <li><a href="{{ route('request-quote') }}"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
+                    <li><a href="request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
                     <li><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="{{ route('logout') }}"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
