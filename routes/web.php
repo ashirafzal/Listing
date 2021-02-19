@@ -43,10 +43,10 @@ Route::get('edit-listing/{id}', '\App\Http\Controllers\ListingController@EditVie
 
 Route::post('edit-list', '\App\Http\Controllers\ListingController@edit');
 
+Route::get('list-detail/{id}', '\App\Http\Controllers\ListingController@view');
+
+Route::post('request-quote-create', '\App\Http\Controllers\RequestQuotesController@create');
+
 Route::get('request-quote', function () {
     return view('dashboard.request-quote');
-});
-
-Route::get('list-detail', function () {
-    return view('list-detail');
 });

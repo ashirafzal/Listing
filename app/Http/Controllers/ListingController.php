@@ -34,11 +34,10 @@ class ListingController extends Controller
     public function view(Request $request)
     {
         $Listing = Listing::where('id',$request->id)->get();
-    }
 
-    public function singlesearchview(Request $request)
-    {
-        $Listing = Listing::find($request->id);
+        return view('list-detail', [
+            'listings' => $Listing
+        ]);
     }
 
     public function create(Request $request)

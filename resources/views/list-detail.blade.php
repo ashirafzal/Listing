@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>List Single Page Template- RealWed</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
-    <link href="fontello/css/fontello.css" rel="stylesheet">
-    <link href="css/jquery-ui.css" rel="stylesheet">
-    <link href="css/jquery.rateyo.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.rateyo.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/magnific-popup.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         .navbar-classic .navbar-nav .nav-item .nav-link:hover {
             color: #00a591;
@@ -91,7 +91,7 @@
         }
 
         .venue-pageheader{
-            background-image: url('images/hero-image.jpg');
+            background-image: url("{{ asset('images/hero-image.jpg') }}");
         }
 
         .icon-square-outline{
@@ -153,9 +153,33 @@
             background-color: #00a591;
             border: #00a591;
         }
+
+        .logo>svg{
+            width: 150px;
+            height: 100px;
+        }
+
+        .alert-info {
+            background: #00a591;
+            color: #ffffff;
+        }
+
+        .alert-info>.close {
+            color: #ffffff;
+        }
+
+        .alert-danger {
+            background: #ff4d4d;
+            color: #ffffff;
+        }
+
+        .alert-danger>.close {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
+    @foreach($listings as $listing)
   <!-- header -->
     <div class="header">
         <!-- navigation start -->
@@ -164,7 +188,7 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <nav class="navbar navbar-expand-lg navbar-classic">
                         <a class="navbar-brand" href="index-2.html"> 
-                            <img src="images/adifier-logo.png" alt="">
+                            <img src="{{ asset('images/adifier-logo.png') }}" alt="">
                         </a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar top-bar mt-0"></span>
@@ -204,8 +228,8 @@
             <div class="row align-items-end page-section">
                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
                     <div class="">
-                        <h1 class="vendor-heading">Heading Title for Wedding Vendor Business</h1>
-                        <p class="text-white"><span class="mr-2"><i class="fas fa-map-marker-alt "></i></span>3170 Stonecoal Road Napoleon, OH 43545 <a href="#view-map" class="btn-primary-link"><b>view map</b></a></p>
+                        <h1 class="vendor-heading">{{ $listing->title }}</h1>
+                        <p class="text-white"><span class="mr-2"><i class="fas fa-map-marker-alt "></i></span>{{ $listing->address }}<a href="#view-map" class="btn-primary-link"><b>view map</b></a></p>
                     </div>
                 </div>
                 <div class="col-xl-5 text-lg-right">
@@ -256,7 +280,7 @@
                                 <!--vendor-description -->
                                 <p class="lead">Description</p>
                                 <p>
-                                    Real Wed lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum lorem ispum.
+                                    {{ $listing->description }}
                                 </p>
                                 <!-- <h4>Sub heading </h4>
                                 <p>Etiam placerat dictum dolor ac volutpat. Cras egestas laoreet risus id elementum. Etiam ultrices vitae dui ut finibus. In ac rhoncus mauris, aliquet efficitur erat. Sed laoreet luctus tellus vel porttitor. Aliquam non tellus in eros congue fermentum. Nulla tincidunt volutpat ligula, non rutrum lectus luctus quis.</p>
@@ -274,59 +298,59 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="table-heading">Title</td>
-                                                    <td class="venue-highlight-meta">diamond Halt</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->title }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Category</td>
-                                                    <td class="venue-highlight-meta">Fumigation Service</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->category }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">City</td>
-                                                    <td class="venue-highlight-meta">karachi</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->city }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Country</td>
-                                                    <td class="venue-highlight-meta">Pakistan</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->country}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Zipcode</td>
-                                                    <td class="venue-highlight-meta">34234</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->zipcode }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Latitude</td>
-                                                    <td class="venue-highlight-meta">23.0732195</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->latitude }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Longitude</td>
-                                                    <td class="venue-highlight-meta">72.5646902</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->longitude }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Facebook</td>
-                                                    <td class="venue-highlight-meta">http://listing.test/add-listing</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->facebook }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Twitter</td>
-                                                    <td class="venue-highlight-meta">http://listing.test/add-listing</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->twitter }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Instagram</td>
-                                                    <td class="venue-highlight-meta">http://listing.test/add-listing</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->instagram }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Youtube</td>
-                                                    <td class="venue-highlight-meta">http://listing.test/add-listing</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->youtube }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Vendor Name</td>
-                                                    <td class="venue-highlight-meta">ashir afzal</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->vendor_name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Vendor Email</td>
-                                                    <td class="venue-highlight-meta">ashirafzal96@gmail.com</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->vendor_email }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Vendor Phone Number</td>
-                                                    <td class="venue-highlight-meta">+923423351437</td>
+                                                    <td class="venue-highlight-meta">{{ $listing->vendor_phone_number }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -379,7 +403,7 @@
                             <!-- review-user -->
                             <div class="card-header bg-white mb0">
                                 <div class="review-user">
-                                    <div class="user-img"> <img src="images/review-pic-1.jpg" alt="" class="rounded-circle"></div>
+                                    <div class="user-img"> <img src="{{ asset('images/dashboard-profile.jpg') }}" alt="" class="rounded-circle"></div>
                                     <div class="user-meta">
                                         <h5 class="user-name mb-0">Eric M. Rahn  <span class="user-review-date">14 May, 2018</span></h5>
                                         <div class="given-review">
@@ -481,7 +505,20 @@
                     <div class="sidebar-venue" >
                         <div class="card">
                             <div class="card-body">
-                                <form>
+                                @if(session('success'))
+                                <div class="alert alert-info alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{session('success')}}</strong>
+                                </div>
+                                @endif
+                                @if(session('errors'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{session('errors')}}</strong>
+                                </div>
+                                @endif
+                                <form action="{{ url('request-quote-create') }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <h3 class="mb20">Request Quote</h3>
@@ -490,14 +527,15 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <label class="control-label sr-only" for="name1">Name</label>
-                                                <input id="name1" name="name1" type="text" placeholder="Name" class="form-control input-md" required="">
+                                                <input name="listing_id" type="hidden" value="{{ $listing->id }}" placeholder="Name" class="form-control input-md" required="">
+                                                <input id="name1" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
                                             </div>
                                         </div>
                                         <!-- Text input-->
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <label class=" control-label sr-only" for="email1">Email</label>
-                                                <input id="email1" name="email1" type="text" placeholder="Email" class="form-control input-md" required="">
+                                                <input id="email1" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
                                             </div>
                                         </div>
                                         <!-- Text input-->
@@ -507,19 +545,11 @@
                                                 <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required="">
                                             </div>
                                         </div>
-                                        <!-- Text input-->
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label sr-only" for="weddingdate">Wedding Date</label>
-                                                <input id="weddingdate" name="weddingdate" type="text" placeholder="Wedding Date" class="form-control weddingdate" required="">
-                                                <div class="venue-form-calendar"><i class="far fa-calendar-alt"></i></div>
-                                            </div>
-                                        </div>
                                         <!-- Textarea -->
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <label class="control-label sr-only" for="comments">Comment</label>
-                                                <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Write Comment"></textarea>
+                                                <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Write Comment"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -534,7 +564,7 @@
                         <!-- venue-admin -->
                         <div class="vendor-owner-profile mb30">
                             <div class="vendor-owner-profile-head">
-                                <div class="vendor-owner-profile-img"><img src="images/admin-pic.jpg" class="rounded-circle" alt=""></div>
+                                <div class="vendor-owner-profile-img"><img src="{{ asset('images/dashboard-profile.jpg') }}" class="rounded-circle" alt=""></div>
                                 <h4 class="vendor-owner-name mb0">Roberto F. McGill</h4>
                             </div>
                             <div class="vendor-owner-profile-content">
@@ -570,7 +600,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h2>Similar Vendor</h2>
+                    <h2>Similar Listing</h2>
                 </div>
             </div>
             <div class="row">
@@ -579,7 +609,7 @@
                         <!-- Vendor thumbnail -->
                         <div class="vendor-img zoomimg">
                             <!-- Vendor img -->
-                            <a href="#"><img src="images/vendor-img-1.jpg" alt="" class="img-fluid"></a>
+                            <a href="#"><img src="{{ asset('images/img2.jpg') }}" alt="" class="img-fluid"></a>
                             <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
                         </div>
                         <!-- /.Vendor img -->
@@ -591,14 +621,14 @@
                         <div class="vendor-meta">
                             <div class="vendor-meta-item vendor-meta-item-bordered">
                                 <span class="vendor-price">
-                                    $150
+                                    karachi
                                 </span>
-                                <span class="vendor-text">Start From</span></div>
+                                <span class="rating-count vendor-text">City</span></div>
                             <div class="vendor-meta-item vendor-meta-item-bordered">
                                 <span class="vendor-guest">
-                                    120+
+                                    Pakistan
                                 </span>
-                                <span class="vendor-text">Guest</span>
+                                <span class="rating-count vendor-text">Country</span>
                             </div>
                             <div class="vendor-meta-item vendor-meta-item-bordered">
                                 <span class="rating-star">
@@ -608,7 +638,7 @@
                                     <i class="fa fa-star rated"></i>
                                     <i class="fa fa-star rate-mute"></i> 
                                     </span>
-                                <span class="rating-count vendor-text">(20)</span></div>
+                                <span class="rating-count vendor-text">Rating</span></div>
                         </div>
                         <!-- /.Vendor Content -->
                     </div>
@@ -619,7 +649,7 @@
                         <!-- Vendor thumbnail -->
                         <div class="vendor-img zoomimg">
                             <!-- Vendor img -->
-                            <a href="#"><img src="images/vendor-img-2.jpg" alt=""  class="img-fluid"></a>
+                            <a href="#"><img src="{{ asset('images/img2.jpg') }}" alt=""  class="img-fluid"></a>
                             <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
                         </div>
                         <!-- /.Vendor img -->
@@ -649,7 +679,7 @@
                                     <i class="fa fa-star rated"></i>
                                     <i class="fa fa-star rate-mute"></i> 
                                     </span>
-                                <span class="rating-count vendor-text">(20)</span></div>
+                                <span class="rating-count vendor-text">Rating</span></div>
                         </div>
                     </div>
                     <!-- /.Vendor thumbnail -->
@@ -659,7 +689,7 @@
                         <!-- Vendor thumbnail -->
                         <div class="vendor-img zoomimg">
                             <!-- Vendor img -->
-                            <a href="#"><img src="images/vendor-img-3.jpg" alt=""  class="img-fluid"></a>
+                            <a href="#"><img src="{{ asset('images/img2.jpg') }}" alt=""  class="img-fluid"></a>
                             <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
                         </div>
                         <!-- /.Vendor img -->
@@ -689,7 +719,7 @@
                                     <i class="fa fa-star rated"></i>
                                     <i class="fa fa-star rate-mute"></i> 
                                     </span>
-                                <span class="rating-count vendor-text">(20)</span></div>
+                                <span class="rating-count vendor-text">Rating</span></div>
                         </div>
                     </div>
                     <!-- /.Vendor thumbnail -->
@@ -725,7 +755,64 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <!-- footer-widget -->
                     <div class="footer-widget">
-                        <a href="#"><img src="images/footer-logo.png" alt="" class="mb20"></a>
+                        <a href="#">
+                            <!-- <img src="images/footer-logo.png" alt="" class="mb20"> -->
+                            <a href="/" class="logo">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 170 50" enable-background="new 0 0 170 50" xml:space="preserve">
+                                    <path fill="#00A591" d="M48,50H25C11.3,50,0,38.8,0,25v0C0,11.2,11.2,0,25,0l23,0c1.1,0,2,0.9,2,2v46C50,49.1,49.1,50,48,50z"></path>
+                                    <g>
+                                        <path fill="#FFFFFF" d="M39,23.3c0,1.1-0.9,2-2,2v6c0,1.1-0.9,2-2,2c-2.8-2.3-7.3-5.5-12.7-5.9c-1.9,0.6-2.5,2.8-1.3,4
+                                        c-1.1,1.8,0.3,3.1,2,4.4c-1,1.9-5,1.9-6.4,0.6c-0.9-2.8-2.3-5.6-1.2-9.1h-1.9c-1.4,0-2.5-1.1-2.5-2.5v-3c0-1.4,1.1-2.5,2.5-2.5H21
+                                        c6,0,11-3.5,14-6c1.1,0,2,0.9,2,2v6C38.1,21.3,39,22.2,39,23.3z M35,15.8c-4.1,3.1-8,4.9-12,5.4v4.2c4,0.4,7.9,2.2,12,5.3V15.8z"></path>
+                                    </g>
+                                    <g>
+                                        <path fill="#202020" d="M77.3,34.9c0,0.6-0.2,1-0.6,1.4c-0.4,0.4-0.8,0.5-1.3,0.5c-0.4,0-0.8-0.1-1.1-0.4c-0.3-0.2-0.6-0.6-0.7-1
+                                        l-1.7-4h-9.8l-1.7,4c-0.2,0.4-0.4,0.7-0.7,1c-0.3,0.2-0.7,0.3-1,0.3c-0.6,0-1-0.2-1.3-0.5s-0.4-0.7-0.4-1.3c0-0.2,0-0.4,0.1-0.6
+                                        l8.2-19.7c0.2-0.4,0.4-0.8,0.8-1c0.4-0.2,0.7-0.3,1.2-0.3c0.4,0,0.8,0.1,1.1,0.3c0.3,0.2,0.6,0.6,0.7,1l8.1,19.3
+                                        C77.2,34.4,77.3,34.7,77.3,34.9z M63.7,27.7h6.6L66.9,20L63.7,27.7z"></path>
+                                        <path fill="#202020" d="M95.4,12.8c0.4,0.4,0.6,0.9,0.6,1.5v20.4c0,0.6-0.2,1.1-0.6,1.4s-0.8,0.6-1.4,0.6s-1-0.2-1.4-0.6
+                                        c-0.4-0.4-0.6-0.8-0.6-1.4c-0.5,0.6-1.3,1.2-2.2,1.6c-0.9,0.5-1.9,0.7-3,0.7c-1.5,0-2.9-0.4-4.1-1.2c-1.2-0.8-2.2-1.9-2.9-3.3
+                                        s-1.1-3-1.1-4.7s0.4-3.3,1.1-4.7c0.7-1.4,1.7-2.5,2.9-3.3c1.2-0.8,2.6-1.2,4-1.2c1.1,0,2,0.2,3,0.6c0.9,0.4,1.7,0.9,2.3,1.5v-6.5
+                                        c0-0.6,0.2-1.1,0.6-1.4s0.8-0.6,1.4-0.6S95.1,12.5,95.4,12.8z M90.9,31.8c0.9-1,1.4-2.4,1.4-3.9s-0.5-2.9-1.4-4s-2.1-1.6-3.5-1.6
+                                        c-1.4,0-2.6,0.5-3.5,1.6s-1.4,2.4-1.4,4s0.4,2.9,1.3,3.9c0.9,1,2.1,1.6,3.5,1.6C88.8,33.4,90,32.9,90.9,31.8z"></path>
+                                        <path fill="#202020" d="M100.4,16.5c-0.3-0.2-0.5-0.7-0.5-1.3v-0.6c0-0.6,0.2-1,0.5-1.3c0.3-0.2,0.9-0.4,1.6-0.4
+                                        c0.8,0,1.3,0.1,1.6,0.4s0.5,0.7,0.5,1.3v0.6c0,0.6-0.2,1.1-0.5,1.3c-0.3,0.2-0.9,0.3-1.6,0.3C101.3,16.9,100.7,16.8,100.4,16.5z
+                                        M103.5,36.1c-0.4,0.4-0.8,0.6-1.4,0.6s-1-0.2-1.4-0.6s-0.6-0.9-0.6-1.4V21.1c0-0.6,0.2-1.1,0.6-1.4c0.4-0.4,0.8-0.6,1.4-0.6
+                                        s1,0.2,1.4,0.6c0.4,0.4,0.6,0.9,0.6,1.4v13.6C104,35.3,103.8,35.7,103.5,36.1z"></path>
+                                        <path fill="#202020" d="M115,16.4c-0.3,0.4-0.5,0.9-0.5,1.4v1.6h3c0.5,0,1,0.2,1.3,0.5c0.4,0.3,0.5,0.8,0.5,1.3
+                                        c0,0.5-0.2,1-0.5,1.3c-0.4,0.3-0.8,0.5-1.3,0.5h-3v11.7c0,0.6-0.2,1.1-0.6,1.4s-0.8,0.6-1.4,0.6s-1-0.2-1.4-0.6s-0.6-0.9-0.6-1.4
+                                        V23h-1.8c-0.5,0-1-0.2-1.3-0.5c-0.4-0.3-0.5-0.8-0.5-1.3c0-0.5,0.2-1,0.5-1.3c0.4-0.3,0.8-0.5,1.3-0.5h1.8v-1.5c0-1.7,0.6-3,1.7-4
+                                        c1.1-1,2.8-1.6,4.9-1.6c0.8,0,1.5,0.2,2.1,0.5c0.6,0.3,0.9,0.8,0.9,1.5c0,0.5-0.2,1-0.5,1.3c-0.3,0.3-0.7,0.5-1.1,0.5
+                                        c-0.1,0-0.2,0-0.3,0c-0.1,0-0.2,0-0.4-0.1c-0.5-0.1-1-0.2-1.3-0.2C115.8,15.8,115.3,16,115,16.4z M122,16.5
+                                        c-0.3-0.2-0.5-0.7-0.5-1.3v-0.6c0-0.6,0.2-1,0.5-1.3s0.9-0.4,1.6-0.4c0.8,0,1.3,0.1,1.6,0.4c0.3,0.2,0.5,0.7,0.5,1.3v0.6
+                                        c0,0.6-0.2,1.1-0.5,1.3c-0.3,0.2-0.9,0.3-1.6,0.3C122.8,16.9,122.3,16.8,122,16.5z M125,36.1c-0.4,0.4-0.8,0.6-1.4,0.6
+                                        c-0.6,0-1-0.2-1.4-0.6c-0.4-0.4-0.6-0.9-0.6-1.4V21.1c0-0.6,0.2-1.1,0.6-1.4c0.4-0.4,0.8-0.6,1.4-0.6c0.6,0,1,0.2,1.4,0.6
+                                        c0.4,0.4,0.6,0.9,0.6,1.4v13.6C125.6,35.3,125.4,35.7,125,36.1z"></path>
+                                        <path fill="#202020" d="M144.8,28.7c-0.4,0.3-0.9,0.5-1.4,0.5h-10.9c0.3,1.3,0.9,2.3,1.8,3.1c0.9,0.7,2,1.1,3.2,1.1
+                                        c0.9,0,1.6-0.1,2.1-0.2s0.9-0.3,1.2-0.5c0.3-0.2,0.5-0.3,0.6-0.4c0.4-0.2,0.8-0.3,1.1-0.3c0.5,0,0.9,0.2,1.2,0.5s0.5,0.7,0.5,1.2
+                                        c0,0.6-0.3,1.1-0.9,1.6c-0.6,0.5-1.4,0.9-2.5,1.3c-1,0.4-2.1,0.5-3.1,0.5c-1.8,0-3.5-0.4-4.8-1.2c-1.4-0.8-2.4-1.8-3.2-3.2
+                                        c-0.7-1.4-1.1-2.9-1.1-4.6c0-1.9,0.4-3.6,1.2-5c0.8-1.4,1.8-2.5,3.1-3.3c1.3-0.8,2.7-1.1,4.2-1.1c1.5,0,2.8,0.4,4.1,1.2
+                                        s2.3,1.9,3.1,3.2c0.8,1.3,1.2,2.8,1.2,4.4C145.5,28,145.2,28.4,144.8,28.7z M132.6,25.9h8.6v-0.2c-0.1-0.9-0.5-1.7-1.4-2.4
+                                        c-0.8-0.7-1.7-1-2.8-1C134.6,22.3,133.1,23.5,132.6,25.9z"></path>
+                                        <path fill="#202020" d="M159.6,19.3c0.5,0.4,0.7,0.8,0.7,1.3c0,0.7-0.2,1.2-0.5,1.5c-0.4,0.3-0.8,0.5-1.3,0.5
+                                        c-0.3,0-0.7-0.1-1.1-0.2c-0.1,0-0.2-0.1-0.4-0.1s-0.5-0.1-0.7-0.1c-0.6,0-1.1,0.2-1.7,0.5c-0.5,0.4-1,0.9-1.3,1.6
+                                        c-0.3,0.7-0.5,1.6-0.5,2.6v7.8c0,0.6-0.2,1.1-0.6,1.4s-0.8,0.6-1.4,0.6s-1-0.2-1.4-0.6s-0.6-0.9-0.6-1.4V21.1
+                                        c0-0.6,0.2-1.1,0.6-1.4c0.4-0.4,0.8-0.6,1.4-0.6s1,0.2,1.4,0.6c0.4,0.4,0.6,0.9,0.6,1.4v0.4c0.5-0.9,1.2-1.6,2.2-2.1
+                                        c0.9-0.5,2-0.7,3-0.7C158.6,18.7,159.2,18.9,159.6,19.3z"></path>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                </svg>
+                            </a>
+                        </a>
                         <p class="mb10">Vestibulum ante elit, convallis quis nibh in, vulputate rhoncus massa. In hac habitasse platea dictumst.</p>
                         <p>In hac habitasse platea dictumst simple dummy content here.</p>
                     </div>
@@ -784,14 +871,15 @@
             </div>
         </div>
     </div>
+    @endforeach
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/fastclick.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/custom-script.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/fastclick.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/custom-script.js') }}"></script>
     <script>
     function initMap() {
         var uluru = {
@@ -805,22 +893,22 @@
         var marker = new google.maps.Marker({
             position: uluru,
             map: map,
-            icon: 'images/map-pin.png'
+            icon: "{{ asset('images/map-pin(2).png') }}"
         });
     }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvZiQwPXkkIeXfAn-Cki9RZBj69mg-95M&amp;callback=initMap">
     </script>
-    <script src="js/jquery.rateyo.min.js"></script>
+    <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script>
     $(function() {
 
         $("#rateYo1, #rateYo2, #rateYo3, #rateYo4, #rateYo5 ").rateYo({
-            rating: 3.6
+            rating: 0.0
         });
 
     });
     </script>
-    <script src="js/return-to-top.js"></script>
+    <script src="{{ asset('js/return-to-top.js') }}"></script>
 </body>
 </html>

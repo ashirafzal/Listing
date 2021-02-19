@@ -26,11 +26,24 @@ class RequestQuotesController extends Controller
 
     public function create(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login for submiting a request quote.');
+        }
+
         $RequestQuotes = new RequestQuotes();
 
-        $RequestQuotes->user_id = Auth::user()->id;
-        $RequestQuotes->listing_id = $request->id;
+        $RequestQuotes->user_id = $user->id;
+        $RequestQuotes->listing_id = $request->listing_id;
+        $RequestQuotes->name = $request->name;
+        $RequestQuotes->email = $request->email;
+        $RequestQuotes->phone = $request->phone;
+        $RequestQuotes->comment = $request->comment;
+
         $RequestQuotes->save();
+
+        return redirect()->back()->withSuccess('Your request quote has been submitted.');
     }
 
     public function edit(Request $request)
