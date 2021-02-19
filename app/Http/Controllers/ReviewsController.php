@@ -27,7 +27,11 @@ class ReviewsController extends Controller
 
     public function create(Request $request)
     {
-        $user = User::where('id', Auth::id())->get();
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login for submiting a review.');
+        }
 
         $Reviews = new Reviews();
 
@@ -35,14 +39,16 @@ class ReviewsController extends Controller
         $Reviews->listing_id = $request->listing_id;
         $Reviews->user_id = $user->id;
         $Reviews->user_name = $user->name;
-        $Reviews->user_image = $user->user_image;
+        $Reviews->user_image = $user->image;
         $Reviews->user_email = $user->email;
-        $Reviews->user_type = $user->type;
-        $Reviews->review_text = $request->review_text;
-        $Reviews->review_email = $request->review_email;
+        $Reviews->user_type = $user->role;
+        $Reviews->review_text = $request->review;
+        $Reviews->review_email = $request->email;
         $Reviews->rating = $request->rating;
         $Reviews->date_time = now();
         $Reviews->save();
+
+        return redirect()->back()->withSuccess('Your review has been submitted.');
     }
 
     public function edit(Request $request)

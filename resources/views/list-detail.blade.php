@@ -436,25 +436,21 @@
                                     <span class="text-dark"><b>Rating</b></span>
                                     <span id="rateYo1"></span>
                                 </div>
-                                <!-- <div class="rate-selection">
-                                    <span class="text-dark">Facilities</span>
-                                    <span id="rateYo2"></span>
-                                </div>
-                                <div class="rate-selection">
-                                    <span class="text-dark">Staff</span>
-                                    <span id="rateYo3"></span>
-                                </div>
-                                <div class="rate-selection">
-                                    <span class="text-dark">Flexibility</span>
-                                    <span id="rateYo4"></span>
-                                </div>
-                                <div class="rate-selection">
-                                    <span class="text-dark">Value of money</span>
-                                    <span id="rateYo5"></span>
-                                </div> -->
                             </div>
-                            
-                            <form>
+                            @if(session('success'))
+                                <div class="alert alert-info alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{session('success')}}</strong>
+                                </div>
+                            @endif
+                            @if(session('errors'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{session('errors')}}</strong>
+                                </div>
+                            @endif
+                            <form action="{{ url('review-create') }}" method="post">
+                                @csrf
                                 <div class="row">
                                     <!-- Textarea -->
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt30">
@@ -467,6 +463,11 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                         <div class="form-group">
                                             <label class="control-label" for="name">Name</label>
+                                            <!-- Hidden Field -->
+                                            <input id="vendor_id" name="vendor_id" type="hidden" value="{{ $listing->vendor_id }}" placeholder="rating" class="form-control input-md">
+                                            <input id="listing_id" name="listing_id" type="hidden" value="{{ $listing->id }}" placeholder="rating" class="form-control input-md">
+                                            <input id="rating" name="rating" type="hidden" placeholder="rating" class="form-control input-md">
+                                            <!-- Hidden Field -->
                                             <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
                                         </div>
                                     </div>
@@ -903,10 +904,14 @@
     <script>
     $(function() {
 
-        $("#rateYo1, #rateYo2, #rateYo3, #rateYo4, #rateYo5 ").rateYo({
+        $("#rateYo1").rateYo({
             rating: 0.0
         });
 
+        $("#rateYo1").rateYo().on("rateyo.change", function (e, data) {
+            var rating = data.rating;
+            $('#rating').val(rating); //add rating value to input field
+        });
     });
     </script>
     <script src="{{ asset('js/return-to-top.js') }}"></script>

@@ -47,6 +47,8 @@ Route::get('list-detail/{id}', '\App\Http\Controllers\ListingController@view');
 
 Route::post('request-quote-create', '\App\Http\Controllers\RequestQuotesController@create');
 
+Route::post('review-create', '\App\Http\Controllers\ReviewsController@create');
+
 Route::get('request-quote', function () {
     return view('dashboard.request-quote');
 });
