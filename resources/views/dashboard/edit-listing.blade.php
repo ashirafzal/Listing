@@ -212,7 +212,7 @@
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="{{ asset('images/dashboard-profile.jpg') }}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">
@@ -249,7 +249,7 @@
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle">
+                    <img src="{{ asset('images/dashboard-profile.jpg') }}" alt="" class="rounded-circle">
                 </div>
                 @endif
                 <h3 class="vendor-profile-name">{{ $user->name }}</h3>
