@@ -179,7 +179,7 @@
     </style>
 </head>
 <body>
-    @foreach($listings as $listing)
+    
   <!-- header -->
     <div class="header">
         <!-- navigation start -->
@@ -228,8 +228,8 @@
             <div class="row align-items-end page-section">
                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
                     <div class="">
-                        <h1 class="vendor-heading">{{ $listing->title }}</h1>
-                        <p class="text-white"><span class="mr-2"><i class="fas fa-map-marker-alt "></i></span>{{ $listing->address }}<a href="#view-map" class="btn-primary-link"><b>view map</b></a></p>
+                        <h1 class="vendor-heading">{{ $listings->title }}</h1>
+                        <p class="text-white"><span class="mr-2"><i class="fas fa-map-marker-alt "></i></span>{{ $listings->address }}<a href="#view-map" class="btn-primary-link"><b>view map</b></a></p>
                     </div>
                 </div>
                 <div class="col-xl-5 text-lg-right">
@@ -280,7 +280,7 @@
                                 <!--vendor-description -->
                                 <p class="lead">Description</p>
                                 <p>
-                                    {{ $listing->description }}
+                                    {{ $listings->description }}
                                 </p>
                                 <!-- <h4>Sub heading </h4>
                                 <p>Etiam placerat dictum dolor ac volutpat. Cras egestas laoreet risus id elementum. Etiam ultrices vitae dui ut finibus. In ac rhoncus mauris, aliquet efficitur erat. Sed laoreet luctus tellus vel porttitor. Aliquam non tellus in eros congue fermentum. Nulla tincidunt volutpat ligula, non rutrum lectus luctus quis.</p>
@@ -298,59 +298,59 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="table-heading">Title</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->title }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->title }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Category</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->category }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->category }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">City</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->city }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->city }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Country</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->country}}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->country}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Zipcode</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->zipcode }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->zipcode }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Latitude</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->latitude }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->latitude }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Longitude</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->longitude }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->longitude }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Facebook</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->facebook }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->facebook }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Twitter</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->twitter }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->twitter }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Instagram</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->instagram }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->instagram }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Youtube</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->youtube }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->youtube }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Vendor Name</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->vendor_name }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->vendor_name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Vendor Email</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->vendor_email }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->vendor_email }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="table-heading">Vendor Phone Number</td>
-                                                    <td class="venue-highlight-meta">{{ $listing->vendor_phone_number }}</td>
+                                                    <td class="venue-highlight-meta">{{ $listings->vendor_phone_number }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -373,11 +373,20 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <!-- review-sidebar -->
                                                 <div class="review-sidebar">
-                                                    
-                                                        <div class="review-total">4.8 </div>
+                                                        @isset($AvgReviewsRating)
+                                                            <div class="review-total">{{ $AvgReviewsRating }}</div>
+                                                        @endisset
+                                                        @empty($AvgReviewsRating)
+                                                            <div class="review-total">-</div>
+                                                        @endempty
                                                         <div class="review-text">Reviews</div>
                                                         <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa  fa-star"></i> <i class="fa fa-star"></i> </span>
-                                                        <p>4.4 average based on 1 ratings.</p>
+                                                        @isset($AvgReviewsRating)
+                                                            <p>{{ $AvgReviewsRating }} average based on {{ $ReviewsCount }} ratings.</p>
+                                                        @endisset
+                                                        @empty($AvgReviewsRating)
+                                                            <p> average based rating not available.</p>
+                                                        @endempty
                                                     </div>
                                                 
                                                 <!-- /.review-sidebar -->
@@ -388,7 +397,12 @@
                                                 <div class="review-list">
                                                     <div class="review-for"><b>Rating</b></div>
                                                     <div class="review-rating"><span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far  fa-star"></i> </span></div>
-                                                    <div class="review-number">3.0</div>
+                                                    @isset($AvgReviewsRating)
+                                                        <div class="review-number">{{ $AvgReviewsRating }}</div>
+                                                    @endisset
+                                                    @empty($AvgReviewsRating)
+                                                        <div class="review-number">No Rating</div>
+                                                    @endempty
                                                 </div>
                                                 <!-- /.review-list -->
                                             </div>
@@ -399,6 +413,7 @@
                             </div>
                         </div>
                         <!-- /.review-block -->
+                        @foreach($Reviews as $Review)
                         <div class="card border card-shadow-none ">
                             <!-- review-user -->
                             <div class="card-header bg-white mb0">
@@ -420,6 +435,8 @@
                                 <!-- /.review-descripttions -->
                             </div>
                         </div>
+                        @endforeach
+                        <div>{{ $Reviews->links() }}</div>
                         <!-- /.review-content -->
                         <!-- /.review-block -->
                     </div>
@@ -464,8 +481,8 @@
                                         <div class="form-group">
                                             <label class="control-label" for="name">Name</label>
                                             <!-- Hidden Field -->
-                                            <input id="vendor_id" name="vendor_id" type="hidden" value="{{ $listing->vendor_id }}" placeholder="rating" class="form-control input-md">
-                                            <input id="listing_id" name="listing_id" type="hidden" value="{{ $listing->id }}" placeholder="rating" class="form-control input-md">
+                                            <input id="vendor_id" name="vendor_id" type="hidden" value="{{ $listings->vendor_id }}" placeholder="rating" class="form-control input-md">
+                                            <input id="listing_id" name="listing_id" type="hidden" value="{{ $listings->id }}" placeholder="rating" class="form-control input-md">
                                             <input id="rating" name="rating" type="hidden" placeholder="rating" class="form-control input-md">
                                             <!-- Hidden Field -->
                                             <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
@@ -528,7 +545,7 @@
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <label class="control-label sr-only" for="name1">Name</label>
-                                                <input name="listing_id" type="hidden" value="{{ $listing->id }}" placeholder="Name" class="form-control input-md" required="">
+                                                <input name="listing_id" type="hidden" value="{{ $listings->id }}" placeholder="Name" class="form-control input-md" required="">
                                                 <input id="name1" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
                                             </div>
                                         </div>
@@ -872,7 +889,7 @@
             </div>
         </div>
     </div>
-    @endforeach
+    
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Reviews;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,10 +34,16 @@ class ListingController extends Controller
 
     public function view(Request $request)
     {
-        $Listing = Listing::where('id',$request->id)->get();
+        $Listing = Listing::where('id', $request->id)->first();
+
+        $VendorDetails = Vendor::where('id', $Listing->vendor_id)->first();
+        $Reviews = Reviews::where('listing_id', $Listing->id)->paginate(5);
+        $ReviewsCount = Reviews::where('listing_id', $Listing->id)->count();
+        $AvgReviewsRating = Reviews::where('listing_id', $Listing->id)->avg('rating');
 
         return view('list-detail', [
-            'listings' => $Listing
+            'listings' => $Listing, 'VendorDetails' => $VendorDetails, 'Reviews' => $Reviews, 'AvgReviewsRating' => $AvgReviewsRating,
+            'ReviewsCount' => $ReviewsCount
         ]);
     }
 
@@ -106,12 +113,11 @@ class ListingController extends Controller
         $Listing->save();
 
         return redirect()->back()->withSuccess('List has been created .');
-
     }
 
     public function EditView($id)
     {
-        $Listing = Listing::where('id',$id)->first();
+        $Listing = Listing::where('id', $id)->first();
 
         $user = Auth::user();
 
@@ -123,7 +129,7 @@ class ListingController extends Controller
 
     public function edit(Request $request)
     {
-        $listing = Listing::where('id',$request->id)->first();
+        $listing = Listing::where('id', $request->id)->first();
 
         if ($request->hasFile('hero_image')) {
             $hero_image = $request->file('hero_image');
@@ -182,7 +188,6 @@ class ListingController extends Controller
 
     public function delete(Request $request)
     {
-        Listing::where('id',$request->id)->delete();
+        Listing::where('id', $request->id)->delete();
     }
-
 }
