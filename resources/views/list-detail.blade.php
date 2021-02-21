@@ -297,30 +297,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12">
-                    <!--vendor-details -->
-                    <!-- <div class="vendor-meta bg-white border m-0">
-                        <div class="vendor-meta-item vendor-meta-item-bordered">
-                            <span class="vendor-price">
-                                    $150
-                                </span>
-                            <span class="vendor-text">Start From</span></div>
-                        <div class="vendor-meta-item vendor-meta-item-bordered">
-                            <span class="vendor-guest">
-                                    120+
-                                </span>
-                            <span class="vendor-text">Guest</span>
-                        </div>
-                        <div class="vendor-meta-item vendor-meta-item-bordered">
-                            <span class="rating-star">
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rate-mute"></i> 
-                                    </span>
-                            <span class="rating-count vendor-text">(20)</span>
-                        </div>
-                    </div> -->
                     <div class="mt20">
                         <div class="card border card-shadow-none">
                             <h3 class="card-header bg-white">About Wedding Venue</h3>
@@ -331,10 +307,6 @@
                                 <p>
                                     {{ $listings->description }}
                                 </p>
-                                <!-- <h4>Sub heading </h4>
-                                <p>Etiam placerat dictum dolor ac volutpat. Cras egestas laoreet risus id elementum. Etiam ultrices vitae dui ut finibus. In ac rhoncus mauris, aliquet efficitur erat. Sed laoreet luctus tellus vel porttitor. Aliquam non tellus in eros congue fermentum. Nulla tincidunt volutpat ligula, non rutrum lectus luctus quis.</p>
-                                <p>Donec accumsan consequat massa non gravida.<span class="text-default">Morbi pharetra mollis tortor ac maximus.</span> Nunc dapibus bibendum urna, in egestas dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p> -->
-                                <!--venue-highlights -->
                                 <div class="venue-highlights">
                                     <div class=" table-responsive">
                                         <table class="table table-bordered">
