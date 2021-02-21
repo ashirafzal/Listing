@@ -17,6 +17,10 @@ class WishListController extends Controller
 
         $user = Auth::user();
 
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to add list in wishlist.');
+        }
+
         $count = WishList::where('user_id', $user->id)->where('listing_id', $id)->count();
 
         if($count){
