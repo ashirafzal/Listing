@@ -40,10 +40,11 @@ class ListingController extends Controller
         $Reviews = Reviews::where('listing_id', $Listing->id)->paginate(5);
         $ReviewsCount = Reviews::where('listing_id', $Listing->id)->count();
         $AvgReviewsRating = Reviews::where('listing_id', $Listing->id)->avg('rating');
+        $SimiliarListing = Listing::where('vendor_id', $Listing->vendor_id)->paginate(6);
 
         return view('list-detail', [
             'listings' => $Listing, 'VendorDetails' => $VendorDetails, 'Reviews' => $Reviews, 'AvgReviewsRating' => $AvgReviewsRating,
-            'ReviewsCount' => $ReviewsCount
+            'ReviewsCount' => $ReviewsCount, 'SimiliarListing' => $SimiliarListing
         ]);
     }
 

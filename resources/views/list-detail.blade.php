@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>List Single Page Template- RealWed</title>
+    <title>List Detail</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
@@ -199,6 +199,15 @@
             animation-fill-mode: forwards;
         }
 
+        .blue-text{
+            color: #00a591;
+        }
+
+        .title:hover{
+            color: #00a591;
+            font-weight: 400;
+        }
+
         .mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
             border-left: 17px solid #00a591;
         }
@@ -285,7 +294,7 @@
                 <div class="col-xl-5 text-lg-right">
                      <div class="mt-xl-4">
                         <a href="#" class="btn btn-primary" id="open-popup">View Gallery</a>
-                        <a href="#" class="btn-default-wishlist"><i class="fa fa-heart"></i> <span class="pl-1">Add To Wishlist</span></a>
+                        <a href="wish-list/{{ $listings->id }}" class="btn-default-wishlist"><i class="fa fa-heart"></i> <span class="pl-1">Add To Wishlist</span></a>
                     </div>
                 </div>
             </div>
@@ -629,129 +638,50 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h2>Similar Listing</h2>
+                    <h2>More listing from this vendor</h2>
                 </div>
             </div>
             <div class="row">
+                @foreach($SimiliarListing as $SimiliarListings)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="vendor-thumbnail">
                         <!-- Vendor thumbnail -->
                         <div class="vendor-img zoomimg">
                             <!-- Vendor img -->
-                            <a href="#"><img src="{{ asset('images/img2.jpg') }}" alt="" class="img-fluid"></a>
-                            <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
+                            <a href="#"><img src="{{ asset('listing-image/' . $listings->hero_image) }}" alt="" class="img-fluid"></a>
+                            <div class="wishlist-sign"><a href="wish-list/{{ $SimiliarListings->id }}" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
                         </div>
                         <!-- /.Vendor img -->
                         <div class="vendor-content">
                             <!-- Vendor Content -->
-                            <h2 class="vendor-title"><a href="#" class="title">Wedding Venue Title Name</a></h2>
-                            <p class="vendor-address">Ahmedabad, Gujarat.</p>
+                            <h2 class="vendor-title"><a href="{{ $SimiliarListings->id }}" class="title blue-text">{{ $SimiliarListings->title }}</a></h2>
+                            <p class="vendor-address">{{ $SimiliarListings->city }} , <span>{{ $SimiliarListings->country }}</span> </p>
                         </div>
                         <div class="vendor-meta">
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="vendor-price">
-                                    karachi
+                            <div class="vendor-meta-item vendor-meta-item-bordered blue-text">
+                                <span class="">
+                                    {{ $SimiliarListings->city }}
                                 </span>
                                 <span class="rating-count vendor-text">City</span></div>
                             <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="vendor-guest">
-                                    Pakistan
+                                <span class="blue-text">
+                                    {{ $SimiliarListings->country }}
                                 </span>
                                 <span class="rating-count vendor-text">Country</span>
                             </div>
                             <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="rating-star">
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rate-mute"></i> 
-                                    </span>
-                                <span class="rating-count vendor-text">Rating</span></div>
+                                <span class="blue-text">
+                                    {{ $SimiliarListings->vendor_name }}
+                                </span>
+                                <span class="rating-count vendor-text">Vendor</span></div>
                         </div>
                         <!-- /.Vendor Content -->
                     </div>
                     <!-- /.Vendor thumbnail -->
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="vendor-thumbnail">
-                        <!-- Vendor thumbnail -->
-                        <div class="vendor-img zoomimg">
-                            <!-- Vendor img -->
-                            <a href="#"><img src="{{ asset('images/img2.jpg') }}" alt=""  class="img-fluid"></a>
-                            <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
-                        </div>
-                        <!-- /.Vendor img -->
-                        <div class="vendor-content">
-                            <!-- Vendor Content -->
-                            <h2 class="vendor-title"><a href="#" class="title">Wedding Venue Title Name</a></h2>
-                            <p class="vendor-address">Surat, Gujarat</p>
-                        </div>
-                        <!-- /.Vendor Content -->
-                        <div class="vendor-meta">
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="vendor-price">
-                                    $150
-                                </span>
-                                <span class="vendor-text">Start From</span></div>
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="vendor-guest">
-                                    120+
-                                </span>
-                                <span class="vendor-text">Guest</span>
-                            </div>
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="rating-star">
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rate-mute"></i> 
-                                    </span>
-                                <span class="rating-count vendor-text">Rating</span></div>
-                        </div>
-                    </div>
-                    <!-- /.Vendor thumbnail -->
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="vendor-thumbnail">
-                        <!-- Vendor thumbnail -->
-                        <div class="vendor-img zoomimg">
-                            <!-- Vendor img -->
-                            <a href="#"><img src="{{ asset('images/img2.jpg') }}" alt=""  class="img-fluid"></a>
-                            <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
-                        </div>
-                        <!-- /.Vendor img -->
-                        <div class="vendor-content">
-                            <!-- Vendor Content -->
-                            <h2 class="vendor-title"><a href="#" class="title">Wedding Venue Title Name</a></h2>
-                            <p class="vendor-address">Rajkot, Gujarat</p>
-                        </div>
-                        <!-- /.Vendor Content -->
-                        <div class="vendor-meta">
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="vendor-price">
-                                    $150
-                                </span>
-                                <span class="vendor-text">Start From</span></div>
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="vendor-guest">
-                                    120+
-                                </span>
-                                <span class="vendor-text">Guest</span>
-                            </div>
-                            <div class="vendor-meta-item vendor-meta-item-bordered">
-                                <span class="rating-star">
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rate-mute"></i> 
-                                    </span>
-                                <span class="rating-count vendor-text">Rating</span></div>
-                        </div>
-                    </div>
-                    <!-- /.Vendor thumbnail -->
+                @endforeach
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                    <a class="view-all blue-text p-2" href="#">View All</a>
                 </div>
             </div>
         </div>
@@ -922,7 +852,7 @@
         var marker = new google.maps.Marker({
             position: uluru,
             map: map,
-            icon: "{{ asset('images/map-pin(2).png') }}"
+            icon: "{{ asset('images/map-pin(3).png') }}"
         });
     }
     </script>

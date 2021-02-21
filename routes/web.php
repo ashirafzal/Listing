@@ -49,6 +49,8 @@ Route::post('request-quote-create', '\App\Http\Controllers\RequestQuotesControll
 
 Route::post('review-create', '\App\Http\Controllers\ReviewsController@create');
 
+Route::get('list-detail/wish-list/{id}', '\App\Http\Controllers\WishListController@create');
+
 Route::get('request-quote', function () {
     return view('dashboard.request-quote');
 });
