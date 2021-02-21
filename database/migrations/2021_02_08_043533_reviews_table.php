@@ -25,7 +25,7 @@ class ReviewsTable extends Migration
             $table->string('review_text');
             $table->string('review_email');
             $table->boolean('rating')->default(0);
-            $table->string('date_time');
+            $table->timestamp('date_time');
             $table->timestamps();
             $table->softDeletes();
         });

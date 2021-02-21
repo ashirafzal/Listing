@@ -90,10 +90,6 @@
             color: #00a591;
         }
 
-        .venue-pageheader{
-            background-image: url("{{ asset('images/hero-image.jpg') }}");
-        }
-
         .icon-square-outline{
             border-color: #00a591;
             color: #00a591;
@@ -176,11 +172,65 @@
         .alert-danger>.close {
             color: #ffffff;
         }
+
+        .user-img>img{
+            width: 70px;
+            height: 70px;
+        }
+
+        .view-all{
+            font-size: 1rem;
+        }
+
+        .view-all:hover{
+            color: #00a591;
+        }
+
+        .float{
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            display: block;
+    
+            animation: fadeIn 1s;
+            animation-delay: 3s;
+            animation-fill-mode: forwards;
+        }
+
+        .mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
+            border-left: 17px solid #00a591;
+        }
+
+        .mfp-arrow-left:after, .mfp-arrow-left .mfp-a {
+            border-right: 17px solid #00a591;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
     </style>
 </head>
 <body>
-    
-  <!-- header -->
+   <!-- Floating messages -->
+   <div class="container float">
+            @if(session('success'))
+            <div class="alert alert-info alert-block">
+                <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+                <strong>{{session('success')}}</strong>
+            </div>
+            @endif
+            @if(session('errors'))
+            <div class="alert alert-danger alert-block">
+                <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+                <strong>{{session('errors')}}</strong>
+            </div>
+            @endif
+    </div>
+   <!-- Floting messages ends --> 
+   <!-- header -->
     <div class="header">
         <!-- navigation start -->
         <div class="container">
@@ -223,7 +273,7 @@
     </div>
     <!-- /.header -->
     <!-- page-header -->
-    <div class="venue-pageheader">
+    <div class="venue-pageheader" style="background-image: url({{ asset('listing-image/' . $listings->hero_image) }})">
         <div class="container">
             <div class="row align-items-end page-section">
                 <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
@@ -243,7 +293,6 @@
     </div>
     <!-- /.page-header -->
     <!-- page-header -->
- 
     <div class="vendor-content-wrapper">
         <div class="container">
             <div class="row">
@@ -374,7 +423,7 @@
                                                 <!-- review-sidebar -->
                                                 <div class="review-sidebar">
                                                         @isset($AvgReviewsRating)
-                                                            <div class="review-total">{{ $AvgReviewsRating }}</div>
+                                                            <div class="review-total">{{ number_format($AvgReviewsRating, 2, '.', ',') }}</div>
                                                         @endisset
                                                         @empty($AvgReviewsRating)
                                                             <div class="review-total">-</div>
@@ -382,7 +431,7 @@
                                                         <div class="review-text">Reviews</div>
                                                         <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa  fa-star"></i> <i class="fa fa-star"></i> </span>
                                                         @isset($AvgReviewsRating)
-                                                            <p>{{ $AvgReviewsRating }} average based on {{ $ReviewsCount }} ratings.</p>
+                                                            <p>{{ number_format($AvgReviewsRating, 2, '.', ',') }} average based on {{ $ReviewsCount }} ratings.</p>
                                                         @endisset
                                                         @empty($AvgReviewsRating)
                                                             <p> average based rating not available.</p>
@@ -398,7 +447,7 @@
                                                     <div class="review-for"><b>Rating</b></div>
                                                     <div class="review-rating"><span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far  fa-star"></i> </span></div>
                                                     @isset($AvgReviewsRating)
-                                                        <div class="review-number">{{ $AvgReviewsRating }}</div>
+                                                        <div class="review-number">{{ number_format($AvgReviewsRating, 2, '.', ',') }}</div>
                                                     @endisset
                                                     @empty($AvgReviewsRating)
                                                         <div class="review-number">No Rating</div>
@@ -418,9 +467,13 @@
                             <!-- review-user -->
                             <div class="card-header bg-white mb0">
                                 <div class="review-user">
-                                    <div class="user-img"> <img src="{{ asset('images/dashboard-profile.jpg') }}" alt="" class="rounded-circle"></div>
+                                    <div class="user-img"> 
+                                        <img src="{{ url('user-image') }} {{ '/'.$Review->user_image}}" alt="" class="rounded-circle">
+                                    </div>
                                     <div class="user-meta">
-                                        <h5 class="user-name mb-0">Eric M. Rahn  <span class="user-review-date">14 May, 2018</span></h5>
+                                        <h5 class="user-name mb-0">{{ $Review->user_name }}
+                                            <span class="user-review-date">{{ $Review->created_at->diffForHumans() }}</span>
+                                        </h5>
                                         <div class="given-review">
                                             <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far  fa-star"></i> <i class="far  fa-star"></i></span></div>
                                     </div>
@@ -430,13 +483,16 @@
                             <div class="card-body">
                                 <!-- review-descripttions -->
                                 <div class="review-descriptions">
-                                    <p>Morbi pharetra mollis tortor ac maximus. Nunc dapibus bibendum urna, in egestas dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Fusce ullamcorper sit amet augue a volutpat. Cras ultrices dictum ante vel iaculis.Donec accumsan consequat massa non gravida. Aenean molestie molestie elementum. Nullam semper vel mauris et semper. </p>
+                                    <p>{{ $Review->review_text }}</p>
                                 </div>
                                 <!-- /.review-descripttions -->
                             </div>
                         </div>
                         @endforeach
-                        <div>{{ $Reviews->links() }}</div>
+                        <!-- <div>{{ $Reviews->links() }}</div> -->
+                        <div class="card border card-shadow-none text-center">
+                            <a class="view-all p-2" href="#">View All</a>
+                        </div>
                         <!-- /.review-content -->
                         <!-- /.review-block -->
                     </div>
@@ -454,18 +510,6 @@
                                     <span id="rateYo1"></span>
                                 </div>
                             </div>
-                            @if(session('success'))
-                                <div class="alert alert-info alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{session('success')}}</strong>
-                                </div>
-                            @endif
-                            @if(session('errors'))
-                                <div class="alert alert-danger alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{session('errors')}}</strong>
-                                </div>
-                            @endif
                             <form action="{{ url('review-create') }}" method="post">
                                 @csrf
                                 <div class="row">
@@ -523,18 +567,6 @@
                     <div class="sidebar-venue" >
                         <div class="card">
                             <div class="card-body">
-                                @if(session('success'))
-                                <div class="alert alert-info alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{session('success')}}</strong>
-                                </div>
-                                @endif
-                                @if(session('errors'))
-                                <div class="alert alert-danger alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>{{session('errors')}}</strong>
-                                </div>
-                                @endif
                                 <form action="{{ url('request-quote-create') }}" method="POST">
                                     @csrf
                                     <div class="row">
@@ -582,14 +614,21 @@
                         <!-- venue-admin -->
                         <div class="vendor-owner-profile mb30">
                             <div class="vendor-owner-profile-head">
-                                <div class="vendor-owner-profile-img"><img src="{{ asset('images/dashboard-profile.jpg') }}" class="rounded-circle" alt=""></div>
-                                <h4 class="vendor-owner-name mb0">Roberto F. McGill</h4>
+                                @if($VendorDetails->image)
+                                <div class="vendor-owner-profile-img">
+                                    <img src="{{ url('user-image') }} {{ '/'.$VendorDetails->image}}" class="rounded-circle" alt="">
+                                </div>
+                                @else
+                                <div class="vendor-owner-profile-img">
+                                    <img src="{{ asset('images/dashboard-profile.jpg') }}" class="rounded-circle" alt="">
+                                </div>
+                                @endif
+                                <h4 class="vendor-owner-name mb0">{{ $VendorDetails->name }}</h4>
                             </div>
                             <div class="vendor-owner-profile-content">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><span class="mr-2"><i class="fas fa-fw fa-map-marker-alt"></i></span>1847 Providence Lane Alhambra, CA 91801</li>
-                                    <li class="list-group-item"><span class="mr-2"><i class="fas fa-fw fa-phone"></i></span>(123) 123 4567</li>
-                                    <li class="list-group-item"><span class="mr-2"><i class="fas fa-fw fa-envelope"></i></span>www.yourdomain.com</li>
+                                    <li class="list-group-item"><span class="mr-2"><i class="fas fa-fw fa-phone"></i></span>{{ $VendorDetails->phone_number }}</li>
+                                    <li class="list-group-item"><span class="mr-2"><i class="fas fa-fw fa-envelope"></i></span>{{ $VendorDetails->email }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -897,7 +936,7 @@
     <script src="{{ asset('js/fastclick.js') }}"></script>
     <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/custom-script.js') }}"></script>
+    <!-- <script src="{{ asset('js/custom-script.js') }}"></script> -->
     <script>
     function initMap() {
         var uluru = {
@@ -930,6 +969,30 @@
             $('#rating').val(rating); //add rating value to input field
         });
     });
+    </script>
+    <script>
+        if ($('#open-popup').length) {
+            $('#open-popup').magnificPopup({
+                items: [{
+                        src: "{{ asset('listing-image/' . $listings->image1) }}",
+                        title: 'Image #1'
+                    },
+                    {
+                        src: "{{ asset('listing-image/' . $listings->image2) }}",
+                        title: 'Image #2'
+                    },
+                    {
+                        src: "{{ asset('listing-image/' . $listings->image3) }}",
+                        title: 'Image #3'
+                    },
+                ],
+                gallery: {
+                    enabled: true
+                },
+                type: 'image' // this is a default type
+            });
+
+        }
     </script>
     <script src="{{ asset('js/return-to-top.js') }}"></script>
 </body>
