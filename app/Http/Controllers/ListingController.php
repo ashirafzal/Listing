@@ -15,6 +15,10 @@ class ListingController extends Controller
     {
         $user = Auth::user();
 
+        if(!$user){
+            return redirect()->route('login')->withErrors('Please login to view listing.');
+        }
+
         $Listing = Listing::paginate(10);
 
         return view('dashboard.ListedItems', [
@@ -26,6 +30,10 @@ class ListingController extends Controller
     public function AddListingIndex()
     {
         $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to add listing.');
+        }
 
         return view('dashboard.add-listing', [
             'user' => $user,
@@ -50,7 +58,13 @@ class ListingController extends Controller
 
     public function create(Request $request)
     {
-        $vendor = Vendor::where('user_id', Auth::user()->id)->first();
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to create listing.');
+        }
+
+        $vendor = Vendor::where('user_id', $user->id)->first();
 
         $Listing = new Listing();
 
@@ -118,9 +132,13 @@ class ListingController extends Controller
 
     public function EditView($id)
     {
-        $Listing = Listing::where('id', $id)->first();
-
         $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to edit listing.');
+        }
+        
+        $Listing = Listing::where('id', $id)->first();
 
         return view('dashboard.edit-listing', [
             'user' => $user,
@@ -130,6 +148,13 @@ class ListingController extends Controller
 
     public function edit(Request $request)
     {
+
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to edit listing.');
+        }
+
         $listing = Listing::where('id', $request->id)->first();
 
         if ($request->hasFile('hero_image')) {
@@ -189,6 +214,14 @@ class ListingController extends Controller
 
     public function delete(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to create listing.');
+        }
+
         Listing::where('id', $request->id)->delete();
+
+        return redirect()->back()->withSuccess('List Deleted Successfully.');
     }
 }

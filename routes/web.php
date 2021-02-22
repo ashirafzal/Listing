@@ -37,11 +37,11 @@ Route::get('add-listing', '\App\Http\Controllers\ListingController@AddListingInd
 
 Route::get('listing', '\App\Http\Controllers\ListingController@index');
 
-Route::post('create-list', '\App\Http\Controllers\ListingController@create');
+Route::get('create-list', '\App\Http\Controllers\ListingController@create');
 
 Route::get('edit-listing/{id}', '\App\Http\Controllers\ListingController@EditView');
 
-Route::post('edit-list', '\App\Http\Controllers\ListingController@edit');
+Route::get('edit-list', '\App\Http\Controllers\ListingController@edit');
 
 Route::get('list-detail/{id}', '\App\Http\Controllers\ListingController@view');
 
