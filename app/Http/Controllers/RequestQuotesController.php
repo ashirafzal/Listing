@@ -11,16 +11,34 @@ class RequestQuotesController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login for viewing the request quotes.');
+        }
+        
         $RequestQuotes = RequestQuotes::all();
     }
 
     public function view(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login to view request quote.');
+        }
+
         $RequestQuotes = RequestQuotes::where('id',$request->id)->get();
     }
 
     public function singlesearchview(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login to view request quote.');
+        }
+
         $RequestQuotes = RequestQuotes::find($request->id);
     }
 
@@ -48,6 +66,12 @@ class RequestQuotesController extends Controller
 
     public function edit(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login to edit a request quote.');
+        }
+
         $RequestQuotes = RequestQuotes::find($request->id);
 
         $RequestQuotes->user_id = Auth::user()->id;
@@ -57,6 +81,12 @@ class RequestQuotesController extends Controller
 
     public function delete(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login for deleting a request quote.');
+        }
+
         RequestQuotes::where('id',$request->id)->delete();
     }
 
