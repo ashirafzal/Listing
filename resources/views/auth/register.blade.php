@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="wedding vendor directory HTML template">
     <title> Wedding Vendor &amp; Supplier Directory HTML Template - RealWed </title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
-    <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
+    <link href="fontello/css/fontello.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" type="text/css" rel="stylesheet">
+    <link href="css/owl.theme.default.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="css/style.css" rel="stylesheet">
     <style>
         body {
             font-family: serif;
@@ -253,7 +253,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <nav class="navbar navbar-expand-lg navbar-classic">
                             <a class="navbar-brand" href="index-2.html">
-                                <img src="{{ asset('images/adifier-logo.png') }}" alt="">
+                                <img src="images/adifier-logo.png" alt="">
                             </a>
                             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="icon-bar top-bar mt-0"></span>
