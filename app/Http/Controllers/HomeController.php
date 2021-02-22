@@ -17,12 +17,21 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please Login to view dashboard.');
+        }
+
         return view('home', ['user' => $user]);
     }
 
     public function profile()
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please Login to view your profile.');
+        }
 
         $Vendor = Vendor::where('user_id', $user->id)->get();
 

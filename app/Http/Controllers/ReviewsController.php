@@ -12,16 +12,34 @@ class ReviewsController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login for viewing reviews.');
+        }
+
         $Reviews = Reviews::all();
     }
 
     public function view(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login for viewing reviews.');
+        }
+
         $Reviews = Reviews::where('id', $request->id)->get();
     }
 
     public function singlesearchview(Request $request)
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login to view review.');
+        }
+
         $Reviews = Reviews::find($request->id);
     }
 
@@ -53,7 +71,11 @@ class ReviewsController extends Controller
 
     public function edit(Request $request)
     {
-        $user = User::where('id', Auth::id())->get();
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login to edit review.');
+        }
 
         $Reviews = Reviews::find($request->id);
 
@@ -71,8 +93,14 @@ class ReviewsController extends Controller
         $Reviews->save();
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        Reviews::where('id', $request->id)->delete();
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please Login to delete reviews.');
+        }
+
+        Reviews::where('id', $id)->delete();
     }
 }
