@@ -8,12 +8,12 @@
     <title> Wedding Vendor &amp; Supplier Directory HTML Template - RealWed </title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
-    <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
+    <link href="fontello/css/fontello.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" type="text/css" rel="stylesheet">
+    <link href="css/owl.theme.default.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="css/style.css" rel="stylesheet">
     <style>
         body {
             font-family: serif;
