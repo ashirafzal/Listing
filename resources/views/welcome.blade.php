@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="wedding vendor directory HTML template">
     <title> Wedding Vendor &amp; Supplier Directory HTML Template - RealWed </title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
@@ -17,11 +17,6 @@
     <style>
         body {
             font-family: serif;
-        }
-
-        .hero-section {
-            background-image: none;
-            background: #ffffff;
         }
 
         .link:hover {
