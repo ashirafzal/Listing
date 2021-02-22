@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="wedding vendor directory HTML template">
-    <title> Wedding Vendor &amp; Supplier Directory HTML Template - RealWed </title>
+    <title>Listing</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
@@ -17,6 +17,7 @@
     <style>
         body {
             font-family: serif;
+            background : #ffffff;
         }
 
         .link:hover {
@@ -236,6 +237,105 @@
                 opacity: 0;
             }
         }
+
+        .testimonial-block {
+            height: 450px;
+        }
+
+        .container-a{
+            border: 1px solid #e3e3e3;
+            padding: 1rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .container>div{
+            margin: 10px;
+        }
+
+        .img>img{
+            height: 155px;
+            margin: 5px;
+        }
+
+        .title{
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title>a{
+            color: #00a591;
+            font-size: 1.3rem;
+        }
+
+        .button>p{
+            width: 6rem;
+            border-radius: 5%;
+            background: rgb(189, 2, 2);
+            color: #ffffff;
+            text-align: center;
+            height: 1.7rem;
+            position: absolute;
+            top: 31px;
+            left: 31px;
+        }
+
+        .blue>p{
+            background: rgb(2, 28, 255);
+        }
+
+        @media all and (max-width: 766px) {
+        .img > img {
+          height: 130px;
+        }
+
+        .img3 {
+          display: none;
+        }
+
+        .img4 {
+          display: none;
+        }
+      }
+
+      @media all and (max-width: 533px) {
+        .img2 {
+          display: none;
+        }
+
+        .img > img {
+          height: 220px;
+        }
+
+        .pdb0{
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+      }
+
+      @media all and (max-width: 430px) {
+        .img > img {
+          height: 200px;
+        }
+      }
+
+      @media all and (max-width: 400px) {
+        .img > img {
+          height: 180px;
+        }
+      }
+
+      @media all and (max-width: 366px) {
+        .img > img {
+          height: 160px;
+        }
+      }
+
+      @media all and (max-width: 330px) {
+        .img > img {
+          height: 140px;
+        }
+      }
     </style>
 </head>
 
@@ -321,7 +421,7 @@
                                         </div>
                                         <!-- button -->
                                         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-12">
-                                            <button class="btn btn-default btn-block" type="submit">Search</button>
+                                            <button class="btn btn-primary btn-block" type="submit">Search</button>
                                         </div>
                                     </form>
                                 </div>
@@ -332,34 +432,6 @@
                 </div>
             </div>
             <!-- /.hero-section -->
-            <!-- feature-section -->
-            <div class="bg-white space-large">
-                <div class="container">
-                    <div class="row">
-                        <!-- feature-1 -->
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 mb20">
-                            <div class="icon-3x mb30 text-default"><i class="icon-051-wedding-arch"></i></div>
-                            <h3>180+Wedding Venues & Vendors</h3>
-                            <p>Fusce sed erat libasellus id orci quis ligula pretium modo lect sodales eu.</p>
-                        </div>
-                        <!-- /.feature-1 -->
-                        <!-- feature-2 -->
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 mb20">
-                            <div class="icon-3x mb30 text-default"><i class="icon-051-love-birds"></i></div>
-                            <h3>350+ Real Wedding Success</h3>
-                            <p>Quisque ut ligula nec est pretium pharetra atmetus mattis volutpat invel elit.</p>
-                        </div>
-                        <!-- /.feature-2 -->
-                        <!-- feature-3 -->
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 mb20">
-                            <div class="icon-3x mb30 text-default"><i class="icon-017-location"></i></div>
-                            <h3>31+Cities Available</h3>
-                            <p>Vestibulum elementum pellaliquet dui in massa arius et ornare augue feugiat.</p>
-                        </div>
-                        <!-- /.feature-3 -->
-                    </div>
-                </div>
-            </div>
             <!-- /.feature-section -->
             <div class="space-medium pdb0">
                 <div class="container">
@@ -367,30 +439,25 @@
                         <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
                             <div class="section-title text-center">
                                 <!-- section title start-->
-                                <h2 class="mb10r">Hot Fetaured Services</h2>
-                                <p>A short description for showcase of latest services.</p>
+                                <h2 class="mb10r">Hot available services</h2>
+                                <p>The best hot listing services available on our site.</p>
                             </div>
                             <!-- /.section title start-->
                         </div>
                     </div>
-                    <div class="venue-thumbnail-carousel">
+                    <!-- <div class="venue-thumbnail-carousel">
                         <div class="owl-carousel owl-theme owl-venue-thumb-second">
                             <div class="item">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="vendor-thumbnail">
-                                        <!-- Vendor thumbnail -->
                                         <div class="vendor-img zoomimg">
-                                            <!-- Vendor img -->
                                             <a href="#"><img style="width:400px; height:250px;" src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
                                             <div class="wishlist-sign"><a href="#" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
                                         </div>
-                                        <!-- /.Vendor img -->
                                         <div class="vendor-content">
-                                            <!-- Vendor Content -->
                                             <h2 class="vendor-title"><a href="#" class="title">title</a></h2>
                                             <p class="vendor-address">city , country</p>
                                         </div>
-                                        <!-- /.Vendor Content -->
                                         <div class="vendor-meta">
                                             <div class="vendor-meta-item vendor-meta-item-bordered">
                                                 <span class="vendor-price">
@@ -416,103 +483,65 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- /.Vendor thumbnail -->
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+                </div>
+                <div class="container container-a">
+                    <div class="img">
+                        <img class="img1" src="images/hero-image.jpg" alt="">
+                        <img class="img2" src="images/hero-image.jpg" alt="">
+                        <img class="img3" src="images/hero-image.jpg" alt="">
+                        <img class="img4" src="images/hero-image.jpg" alt="">
+                    </div>
+                    <div class="text">
+                        <div class="title">
+                            <a href="#">The Real Fox foo</a>
+                        </div>
+                        <div class="desc">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, pariatur asperiores, maiores, quam dicta est alias repellat corrupti minima totam sequi sint et culpa fugiat autem. Architecto ea omnis minus!</p>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <p class="">Hot</p>
                     </div>
                 </div>
             </div>
-            <!-- venue-categoris-section-->
-            <div class="space-small">
-                <div class="container-fluid">
+            <!-- /.feature-section -->
+            <div class="space-medium pdb0">
+                <div class="container">
                     <div class="row">
                         <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
                             <div class="section-title text-center">
                                 <!-- section title start-->
-                                <h2 class="mb10">Venues by Category</h2>
-                                <p>You can browse all venues by category with thumbnail image and category name.</p>
+                                <h2 class="mb10r">Other available services</h2>
+                                <p>The best listing services available on our site.</p>
                             </div>
                             <!-- /.section title start-->
                         </div>
                     </div>
-                    <div class="row">
-                        <!-- venue-categoris-block-->
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="venue-categories-block zoomimg">
-                                <div class="venue-categories-img"> <a href="#"><img src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
-                                    <div class="venue-categories-overlay">
-                                        <h3 class="mb0"><a href="#" class="venue-categories-title">Castles (20)</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.venue-categoris-block-->
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                            <!-- venue-categoris-block-->
-                            <div class="venue-categories-block">
-                                <div class="venue-categories-img zoomimg"> <a href="#"><img src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
-                                    <div class="venue-categories-overlay">
-                                        <h3 class="mb0"><a href="#" class="venue-categories-title">Stately Homes (10)</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.venue-categoris-block-->
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                            <!-- venue-categoris-block-->
-                            <div class="venue-categories-block">
-                                <div class="venue-categories-img zoomimg"> <a href="#"><img src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
-                                    <div class="venue-categories-overlay">
-                                        <h3 class="mb0"><a href="#" class="venue-categories-title">Barns (12)</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.venue-categoris-block-->
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                            <!-- venue-categoris-block-->
-                            <div class="venue-categories-block ">
-                                <div class="venue-categories-img zoomimg"> <a href="#"><img src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
-                                    <div class="venue-categories-overlay">
-                                        <h3 class="mb0"><a href="#" class="venue-categories-title">Outdoors (18)</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.venue-categoris-block-->
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                            <!-- venue-categoris-block-->
-                            <div class="venue-categories-block ">
-                                <div class="venue-categories-img zoomimg"> <a href="#"><img src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
-                                    <div class="venue-categories-overlay">
-                                        <h3 class="mb0"><a href="#" class="venue-categories-title">Landmarks(12)</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.venue-categoris-block-->
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                            <!-- venue-categoris-block-->
-                            <div class="venue-categories-block">
-                                <div class="venue-categories-img zoomimg "> <a href="#"><img src="{{ asset('images/hero-image.jpg') }}" alt="" class="img-fluid"></a>
-                                    <div class="venue-categories-overlay">
-                                        <h3 class="mb0"><a href="#" class="venue-categories-title">Restaurant (11)</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.venue-categoris-block-->
-                        </div>
-                    </div>
-                    <!-- venue-categoris-btn -->
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mt60"><a href="#" class="btn btn-default btn-lg">View All category</a></div>
-                    </div>
-                    <!-- /.venue-categoris-btn -->
                 </div>
-                <!-- /.venue-categoris-section-->
+                <div class="container container-a">
+                    <div class="img">
+                        <img class="img1" src="images/hero-image.jpg" alt="">
+                        <img class="img2" src="images/hero-image.jpg" alt="">
+                        <img class="img3" src="images/hero-image.jpg" alt="">
+                        <img class="img4" src="images/hero-image.jpg" alt="">
+                    </div>
+                    <div class="text">
+                        <div class="title">
+                            <a href="#">The Real Fox foo</a>
+                        </div>
+                        <div class="desc">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, pariatur asperiores, maiores, quam dicta est alias repellat corrupti minima totam sequi sint et culpa fugiat autem. Architecto ea omnis minus!</p>
+                        </div>
+                    </div>
+                    <div class="button blue">
+                        <p class="">Normal</p>
+                    </div>
+                </div>
             </div>
-            <!-- /.real-wedding-section-->
             <!-- Testimonial-section -->
             <div class="space-medium">
                 <div class="container">
