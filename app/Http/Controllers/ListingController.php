@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
+    
+    public function WelcomeIndex(){
+        $FeaturedListing = Listing::where('featured',true)->paginate(10);
+
+        $NonFeaturedListing = Listing::where('featured',false)->paginate(10);
+
+        return view('welcome', [
+            'FeaturedListing' => $FeaturedListing,
+            'NonFeaturedListing' => $NonFeaturedListing
+        ]);
+    }
 
     public function index()
     {

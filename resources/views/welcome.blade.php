@@ -255,6 +255,7 @@
 
         .img>img{
             height: 155px;
+            width: 250px;
             margin: 5px;
         }
 
@@ -347,7 +348,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <nav class="navbar navbar-expand-lg navbar-classic">
-                            <a class="navbar-brand" href="index-2.html">
+                            <a class="navbar-brand" href="/">
                                 <img src="images/adifier-logo.PNG" alt="">
                             </a>
                             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
@@ -358,22 +359,32 @@
                             <div class="collapse navbar-collapse" id="navbar-classic">
                                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-3">
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="index-2.html" id="menu-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="/">
                                             Home
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="contact">
                                             Contact Us
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="about">
                                             About Us
                                         </a>
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown" href="/login">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown" href="/register">
+                                            Register
+                                        </a>
+                                    </li>
                                 </ul>
-                                <a href="#" class="btn btn-primary">Get Started Now</a>
+                                <a href="/login" class="btn btn-primary">Get Started Now</a>
                             </div>
                         </nav>
                     </div>
@@ -389,10 +400,10 @@
                         <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 col-md-12 col-sm-12 col-12">
                             <!-- search-block -->
                             <div class="">
-                                <div class="text-center search-head">
-                                    <h1 class="search-head-title">Find Local Wedding Vendors</h1>
+                                <!-- <div class="text-center search-head">
+                                    <h1 class="search-head-title ">Find Local Wedding Vendors</h1>
                                     <p class="d-none d-xl-block d-lg-block d-sm-block text-white">Browse the best wedding vendors in your area — from venues and photographers, to wedding planners, caterers, florists and more.</p>
-                                </div>
+                                </div> -->
                                 <!-- /.search-block -->
                                 <!-- search-form -->
                                 <div class="search-form">
@@ -488,25 +499,27 @@
                         </div>
                     </div> -->
                 </div>
+                @foreach($FeaturedListing as $FeaturedListings)
                 <div class="container container-a">
                     <div class="img">
-                        <img class="img1" src="images/hero-image.jpg" alt="">
-                        <img class="img2" src="images/hero-image.jpg" alt="">
-                        <img class="img3" src="images/hero-image.jpg" alt="">
-                        <img class="img4" src="images/hero-image.jpg" alt="">
+                        <img class="img1" src="listing-image/{{$FeaturedListings->hero_image}}" alt="">
+                        <img class="img2" src="listing-image/{{$FeaturedListings->image1}}" alt="">
+                        <img class="img3" src="listing-image/{{$FeaturedListings->image2}}" alt="">
+                        <img class="img4" src="listing-image/{{$FeaturedListings->image3}}" alt="">
                     </div>
                     <div class="text">
                         <div class="title">
-                            <a href="#">The Real Fox foo</a>
+                            <a href="#">{{ $FeaturedListings->title }}</a>
                         </div>
                         <div class="desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, pariatur asperiores, maiores, quam dicta est alias repellat corrupti minima totam sequi sint et culpa fugiat autem. Architecto ea omnis minus!</p>
+                            <p>{{ $FeaturedListings->description }}</p>
                         </div>
                     </div>
                     <div class="button">
                         <p class="">Hot</p>
                     </div>
                 </div>
+                @endforeach
             </div>
             <!-- /.feature-section -->
             <div class="space-medium pdb0">
@@ -522,25 +535,27 @@
                         </div>
                     </div>
                 </div>
+                @foreach($NonFeaturedListing as $NonFeaturedListings)
                 <div class="container container-a">
                     <div class="img">
-                        <img class="img1" src="images/hero-image.jpg" alt="">
-                        <img class="img2" src="images/hero-image.jpg" alt="">
-                        <img class="img3" src="images/hero-image.jpg" alt="">
-                        <img class="img4" src="images/hero-image.jpg" alt="">
+                        <img class="img1" src="listing-image/{{$NonFeaturedListings->hero_image}}" alt="">
+                        <img class="img2" src="listing-image/{{$NonFeaturedListings->image1}}" alt="">
+                        <img class="img3" src="listing-image/{{$NonFeaturedListings->image2}}" alt="">
+                        <img class="img4" src="listing-image/{{$NonFeaturedListings->image3}}" alt="">
                     </div>
                     <div class="text">
                         <div class="title">
-                            <a href="#">The Real Fox foo</a>
+                            <a href="#">{{ $NonFeaturedListings->title }}</a>
                         </div>
                         <div class="desc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, pariatur asperiores, maiores, quam dicta est alias repellat corrupti minima totam sequi sint et culpa fugiat autem. Architecto ea omnis minus!</p>
+                            <p>{{ $NonFeaturedListings->description }}</p>
                         </div>
                     </div>
                     <div class="button blue">
                         <p class="">Normal</p>
                     </div>
                 </div>
+                @endforeach
             </div>
             <!-- Testimonial-section -->
             <div class="space-medium">
@@ -725,7 +740,7 @@
                                 List you Business
                             </h3>
                             <p>Are you vendor ? List your venue and service get more from listing business.</p>
-                            <a href="#" class="btn btn-primary">List your Business</a>
+                            <a href="/login" class="btn btn-primary">List your Business</a>
                         </div>
                     </div>
                     <!-- /.footer-widget -->
