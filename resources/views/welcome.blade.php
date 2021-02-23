@@ -17,7 +17,7 @@
     <style>
         body {
             font-family: sans-serif;
-            background : #ffffff;
+            background: #ffffff;
         }
 
         .link:hover {
@@ -246,34 +246,34 @@
             height: 450px;
         }
 
-        .container-a{
+        .container-a {
             border: 1px solid #e3e3e3;
             padding: 1rem;
             position: relative;
             margin-bottom: 1rem;
         }
 
-        .container>div{
+        .container>div {
             margin: 10px;
         }
 
-        .img>img{
+        .img>img {
             height: 155px;
             width: 250px;
             margin: 5px;
         }
 
-        .title{
+        .title {
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .title>a{
+        .title>a {
             color: #00a591;
             font-size: 1.3rem;
         }
 
-        .button>p{
+        .button>p {
             width: 6rem;
             border-radius: 5%;
             background: rgb(189, 2, 2);
@@ -285,62 +285,62 @@
             left: 31px;
         }
 
-        .blue>p{
+        .blue>p {
             background: rgb(2, 28, 255);
         }
 
         @media all and (max-width: 766px) {
-        .img > img {
-          height: 130px;
+            .img>img {
+                height: 130px;
+            }
+
+            .img3 {
+                display: none;
+            }
+
+            .img4 {
+                display: none;
+            }
         }
 
-        .img3 {
-          display: none;
+        @media all and (max-width: 533px) {
+            .img2 {
+                display: none;
+            }
+
+            .img>img {
+                height: 220px;
+            }
+
+            .pdb0 {
+                padding-right: 1rem;
+                padding-left: 1rem;
+            }
         }
 
-        .img4 {
-          display: none;
-        }
-      }
-
-      @media all and (max-width: 533px) {
-        .img2 {
-          display: none;
+        @media all and (max-width: 430px) {
+            .img>img {
+                height: 200px;
+            }
         }
 
-        .img > img {
-          height: 220px;
+        @media all and (max-width: 400px) {
+            .img>img {
+                height: 180px;
+            }
         }
 
-        .pdb0{
-            padding-right: 1rem;
-            padding-left: 1rem;
+        @media all and (max-width: 366px) {
+            .img>img {
+                height: 160px;
+            }
         }
-      }
 
-      @media all and (max-width: 430px) {
-        .img > img {
-          height: 200px;
+        @media all and (max-width: 330px) {
+            .img>img {
+                height: 140px;
+            }
         }
-      }
-
-      @media all and (max-width: 400px) {
-        .img > img {
-          height: 180px;
-        }
-      }
-
-      @media all and (max-width: 366px) {
-        .img > img {
-          height: 160px;
-        }
-      }
-
-      @media all and (max-width: 330px) {
-        .img > img {
-          height: 140px;
-        }
-      }
     </style>
 </head>
 
@@ -368,12 +368,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="contact">
+                                        <a class="nav-link dropdown" href="/contact">
                                             Contact Us
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="about">
+                                        <a class="nav-link dropdown" href="/about">
                                             About Us
                                         </a>
                                     </li>
@@ -513,7 +513,7 @@
                     </div>
                     <div class="text">
                         <div class="title">
-                            <a href="#">{{ $FeaturedListings->title }}</a>
+                            <a href="list-detail/{{$FeaturedListings->id}}">{{ $FeaturedListings->title }}</a>
                         </div>
                         <div class="desc">
                             <p>{{ $FeaturedListings->description }}</p>
@@ -549,7 +549,7 @@
                     </div>
                     <div class="text">
                         <div class="title">
-                            <a href="#">{{ $NonFeaturedListings->title }}</a>
+                            <a href="list-detail/{{$NonFeaturedListings->id}}">{{ $NonFeaturedListings->title }}</a>
                         </div>
                         <div class="desc">
                             <p>{{ $NonFeaturedListings->description }}</p>
@@ -728,8 +728,8 @@
                                 About Company
                             </h3>
                             <ul class="listnone">
-                                <li><a href="about">About us</a></li>
-                                <li><a href="contact">Contact us</a></li>
+                                <li><a href="/about">About us</a></li>
+                                <li><a href="/contact">Contact us</a></li>
                             </ul>
                         </div>
                     </div>

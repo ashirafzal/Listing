@@ -272,12 +272,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="contact">
+                                        <a class="nav-link dropdown" href="/contact">
                                             Contact Us
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="about">
+                                        <a class="nav-link dropdown" href="/about">
                                             About Us
                                         </a>
                                     </li>
@@ -486,8 +486,8 @@
                                 About Company
                             </h3>
                             <ul class="listnone">
-                                <li><a href="about">About us</a></li>
-                                <li><a href="contact">Contact us</a></li>
+                                <li><a href="/about">About us</a></li>
+                                <li><a href="/contact">Contact us</a></li>
                             </ul>
                         </div>
                     </div>

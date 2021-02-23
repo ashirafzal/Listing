@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,51 +20,52 @@
             color: #00a591;
             font-weight: 500;
         }
-        .btn-primary{
+
+        .btn-primary {
             background: #00a591;
         }
 
-        #return-to-top{
+        #return-to-top {
             background: #00a591;
         }
 
-        #return-to-top:hover{
+        #return-to-top:hover {
             background: #00a591;
         }
 
-        #view-map{
+        #view-map {
             color: #00a591;
         }
 
-        .btn-default-wishlist{
+        .btn-default-wishlist {
             background: #484848;
             color: #ffffff;
             border: #484848;
         }
 
-        .btn-default-wishlist:hover{
+        .btn-default-wishlist:hover {
             background: #00a591;
             border: #00a591;
         }
 
         .social-media-block {
-            background-color: #374252;
+            background-color: #302d34;
             color: #959ba7;
-            border-bottom: 1px solid #959ba7;
+            border-bottom: 1px solid #374252;
         }
 
-        .icon-square:hover{
+        .icon-square:hover {
             background: #00a591;
         }
 
         .footer {
-            background-color: #374252;
-            color: #959ba7;
+            background-color: #302d34;
+            color: #98969b;
         }
 
-        .tiny-footer{
-            background-color: #374252;
-            border-top: 1px solid #959ba7;
+        .tiny-footer {
+            background-color: #302d34;
+            border-top: 1px solid #374252;
         }
 
         .footer-widget .widget-title {
@@ -74,50 +76,54 @@
             color: #aaaaaa;
         }
 
-        .mb0{
+        .footer-widget ul li a:hover {
             color: #00a591;
         }
 
-        .mb20{
+        .mb0 {
             color: #00a591;
         }
 
-        .card-header{
+        .mb20 {
             color: #00a591;
         }
 
-        .review-total{
+        .card-header {
             color: #00a591;
         }
 
-        .icon-square-outline{
+        .review-total {
+            color: #00a591;
+        }
+
+        .icon-square-outline {
             border-color: #00a591;
             color: #00a591;
         }
 
-        .icon-square-outline:hover{
+        .icon-square-outline:hover {
             border-color: #00a591;
             color: #00a591;
         }
 
-        .widget-title{
+        .widget-title {
             color: #00a591;
         }
 
-        h2{
+        h2 {
             color: #00a591;
         }
 
-        .navbar-classic .navbar-toggler{
+        .navbar-classic .navbar-toggler {
             border: none;
         }
 
-        .fa-map-marker-alt{
+        .fa-map-marker-alt {
             color: #00a591;
             font-size: 1.5rem;
         }
 
-        .table-heading{
+        .table-heading {
             color: #00a591;
         }
 
@@ -150,7 +156,7 @@
             border: #00a591;
         }
 
-        .logo>svg{
+        .logo>svg {
             width: 150px;
             height: 100px;
         }
@@ -173,80 +179,88 @@
             color: #ffffff;
         }
 
-        .user-img>img{
+        .user-img>img {
             width: 70px;
             height: 70px;
         }
 
-        .view-all{
+        .view-all {
             font-size: 1rem;
         }
 
-        .view-all:hover{
+        .view-all:hover {
             color: #00a591;
         }
 
-        .float{
+        .float {
             position: absolute;
             z-index: 2;
             right: 0;
             bottom: 0;
             opacity: 1;
             display: block;
-    
+
             animation: fadeIn 1s;
             animation-delay: 3s;
             animation-fill-mode: forwards;
         }
 
-        .blue-text{
+        .blue-text {
             color: #00a591;
         }
 
-        .title:hover{
+        .title:hover {
             color: #00a591;
             font-weight: 400;
         }
 
-        .mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
+        .mfp-arrow-right:after,
+        .mfp-arrow-right .mfp-a {
             border-left: 17px solid #00a591;
         }
 
-        .mfp-arrow-left:after, .mfp-arrow-left .mfp-a {
+        .mfp-arrow-left:after,
+        .mfp-arrow-left .mfp-a {
             border-right: 17px solid #00a591;
         }
 
         @keyframes fadeIn {
-            from { opacity: 1; }
-            to { opacity: 0; }
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
         }
     </style>
 </head>
+
 <body>
-   <!-- Floating messages -->
-   <div class="container float">
-            @if(session('success'))
-            <div class="alert alert-info alert-block">
-                <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
-                <strong>{{session('success')}}</strong>
-            </div>
-            @endif
-            @if(session('errors'))
-            <div class="alert alert-danger alert-block">
-                <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
-                <strong>{{session('errors')}}</strong>
-            </div>
-            @endif
+    <!-- Floating messages -->
+    <div class="container float">
+        @if(session('success'))
+        <div class="alert alert-info alert-block">
+            <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+            <strong>{{session('success')}}</strong>
+        </div>
+        @endif
+        @if(session('errors'))
+        <div class="alert alert-danger alert-block">
+            <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
+            <strong>{{session('errors')}}</strong>
+        </div>
+        @endif
     </div>
-   <!-- Floting messages ends --> 
-   <!-- header -->
+    <!-- Floting messages ends -->
+    <!-- header -->
     <div class="header">
         <!-- navigation start -->
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <nav class="navbar navbar-expand-lg navbar-classic">
-                        <a class="navbar-brand" href="index-2.html"> 
+                        <a class="navbar-brand" href="index-2.html">
                             <img src="{{ asset('images/adifier-logo.png') }}" alt="">
                         </a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
@@ -255,24 +269,34 @@
                             <span class="icon-bar bottom-bar"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbar-classic">
-                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-3">
+                            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-3">
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown" href="index-2.html" id="menu-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown" href="/">
                                         Home
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown" href="/contact">
                                         Contact Us
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown" href="/about">
                                         About Us
                                     </a>
                                 </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown" href="/login">
+                                        Login
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown" href="/register">
+                                        Register
+                                    </a>
+                                </li>
                             </ul>
-                            <a href="#" class="btn btn-primary">Get Started Now</a>
+                            <a href="/login" class="btn btn-primary">Get Started Now</a>
                         </div>
                     </nav>
                 </div>
@@ -292,7 +316,7 @@
                     </div>
                 </div>
                 <div class="col-xl-5 text-lg-right">
-                     <div class="mt-xl-4">
+                    <div class="mt-xl-4">
                         <a href="#" class="btn btn-primary" id="open-popup">View Gallery</a>
                         <a href="wish-list/{{ $listings->id }}" class="btn-default-wishlist"><i class="fa fa-heart"></i> <span class="pl-1">Add To Wishlist</span></a>
                     </div>
@@ -403,39 +427,39 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <!-- review-sidebar -->
                                                 <div class="review-sidebar">
-                                                        @isset($AvgReviewsRating)
-                                                            <div class="review-total">{{ number_format($AvgReviewsRating, 2, '.', ',') }}</div>
-                                                        @endisset
-                                                        @empty($AvgReviewsRating)
-                                                            <div class="review-total">-</div>
-                                                        @endempty
-                                                        <div class="review-text">Reviews</div>
-                                                        <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa  fa-star"></i> <i class="fa fa-star"></i> </span>
-                                                        @isset($AvgReviewsRating)
-                                                            <p>{{ number_format($AvgReviewsRating, 2, '.', ',') }} average based on {{ $ReviewsCount }} ratings.</p>
-                                                        @endisset
-                                                        @empty($AvgReviewsRating)
-                                                            <p> average based rating not available.</p>
-                                                        @endempty
-                                                    </div>
-                                                
+                                                    @isset($AvgReviewsRating)
+                                                    <div class="review-total">{{ number_format($AvgReviewsRating, 2, '.', ',') }}</div>
+                                                    @endisset
+                                                    @empty($AvgReviewsRating)
+                                                    <div class="review-total">-</div>
+                                                    @endempty
+                                                    <div class="review-text">Reviews</div>
+                                                    <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa  fa-star"></i> <i class="fa fa-star"></i> </span>
+                                                    @isset($AvgReviewsRating)
+                                                    <p>{{ number_format($AvgReviewsRating, 2, '.', ',') }} average based on {{ $ReviewsCount }} ratings.</p>
+                                                    @endisset
+                                                    @empty($AvgReviewsRating)
+                                                    <p> average based rating not available.</p>
+                                                    @endempty
+                                                </div>
+
                                                 <!-- /.review-sidebar -->
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                                 <div class="review-box">
-                                                <!-- review-list -->
-                                                <div class="review-list">
-                                                    <div class="review-for"><b>Rating</b></div>
-                                                    <div class="review-rating"><span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far  fa-star"></i> </span></div>
-                                                    @isset($AvgReviewsRating)
+                                                    <!-- review-list -->
+                                                    <div class="review-list">
+                                                        <div class="review-for"><b>Rating</b></div>
+                                                        <div class="review-rating"><span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far  fa-star"></i> </span></div>
+                                                        @isset($AvgReviewsRating)
                                                         <div class="review-number">{{ number_format($AvgReviewsRating, 2, '.', ',') }}</div>
-                                                    @endisset
-                                                    @empty($AvgReviewsRating)
+                                                        @endisset
+                                                        @empty($AvgReviewsRating)
                                                         <div class="review-number">No Rating</div>
-                                                    @endempty
+                                                        @endempty
+                                                    </div>
+                                                    <!-- /.review-list -->
                                                 </div>
-                                                <!-- /.review-list -->
-                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -448,7 +472,7 @@
                             <!-- review-user -->
                             <div class="card-header bg-white mb0">
                                 <div class="review-user">
-                                    <div class="user-img"> 
+                                    <div class="user-img">
                                         <img src="{{ url('user-image') }} {{ '/'.$Review->user_image}}" alt="" class="rounded-circle">
                                     </div>
                                     <div class="user-meta">
@@ -456,7 +480,8 @@
                                             <span class="user-review-date">{{ $Review->created_at->diffForHumans() }}</span>
                                         </h5>
                                         <div class="given-review">
-                                            <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far  fa-star"></i> <i class="far  fa-star"></i></span></div>
+                                            <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far  fa-star"></i> <i class="far  fa-star"></i></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -529,8 +554,8 @@
                                 </div>
                             </form>
                         </div>
-                        </div>
-                    
+                    </div>
+
                     <!-- /.review-form -->
                     <!-- location -->
                     <div class="card border card-shadow-none" id="view-map">
@@ -545,7 +570,7 @@
                 <!-- /.location -->
                 <!-- list-sidebar -->
                 <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
-                    <div class="sidebar-venue" >
+                    <div class="sidebar-venue">
                         <div class="card">
                             <div class="card-body">
                                 <form action="{{ url('request-quote-create') }}" method="POST">
@@ -662,7 +687,8 @@
                                 <span class="">
                                     {{ $SimiliarListings->city }}
                                 </span>
-                                <span class="rating-count vendor-text">City</span></div>
+                                <span class="rating-count vendor-text">City</span>
+                            </div>
                             <div class="vendor-meta-item vendor-meta-item-bordered">
                                 <span class="blue-text">
                                     {{ $SimiliarListings->country }}
@@ -673,7 +699,8 @@
                                 <span class="blue-text">
                                     {{ $SimiliarListings->vendor_name }}
                                 </span>
-                                <span class="rating-count vendor-text">Vendor</span></div>
+                                <span class="rating-count vendor-text">Vendor</span>
+                            </div>
                         </div>
                         <!-- /.Vendor Content -->
                     </div>
@@ -784,7 +811,8 @@
                             Contact Address
                         </h3>
                         <p>4998 Elk Creek Road Canton,
-                            <br> GA 30114</p>
+                            <br> GA 30114
+                        </p>
                         <p class="mb0 text-primary">+0-800-1234-123</p>
                         <p class="mb0 text-primary">info@realwed.com</p>
                     </div>
@@ -797,11 +825,8 @@
                             About Company
                         </h3>
                         <ul class="listnone">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Pricing Plan</a></li>
-                            <li><a href="#">Meet The Team</a></li>
+                            <li><a href="/about">About us</a></li>
+                            <li><a href="/contact">Contact us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -813,7 +838,7 @@
                             List you Business
                         </h3>
                         <p>Are you vendor ? List your venue and service get more from listing business.</p>
-                        <a href="#" class="btn btn-primary">List your Business</a>
+                        <a href="/login" class="btn btn-primary">List your Business</a>
                     </div>
                 </div>
                 <!-- /.footer-widget -->
@@ -830,7 +855,7 @@
             </div>
         </div>
     </div>
-    
+
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -840,37 +865,37 @@
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <!-- <script src="{{ asset('js/custom-script.js') }}"></script> -->
     <script>
-    function initMap() {
-        var uluru = {
-            lat: 23.0732195,
-            lng: 72.5646902
-        };
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 17,
-            center: uluru
-        });
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
-            icon: "{{ asset('images/map-pin(3).png') }}"
-        });
-    }
+        function initMap() {
+            var uluru = {
+                lat: 23.0732195,
+                lng: 72.5646902
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                icon: "{{ asset('images/map-pin(3).png') }}"
+            });
+        }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvZiQwPXkkIeXfAn-Cki9RZBj69mg-95M&amp;callback=initMap">
     </script>
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script>
-    $(function() {
+        $(function() {
 
-        $("#rateYo1").rateYo({
-            rating: 0.0
-        });
+            $("#rateYo1").rateYo({
+                rating: 0.0
+            });
 
-        $("#rateYo1").rateYo().on("rateyo.change", function (e, data) {
-            var rating = data.rating;
-            $('#rating').val(rating); //add rating value to input field
+            $("#rateYo1").rateYo().on("rateyo.change", function(e, data) {
+                var rating = data.rating;
+                $('#rating').val(rating); //add rating value to input field
+            });
         });
-    });
     </script>
     <script>
         if ($('#open-popup').length) {
@@ -898,4 +923,5 @@
     </script>
     <script src="{{ asset('js/return-to-top.js') }}"></script>
 </body>
+
 </html>
