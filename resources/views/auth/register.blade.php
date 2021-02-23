@@ -16,7 +16,7 @@
     <link href="css/style.css" rel="stylesheet">
     <style>
         body {
-            font-family: serif;
+            font-family: sans-serif;
         }
 
         .hero-section {
@@ -61,9 +61,9 @@
         }
 
         .social-media-block {
-            background-color: #374252;
+            background-color: #302d34;
             color: #959ba7;
-            border-bottom: 1px solid #959ba7;
+            border-bottom: 1px solid #374252;
         }
 
         .icon-square:hover {
@@ -71,13 +71,13 @@
         }
 
         .footer {
-            background-color: #374252;
-            color: #959ba7;
+            background-color: #302d34;
+            color: #98969b;
         }
 
         .tiny-footer {
-            background-color: #374252;
-            border-top: 1px solid #959ba7;
+            background-color: #302d34;
+            border-top: 1px solid #374252;
         }
 
         .footer-widget .widget-title {
@@ -86,6 +86,10 @@
 
         .tiny-footer {
             color: #aaaaaa;
+        }
+
+        .footer-widget ul li a:hover {
+            color: #00a591;
         }
 
         .mb0 {
@@ -252,7 +256,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <nav class="navbar navbar-expand-lg navbar-classic">
-                            <a class="navbar-brand" href="index-2.html">
+                            <a class="navbar-brand" href="/">
                                 <img src="images/adifier-logo.PNG" alt="">
                             </a>
                             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
@@ -263,22 +267,32 @@
                             <div class="collapse navbar-collapse" id="navbar-classic">
                                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-3">
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="index-2.html" id="menu-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="/">
                                             Home
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="contact">
                                             Contact Us
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="about">
                                             About Us
                                         </a>
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown" href="/login">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown" href="/register">
+                                            Register
+                                        </a>
+                                    </li>
                                 </ul>
-                                <a href="#" class="btn btn-primary">Get Started Now</a>
+                                <a href="/login" class="btn btn-primary">Get Started Now</a>
                             </div>
                         </nav>
                     </div>
@@ -446,8 +460,8 @@
                                     </svg>
                                 </a>
                             </a>
-                            <p class="mb10">Vestibulum ante elit, convallis quis nibh in, vulputate rhoncus massa. In hac habitasse platea dictumst.</p>
-                            <p>In hac habitasse platea dictumst simple dummy content here.</p>
+                            <p class="mb10">Some CSS would require to assign different font family to the body text of footer, widget and sidebar.</p>
+                            <p></p>
                         </div>
                     </div>
                     <!-- /.footer-widget -->
@@ -472,11 +486,8 @@
                                 About Company
                             </h3>
                             <ul class="listnone">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Faq</a></li>
-                                <li><a href="#">Pricing Plan</a></li>
-                                <li><a href="#">Meet The Team</a></li>
+                                <li><a href="about">About us</a></li>
+                                <li><a href="contact">Contact us</a></li>
                             </ul>
                         </div>
                     </div>

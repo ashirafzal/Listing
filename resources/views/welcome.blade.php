@@ -16,7 +16,7 @@
     <link href="css/style.css" rel="stylesheet">
     <style>
         body {
-            font-family: serif;
+            font-family: sans-serif;
             background : #ffffff;
         }
 
@@ -57,9 +57,9 @@
         }
 
         .social-media-block {
-            background-color: #374252;
+            background-color: #302d34;
             color: #959ba7;
-            border-bottom: 1px solid #959ba7;
+            border-bottom: 1px solid #374252;
         }
 
         .icon-square:hover {
@@ -67,13 +67,13 @@
         }
 
         .footer {
-            background-color: #374252;
-            color: #959ba7;
+            background-color: #302d34;
+            color: #98969b;
         }
 
         .tiny-footer {
-            background-color: #374252;
-            border-top: 1px solid #959ba7;
+            background-color: #302d34;
+            border-top: 1px solid #374252;
         }
 
         .footer-widget .widget-title {
@@ -82,6 +82,10 @@
 
         .tiny-footer {
             color: #aaaaaa;
+        }
+
+        .footer-widget ul li a:hover {
+            color: #00a591;
         }
 
         .mb0 {
@@ -698,8 +702,8 @@
                                     </svg>
                                 </a>
                             </a>
-                            <p class="mb10">Vestibulum ante elit, convallis quis nibh in, vulputate rhoncus massa. In hac habitasse platea dictumst.</p>
-                            <p>In hac habitasse platea dictumst simple dummy content here.</p>
+                            <p class="mb10">Some CSS would require to assign different font family to the body text of footer, widget and sidebar.</p>
+                            <p></p>
                         </div>
                     </div>
                     <!-- /.footer-widget -->
@@ -724,11 +728,8 @@
                                 About Company
                             </h3>
                             <ul class="listnone">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Faq</a></li>
-                                <li><a href="#">Pricing Plan</a></li>
-                                <li><a href="#">Meet The Team</a></li>
+                                <li><a href="about">About us</a></li>
+                                <li><a href="contact">Contact us</a></li>
                             </ul>
                         </div>
                     </div>
