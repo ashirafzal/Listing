@@ -223,7 +223,7 @@ class ListingController extends Controller
         return redirect()->back()->withSuccess('List has been updated .');
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         $user = Auth::user();
 
@@ -231,8 +231,8 @@ class ListingController extends Controller
             return redirect()->back()->withErrors('Please login to create listing.');
         }
 
-        Listing::where('id', $request->id)->delete();
+        Listing::where('id', $id)->delete();
 
-        return redirect()->back()->withSuccess('List Deleted Successfully.');
+        return redirect('listing')->withSuccess('List Deleted Successfully.');
     }
 }

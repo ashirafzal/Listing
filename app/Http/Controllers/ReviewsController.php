@@ -18,7 +18,11 @@ class ReviewsController extends Controller
             return redirect()->back()->withErrors('Please Login for viewing reviews.');
         }
 
-        $Reviews = Reviews::all();
+        $Review = Reviews::where('user_id', $user->id)->paginate(10);
+        $ReviewsCount = Reviews::where('user_id', $user->id)->count();
+        $AvgReviewsRating = Reviews::where('user_id', $user->id)->avg('rating');
+
+        return view('dashboard.reviews', ['user' => $user,'Review' => $Review, 'ReviewsCount' => $ReviewsCount, 'AvgReviewsRating' => $AvgReviewsRating]);
     }
 
     public function view(Request $request)

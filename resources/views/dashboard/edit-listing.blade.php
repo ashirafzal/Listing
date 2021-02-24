@@ -220,12 +220,12 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="listing"> My Listed Item </a>
-                                        <a class="dropdown-item" href="request-quote">Request Quotes</a>
-                                        <a class="dropdown-item" href="#">Reviews </a>
-                                        <a class="dropdown-item" href="{{ route('profile') }}">My Profile </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                                        <a class="dropdown-item" href="/home">Dashboard</a>
+                                        <a class="dropdown-item" href="/listing"> My Listed Item </a>
+                                        <a class="dropdown-item" href="/request-quote">Request Quotes</a>
+                                        <a class="dropdown-item" href="/reviews">Reviews </a>
+                                        <a class="dropdown-item" href="/profile">My Profile </a>
+                                        <a class="dropdown-item" href="/logout">Log Out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -257,12 +257,12 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    <li class="active"><a href="listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
-                    <li><a href="request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
-                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
-                    <li><a href="{{ route('logout') }}"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
+                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li class="active"><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
+                    <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
+                    <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
+                    <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
         </div>

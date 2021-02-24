@@ -108,6 +108,7 @@
         .alert-danger>.close {
             color: #ffffff;
         }
+
     </style>
 </head>
 
@@ -205,14 +206,26 @@
                                 </li>
                                 <li class="nav-item dropdown dropleft user-vendor ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="user-icon"> <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10"></span><span class="user-vendor-name">John Deo</span></a>
+                                        @if($user->image)
+                                        <span class="user-icon">
+                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
+                                        </span>
+                                        @else
+                                        <span class="user-icon">
+                                            <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                        </span>
+                                        @endif
+                                        <span class="user-vendor-name">
+                                            {{ $user->name }}
+                                        </span>
+                                    </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="listing"> My Listed Item </a>
-                                        <a class="dropdown-item" href="request-quote">Request Quotes</a>
-                                        <a class="dropdown-item" href="#">Reviews </a>
-                                        <a class="dropdown-item" href="{{ route('profile') }}">My Profile </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                                        <a class="dropdown-item" href="/home">Dashboard</a>
+                                        <a class="dropdown-item" href="/listing"> My Listed Item </a>
+                                        <a class="dropdown-item" href="/request-quote">Request Quotes</a>
+                                        <a class="dropdown-item" href="/reviews">Reviews </a>
+                                        <a class="dropdown-item" href="/profile">My Profile </a>
+                                        <a class="dropdown-item" href="/logout">Log Out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -230,25 +243,43 @@
     <div class="dashboard-wrapper">
         <div class="dashboard-sidebar offcanvas-collapse">
             <div class="vendor-user-profile">
+                @if($user->image)
+                <div class="vendor-profile-img">
+                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                </div>
+                @else
                 <div class="vendor-profile-img">
                     <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle">
                 </div>
-                <h3 class="vendor-profile-name">John Deo</h3>
+                @endif
+                <h3 class="vendor-profile-name">{{ $user->name }}</h3>
                 <a href="#" class="edit-link">edit profile</a>
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    <li class="active"><a href="listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
-                    <li><a href="request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
-                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="{{ route('profile') }}"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
-                    <li><a href="{{ route('logout') }}"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
+                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li class="active"><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
+                    <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
+                    <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
+                    <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
         </div>
         <div class="dashboard-content">
             <div class="container-fluid">
+                @if(session('success'))
+                <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{session('success')}}</strong>
+                </div>
+                @endif
+                @if(session('errors'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{session('errors')}}</strong>
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="dashboard-page-header">
@@ -264,47 +295,30 @@
                                 <thead>
                                     <tr>
                                         <th style="color: #00a591; font-weight:500;">Name</th>
-                                        <th style="color: #00a591; font-weight:500;">Wedding Date</th>
                                         <th style="color: #00a591; font-weight:500;">Email</th>
                                         <th style="color: #00a591; font-weight:500;">Phone</th>
-                                        <th style="color: #00a591; font-weight:500;">Action</th>
+                                        <th style="color: #00a591; font-weight:500;">Comment</th>
+                                        <th style="color: #00a591; font-weight:500;">Submitted</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($RequestQuote as $RequestQuotes)
                                     <tr>
-                                        <td class="requester-name">Jessica J. Titus</td>
-                                        <td class="wedding-date">26/10/2020</td>
-                                        <td class="requester-id">jessicatitus@gmail.com</td>
-                                        <td class="requester-phone">00000000</td>
-                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
+                                        <td class="requester-name">{{ $RequestQuotes->name }}</td>
+                                        <td class="wedding-date">{{ $RequestQuotes->email }}</td>
+                                        <td class="requester-id">{{ $RequestQuotes->phone }}</td>
+                                        <td class="requester-phone">{{ $RequestQuotes->comment }}</td>
+                                        <td class="requester-phone">{{ $RequestQuotes->created_at->diffForHumans() }}</td>
+                                        <td class="requester-action"><a href="request-quote-delete/{{ $RequestQuotes->id }}" class="btn btn-primary">delete</a></td>
                                     </tr>
-                                    <tr>
-                                        <td class="requester-name">Anita Parmar</td>
-                                        <td class="wedding-date">26/11/2020</td>
-                                        <td class="requester-id">anita@gmail.com</td>
-                                        <td class="requester-phone">111111111</td>
-                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="requester-name">Kim R. Wiley</td>
-                                        <td class="wedding-date">26/12/2020</td>
-                                        <td class="requester-id">kim@gmail.com</td>
-                                        <td class="requester-phone">22222222</td>
-                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="requester-name">Betty L. Plain</td>
-                                        <td class="wedding-date">28/12/2020</td>
-                                        <td class="requester-id">plain@gmail.com</td>
-                                        <td class="requester-phone">333333333 </td>
-                                        <td class="requester-action"><a href="#" class="btn btn-primary">delete</a></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="container-fluid text-center">{{ $RequestQuote->links() }}</div>
         </div>
     </div>
     <script src="js/jquery.min.js"></script>

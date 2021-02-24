@@ -53,6 +53,10 @@ Route::post('review-create', '\App\Http\Controllers\ReviewsController@create');
 
 Route::get('list-detail/wish-list/{id}', '\App\Http\Controllers\WishListController@create');
 
-Route::get('request-quote', function () {
-    return view('dashboard.request-quote');
-});
+Route::get('request-quote', '\App\Http\Controllers\RequestQuotesController@index');
+
+Route::get('request-quote-delete/{id}', '\App\Http\Controllers\RequestQuotesController@delete');
+
+Route::get('delete-list/{id}', '\App\Http\Controllers\ListingController@delete');
+
+Route::get('reviews', '\App\Http\Controllers\ReviewsController@index');

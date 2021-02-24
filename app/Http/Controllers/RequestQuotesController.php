@@ -17,7 +17,12 @@ class RequestQuotesController extends Controller
             return redirect()->back()->withErrors('Please Login for viewing the request quotes.');
         }
         
-        $RequestQuotes = RequestQuotes::all();
+        $RequestQuote = RequestQuotes::where('user_id', $user->id)->paginate(10);
+
+        return view('dashboard.request-quote', [
+            'user' => $user,
+            'RequestQuote' => $RequestQuote
+        ]);
     }
 
     public function view(Request $request)
@@ -79,7 +84,7 @@ class RequestQuotesController extends Controller
         $RequestQuotes->save();
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         $user = Auth::user();
 
@@ -87,7 +92,9 @@ class RequestQuotesController extends Controller
             return redirect()->back()->withErrors('Please Login for deleting a request quote.');
         }
 
-        RequestQuotes::where('id',$request->id)->delete();
+        RequestQuotes::where('id',$id)->delete();
+
+        return redirect()->back()->withSuccess('Request quote has been deleted.');
     }
 
 }

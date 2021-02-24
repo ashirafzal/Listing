@@ -434,7 +434,95 @@
                                                     <div class="review-total">-</div>
                                                     @endempty
                                                     <div class="review-text">Reviews</div>
-                                                    <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa  fa-star"></i> <i class="fa fa-star"></i> </span>
+                                                    @if($AvgReviewsRating == 5.0)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa  fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 4.5)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa  fa-star"></i>
+                                                        <i class="fa fa-star-half"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 4)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 3.5)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa  fa-star-half"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 3.0)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 2.5)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-half"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 2.0)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 1.5)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-half"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 1.0)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @elseif($AvgReviewsRating > 0.5)
+                                                    <span class="rated">
+                                                        <i class="fa fa-star-half"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @else
+                                                    <span class="rated">
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                        <i class="far  fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </span>
+                                                    @endif
                                                     @isset($AvgReviewsRating)
                                                     <p>{{ number_format($AvgReviewsRating, 2, '.', ',') }} average based on {{ $ReviewsCount }} ratings.</p>
                                                     @endisset
@@ -450,7 +538,97 @@
                                                     <!-- review-list -->
                                                     <div class="review-list">
                                                         <div class="review-for"><b>Rating</b></div>
-                                                        <div class="review-rating"><span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far  fa-star"></i> </span></div>
+                                                        <div class="review-rating">
+                                                            @if($AvgReviewsRating == 5.0)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa  fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 4.5)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa  fa-star"></i>
+                                                                <i class="fa fa-star-half"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 4)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 3.5)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa  fa-star-half"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 3.0)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 2.5)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 2.0)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 1.5)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 1.0)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @elseif($AvgReviewsRating > 0.5)
+                                                            <span class="rated">
+                                                                <i class="fa fa-star-half"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @else
+                                                            <span class="rated">
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                                <i class="far  fa-star"></i>
+                                                                <i class="far fa-star"></i>
+                                                            </span>
+                                                            @endif
+                                                        </div>
                                                         @isset($AvgReviewsRating)
                                                         <div class="review-number">{{ number_format($AvgReviewsRating, 2, '.', ',') }}</div>
                                                         @endisset
@@ -480,7 +658,95 @@
                                             <span class="user-review-date">{{ $Review->created_at->diffForHumans() }}</span>
                                         </h5>
                                         <div class="given-review">
-                                            <span class="rated"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far  fa-star"></i> <i class="far  fa-star"></i></span>
+                                            @if($Review->rating == 5.0)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa  fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 4.5)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa  fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                            </span>
+                                            @elseif($Review->rating > 4)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 3.5)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa  fa-star-half"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 3.0)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 2.5)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 2.0)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 1.5)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 1.0)
+                                            <span class="rated">
+                                                <i class="fa fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @elseif($Review->rating > 0.5)
+                                            <span class="rated">
+                                                <i class="fa fa-star-half"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @else
+                                            <span class="rated">
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far  fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -673,7 +939,7 @@
                         <!-- Vendor thumbnail -->
                         <div class="vendor-img zoomimg">
                             <!-- Vendor img -->
-                            <a href="#"><img src="{{ asset('listing-image/' . $listings->hero_image) }}" alt="" class="img-fluid"></a>
+                            <a href="{{ $SimiliarListings->id }}"><img src="{{ asset('listing-image/' . $SimiliarListings->hero_image) }}" alt="" class="img-fluid"></a>
                             <div class="wishlist-sign"><a href="wish-list/{{ $SimiliarListings->id }}" class="btn-wishlist"><i class="fa fa-heart"></i></a></div>
                         </div>
                         <!-- /.Vendor img -->
