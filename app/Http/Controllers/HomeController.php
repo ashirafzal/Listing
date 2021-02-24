@@ -21,9 +21,12 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $vendor = Vendor::where('user_id', $user->id)->first();
-        $ListingCount = Listing::where('vendor_id', $vendor->id)->count();
-        $ReviewsCount = Reviews::where('vendor_id', $vendor->id)->count();
-        $RequestQuotesCount = RequestQuotes::where('vendor_id', $vendor->id)->count();
+
+        if($vendor){
+            $ListingCount = Listing::where('vendor_id', $vendor->id)->count();
+            $ReviewsCount = Reviews::where('vendor_id', $vendor->id)->count();
+            $RequestQuotesCount = RequestQuotes::where('vendor_id', $vendor->id)->count();
+        }
 
         if (!$user) {
             return redirect()->back()->withErrors('Please Login to view dashboard.');
