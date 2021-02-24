@@ -50,6 +50,26 @@ class User extends Authenticatable
     public const ROLE_ADMIN = 3;
     public const ROLE_SUPER_ADMIN = 4;
 
+    public function isUser()
+    {
+        return $this->role == static::ROLE_USER;
+    }
+
+    public function isVendor()
+    {
+        return $this->role == static::ROLE_VENDOR;
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == static::ROLE_ADMIN;
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->role == static::ROLE_SUPER_ADMIN;
+    }
+
     public function vendors()
     {
         return $this->hasMany(Vendor::class);

@@ -32,6 +32,18 @@
             color: #00a591;
         }
 
+        .review-total{
+            color: #00a591;
+        }
+
+        .mb30{
+            color: #00a591;
+        }
+
+        .card-review-summary .progress-bar {
+            background-color: #00a591;
+        }
+
         .notification-list-user-name {
             color: #00a591;
         }
@@ -295,7 +307,7 @@
                                     <i class="fa  fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 4.5)
+                                @elseif($AvgReviewsRating >= 4.5)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -303,7 +315,7 @@
                                     <i class="fa  fa-star"></i>
                                     <i class="fa fa-star-half"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 4)
+                                @elseif($AvgReviewsRating >= 4)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -311,7 +323,7 @@
                                     <i class="fa  fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 3.5)
+                                @elseif($AvgReviewsRating >= 3.5)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -319,7 +331,7 @@
                                     <i class="fa  fa-star-half"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 3.0)
+                                @elseif($AvgReviewsRating >= 3.0)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -327,7 +339,7 @@
                                     <i class="far  fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 2.5)
+                                @elseif($AvgReviewsRating >= 2.5)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -335,7 +347,7 @@
                                     <i class="far  fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 2.0)
+                                @elseif($AvgReviewsRating >= 2.0)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -343,7 +355,7 @@
                                     <i class="far  fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 1.5)
+                                @elseif($AvgReviewsRating >= 1.5)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-half"></i>
@@ -351,7 +363,7 @@
                                     <i class="far  fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 1.0)
+                                @elseif($AvgReviewsRating >= 1.0)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star"></i>
                                     <i class="far fa-star"></i>
@@ -359,7 +371,7 @@
                                     <i class="far  fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </span>
-                                @elseif($AvgReviewsRating > 0.5)
+                                @elseif($AvgReviewsRating >= 0.5)
                                 <span class="rated mt40  d-block">
                                     <i class="fa fa-star-half"></i>
                                     <i class="far fa-star"></i>
@@ -394,12 +406,58 @@
                                         <h5 class="mb0 text-right">Average Rating</h5>
                                     </div>
                                     <div class="col-xl-8 col-lg-8 col-md-6 col-sm-12 col-12">
+                                        @if($AvgReviewsRating == 5.0)
                                         <div class="progress mt10">
-                                            <div class="progress-bar" role="progressbar" style="width: 86%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
+                                        @elseif($AvgReviewsRating >= 4.5)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 4)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 3.5)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 3.0)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 2.5)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 2.0)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 1.5)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 1.0)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @elseif($AvgReviewsRating >= 0.5)
+                                        <div class="progress mt10">
+                                            <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        @else
+                                        <span class="rated mt40  d-block">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far  fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </span>
+                                        @endif
                                     </div>
                                     <div class="col-xl-1 col-lg-1 col-md-3  col-sm-12 col-12 text-right">
-                                        <h6 class="text-dark mb0">86%</h6>
+                                        <h6 class="text-dark mb0">{{ number_format($AvgReviewsRating/5*100, 0, '.', ',') }}%</h6>
                                     </div>
                                 </div>
                             </div>
@@ -412,11 +470,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Rating</th>
-                                        <th>Email</th>
-                                        <th>Time</th>
-                                        <th>Action</th>
+                                        <th style="color: #00a591; font-weight:500;">Name</th>
+                                        <th style="color: #00a591; font-weight:500;">Rating</th>
+                                        <th style="color: #00a591; font-weight:500;">Email</th>
+                                        <th style="color: #00a591; font-weight:500;">Time</th>
+                                        <th style="color: #00a591; font-weight:500;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -432,7 +490,7 @@
                                                 <i class="fa  fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 4.5)
+                                            @elseif($Reviews->rating >= 4.5)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -440,7 +498,7 @@
                                                 <i class="fa  fa-star"></i>
                                                 <i class="fa fa-star-half"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 4)
+                                            @elseif($Reviews->rating >= 4)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -448,7 +506,7 @@
                                                 <i class="fa  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 3.5)
+                                            @elseif($Reviews->rating >= 3.5)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -456,7 +514,7 @@
                                                 <i class="fa  fa-star-half"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 3.0)
+                                            @elseif($Reviews->rating >= 3.0)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -464,7 +522,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 2.5)
+                                            @elseif($Reviews->rating >= 2.5)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -472,7 +530,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 2.0)
+                                            @elseif($Reviews->rating >= 2.0)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -480,7 +538,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 1.5)
+                                            @elseif($Reviews->rating >= 1.5)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-half"></i>
@@ -488,7 +546,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 1.0)
+                                            @elseif($Reviews->rating >= 1.0)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="far fa-star"></i>
@@ -496,7 +554,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Reviews->rating > 0.5)
+                                            @elseif($Reviews->rating >= 0.5)
                                             <span class="rated">
                                                 <i class="fa fa-star-half"></i>
                                                 <i class="far fa-star"></i>

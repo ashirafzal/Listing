@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
-    <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/offcanvas.css') }}" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
+    <link href="fontello/css/fontello.css" rel="stylesheet">
+    <link href="css/summernote-bs4.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/offcanvas.css" rel="stylesheet">
     <style>
         .header-logo {
             width: 100px;
@@ -123,7 +123,7 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-8 col-md-8 col-sm-6 col-6">
                     <div class="header-logo">
-                        <!-- <a href="/"><img src="{{ asset('images/logo.png') }}" alt="logo"></a> -->
+                        <!-- <a href="index-2.html"><img src="images/logo.png" alt="Weddings | Find A Wedding Venue &amp; Supplier WordPress Theme"></a> -->
                         <a href="/" class="logo">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 170 50" enable-background="new 0 0 170 50" xml:space="preserve">
                                 <path fill="#00A591" d="M48,50H25C11.3,50,0,38.8,0,25v0C0,11.2,11.2,0,25,0l23,0c1.1,0,2,0.9,2,2v46C50,49.1,49.1,50,48,50z"></path>
@@ -195,7 +195,7 @@
                                                 <div class="list-group">
                                                     <a href="#" class="list-group-item list-group-item-action active">
                                                         <div class="notification-info">
-                                                            <div class="notification-list-user-img"><img src="{{ asset('images/avatar-2.jpg') }}" alt="" class="user-avatar-md rounded-circle"></div>
+                                                            <div class="notification-list-user-img"><img src="images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
                                                             <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
                                                                 <div class="notification-date">2 min ago</div>
                                                             </div>
@@ -284,17 +284,18 @@
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Password Change</a>
-                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Email Notifications</a>
-                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Delete Account</a>
+                            <!-- <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Email Notifications</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Delete Account</a> -->
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                @if($vendor->count() < 1) <div class="card">
+                                @if($vendor->count() < 1) 
+                                <div class="card">
                                     <a href="become-a-vendor" class="btn btn-default">Register yourself as a vendor</a>
-                            </div>
-                            @endif
+                                </div>
+                                @endif
                             <div class="card">
                                 <div class="card-header">Profile</div>
                                 <div class="card-body">
@@ -372,100 +373,99 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <div class="card">
-                            <div class="card-header">Password Change</div>
-                            <div class="card-body">
-                                <form class="row" method="POST" action="update-password">
-                                    @csrf
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="currentpassword">Current Password</label>
-                                            <input name="currentpassword" type="password" placeholder="" class="form-control ">
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="card">
+                                <div class="card-header">Password Change</div>
+                                <div class="card-body">
+                                    <form class="row" method="POST" action="update-password">
+                                        @csrf
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label class="control-label" for="currentpassword">Current Password</label>
+                                                <input name="currentpassword" type="password" placeholder="" class="form-control ">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="newpassword">New Password</label>
-                                            <input name="newpassword" type="password" placeholder="" class="form-control ">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label class="control-label" for="newpassword">New Password</label>
+                                                <input name="newpassword" type="password" placeholder="" class="form-control ">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="retypepassword">Retype Password</label>
-                                            <input name="retypepassword" type="password" placeholder="" class="form-control ">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <label class="control-label" for="retypepassword">Retype Password</label>
+                                                <input name="retypepassword" type="password" placeholder="" class="form-control ">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <button class="btn btn-default" type="submit">Save Changes</button>
-                                    </div>
-                                </form>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <button class="btn btn-default" type="submit">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                        <div class="card">
-                            <div class="card-header">Email Notifications</div>
-                            <div class="">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #1
-                                        <div class="switch-notification">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #2
-                                        <div class="switch-notification">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #3
-                                        <div class="switch-notification">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
+                        <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <div class="card">
+                                <div class="card-header">Email Notifications</div>
+                                <div class="">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #1
+                                            <div class="switch-notification">
+                                                <label class="switch">
+                                                    <input type="checkbox">
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #2
+                                            <div class="switch-notification">
+                                                <label class="switch">
+                                                    <input type="checkbox">
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">Email Notifications List #3
+                                            <div class="switch-notification">
+                                                <label class="switch">
+                                                    <input type="checkbox">
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                        <div class="card">
-                            <div class="card-header">Account Delete</div>
-                            <div class="card-body">
-                                <p>In the fields below, enter your new password.</p>
-                                <form>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Delete my account and data listing also.</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                        <label class="custom-control-label" for="customCheck2">Delete my account only.</label>
-                                    </div>
-                                    <button class="btn btn-primary mt30" type="submit">Delete My Account</button>
-                                </form>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <div class="card">
+                                <div class="card-header">Account Delete</div>
+                                <div class="card-body">
+                                    <p>In the fields below, enter your new password.</p>
+                                    <form>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">Delete my account and data listing also.</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                            <label class="custom-control-label" for="customCheck2">Delete my account only.</label>
+                                        </div>
+                                        <button class="btn btn-primary mt30" type="submit">Delete My Account</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
-    </div>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/menumaker.min.js') }}"></script>
-    <script src="{{ asset('js/custom-script.js') }}"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/menumaker.min.js"></script>
+    <script src="js/custom-script.js"></script>
     <script>
         $(document).ready(function() {
             $.uploadPreview({
@@ -478,10 +478,10 @@
             });
         });
     </script>
-    <script src="{{ asset('js/jquery.uploadPreview.js') }}"></script>
-    <script src="{{ asset('js/summernote-bs4.js') }}"></script>
-    <script src="{{ asset('js/offcanvas.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+    <script src="js/jquery.uploadPreview.js"></script>
+    <script src="js/summernote-bs4.js"></script>
+    <script src="js/offcanvas.js"></script>
+    <script src="js/jquery.slimscroll.js"></script>
 </body>
 
 </html>

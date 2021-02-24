@@ -31,7 +31,9 @@ class ListingController extends Controller
             return redirect()->route('login')->withErrors('Please login to view listing.');
         }
 
-        $Listing = Listing::paginate(10);
+        $vendor = Vendor::where('user_id', $user->id)->first();
+
+        $Listing = Listing::where('vendor_id', $vendor->id)->paginate(10);
 
         return view('dashboard.ListedItems', [
             'user' => $user,
@@ -74,6 +76,10 @@ class ListingController extends Controller
 
         if(!$user){
             return redirect()->back()->withErrors('Please login to create listing.');
+        }
+
+        if($user->isUser()){
+            return redirect()->back()->withErrors('You must have to be a vendor to create listing.');
         }
 
         $validate = Validator::make($request->all(), [
