@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listing;
 use App\Models\RequestQuotes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RequestQuotesController extends Controller
 {
@@ -55,6 +57,19 @@ class RequestQuotesController extends Controller
             return redirect()->back()->withErrors('Please Login for submiting a request quote.');
         }
 
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'comment' => 'required',
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        $vendor = Listing::where('id',$request->listing_id)->first();
+
         $RequestQuotes = new RequestQuotes();
 
         $RequestQuotes->user_id = $user->id;
@@ -63,6 +78,7 @@ class RequestQuotesController extends Controller
         $RequestQuotes->email = $request->email;
         $RequestQuotes->phone = $request->phone;
         $RequestQuotes->comment = $request->comment;
+        $RequestQuotes->vendor_id = $vendor->vendor_id;
 
         $RequestQuotes->save();
 
@@ -79,7 +95,7 @@ class RequestQuotesController extends Controller
 
         $RequestQuotes = RequestQuotes::find($request->id);
 
-        $RequestQuotes->user_id = Auth::user()->id;
+        $RequestQuotes->user_id = $user->id;
         $RequestQuotes->listing_id = $request->id;
         $RequestQuotes->save();
     }

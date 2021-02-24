@@ -7,6 +7,7 @@ use App\Models\Reviews;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ListingController extends Controller
 {
@@ -73,6 +74,24 @@ class ListingController extends Controller
 
         if(!$user){
             return redirect()->back()->withErrors('Please login to create listing.');
+        }
+
+        $validate = Validator::make($request->all(), [
+            'title' => 'required',
+            'category' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'description' => 'required',
+            'hero_image' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
+            'instagram' => 'required',
+            'youtube' => 'required',
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
         }
 
         $vendor = Vendor::where('user_id', $user->id)->first();
@@ -164,6 +183,24 @@ class ListingController extends Controller
 
         if(!$user){
             return redirect()->back()->withErrors('Please login to edit listing.');
+        }
+
+        $validate = Validator::make($request->all(), [
+            'title' => 'required',
+            'category' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'description' => 'required',
+            'hero_image' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
+            'instagram' => 'required',
+            'youtube' => 'required',
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
         }
 
         $listing = Listing::where('id', $request->id)->first();

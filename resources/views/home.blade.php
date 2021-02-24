@@ -273,7 +273,7 @@
                         <div class="card card-summary">
                             <div class="card-body">
                                 <div class="float-left">
-                                    <div class="summary-count">10</div>
+                                    <div class="summary-count">{{$ListingCount}}</div>
                                     <p>Total Listed Item</p>
                                 </div>
                                 <div class="summary-icon"><i class="icon-051-wedding-arch"></i></div>
@@ -287,7 +287,7 @@
                         <div class="card card-summary">
                             <div class="card-body">
                                 <div class="float-left">
-                                    <div class="summary-count">05</div>
+                                    <div class="summary-count">{{$ReviewsCount}}</div>
                                     <p>Request Quote</p>
                                 </div>
                                 <div class="summary-icon"><i class="icon-021-love-1"></i></div>
@@ -299,7 +299,7 @@
                         <div class="card card-summary">
                             <div class="card-body">
                                 <div class="float-left">
-                                    <div class="summary-count">09</div>
+                                    <div class="summary-count">{{$RequestQuotesCount}}</div>
                                     <p>Your Reviews</p>
                                 </div>
                                 <div class="summary-icon"><i class="icon-004-chat"></i></div>

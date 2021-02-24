@@ -6,6 +6,7 @@ use App\Models\Reviews;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewsController extends Controller
 {
@@ -53,6 +54,17 @@ class ReviewsController extends Controller
 
         if(!$user){
             return redirect()->back()->withErrors('Please Login for submiting a review.');
+        }
+
+        $validate = Validator::make($request->all(), [
+            'review' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'rating' => 'required',
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
         }
 
         $Reviews = new Reviews();

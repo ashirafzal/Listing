@@ -238,20 +238,18 @@
 
 <body>
     <!-- Floating messages -->
-    <div class="container float">
+    <!-- <div class="container float">
         @if(session('success'))
         <div class="alert alert-info alert-block">
-            <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
             <strong>{{session('success')}}</strong>
         </div>
         @endif
         @if(session('errors'))
         <div class="alert alert-danger alert-block">
-            <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
             <strong>{{session('errors')}}</strong>
         </div>
         @endif
-    </div>
+    </div> -->
     <!-- Floting messages ends -->
     <!-- header -->
     <div class="header">
@@ -328,11 +326,23 @@
     <!-- page-header -->
     <div class="vendor-content-wrapper">
         <div class="container">
+            @if(session('success'))
+            <div class="alert alert-info alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{session('success')}}</strong>
+            </div>
+            @endif
+            @if(session('errors'))
+            <div class="alert alert-danger alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{session('errors')}}</strong>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-12">
                     <div class="mt20">
                         <div class="card border card-shadow-none">
-                            <h3 class="card-header bg-white">About Wedding Venue</h3>
+                            <h3 class="card-header bg-white">About Listing</h3>
                             <div class="card-body">
                                 <!--/.vendor-details -->
                                 <!--vendor-description -->
@@ -450,7 +460,7 @@
                                                         <i class="fa  fa-star"></i>
                                                         <i class="fa fa-star-half"></i>
                                                     </span>
-                                                    @elseif($AvgReviewsRating > 4)
+                                                    @elseif($AvgReviewsRating >= 4)
                                                     <span class="rated">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -466,7 +476,7 @@
                                                         <i class="fa  fa-star-half"></i>
                                                         <i class="far fa-star"></i>
                                                     </span>
-                                                    @elseif($AvgReviewsRating > 3.0)
+                                                    @elseif($AvgReviewsRating >= 3.0)
                                                     <span class="rated">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -482,7 +492,7 @@
                                                         <i class="far  fa-star"></i>
                                                         <i class="far fa-star"></i>
                                                     </span>
-                                                    @elseif($AvgReviewsRating > 2.0)
+                                                    @elseif($AvgReviewsRating >= 2.0)
                                                     <span class="rated">
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -498,7 +508,7 @@
                                                         <i class="far  fa-star"></i>
                                                         <i class="far fa-star"></i>
                                                     </span>
-                                                    @elseif($AvgReviewsRating > 1.0)
+                                                    @elseif($AvgReviewsRating >= 1.0)
                                                     <span class="rated">
                                                         <i class="fa fa-star"></i>
                                                         <i class="far fa-star"></i>
@@ -555,7 +565,7 @@
                                                                 <i class="fa  fa-star"></i>
                                                                 <i class="fa fa-star-half"></i>
                                                             </span>
-                                                            @elseif($AvgReviewsRating > 4)
+                                                            @elseif($AvgReviewsRating >= 4)
                                                             <span class="rated">
                                                                 <i class="fa fa-star"></i>
                                                                 <i class="fa fa-star"></i>
@@ -571,7 +581,7 @@
                                                                 <i class="fa  fa-star-half"></i>
                                                                 <i class="far fa-star"></i>
                                                             </span>
-                                                            @elseif($AvgReviewsRating > 3.0)
+                                                            @elseif($AvgReviewsRating >= 3.0)
                                                             <span class="rated">
                                                                 <i class="fa fa-star"></i>
                                                                 <i class="fa fa-star"></i>
@@ -587,7 +597,7 @@
                                                                 <i class="far  fa-star"></i>
                                                                 <i class="far fa-star"></i>
                                                             </span>
-                                                            @elseif($AvgReviewsRating > 2.0)
+                                                            @elseif($AvgReviewsRating >= 2.0)
                                                             <span class="rated">
                                                                 <i class="fa fa-star"></i>
                                                                 <i class="fa fa-star"></i>
@@ -603,7 +613,7 @@
                                                                 <i class="far  fa-star"></i>
                                                                 <i class="far fa-star"></i>
                                                             </span>
-                                                            @elseif($AvgReviewsRating > 1.0)
+                                                            @elseif($AvgReviewsRating >= 1.0)
                                                             <span class="rated">
                                                                 <i class="fa fa-star"></i>
                                                                 <i class="far fa-star"></i>
@@ -674,7 +684,7 @@
                                                 <i class="fa  fa-star"></i>
                                                 <i class="fa fa-star-half"></i>
                                             </span>
-                                            @elseif($Review->rating > 4)
+                                            @elseif($Review->rating >= 4)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -690,7 +700,7 @@
                                                 <i class="fa  fa-star-half"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Review->rating > 3.0)
+                                            @elseif($Review->rating >= 3.0)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -706,7 +716,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Review->rating > 2.0)
+                                            @elseif($Review->rating >= 2.0)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -722,7 +732,7 @@
                                                 <i class="far  fa-star"></i>
                                                 <i class="far fa-star"></i>
                                             </span>
-                                            @elseif($Review->rating > 1.0)
+                                            @elseif($Review->rating >= 1.0)
                                             <span class="rated">
                                                 <i class="fa fa-star"></i>
                                                 <i class="far fa-star"></i>

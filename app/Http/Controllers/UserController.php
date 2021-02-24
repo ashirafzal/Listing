@@ -7,6 +7,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -43,6 +44,16 @@ class UserController extends Controller
 
     public function edit(Request $request)
     {
+
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
         if ($request->hasFile('image')) {
             $img = $request->file('image');
             $extention = $img->getClientOriginalExtension();
@@ -52,6 +63,10 @@ class UserController extends Controller
         }
 
         $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to edit your profile.');
+        }
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -66,7 +81,22 @@ class UserController extends Controller
 
     public function UpdatePassword(Request $request)
     {
+
+        $validate = Validator::make($request->all(), [
+            'currentpassword' => 'required',
+            'newpassword' => 'required',
+            'retypepassword' => 'required',
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
         $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to update the password.');
+        }
 
         $CurrentPassword = $request->currentpassword;
 
