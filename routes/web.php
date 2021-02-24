@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('/', '\App\Http\Controllers\ListingController@WelcomeIndex');
 
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
@@ -60,3 +64,5 @@ Route::get('request-quote-delete/{id}', '\App\Http\Controllers\RequestQuotesCont
 Route::get('delete-list/{id}', '\App\Http\Controllers\ListingController@delete');
 
 Route::get('reviews', '\App\Http\Controllers\ReviewsController@index');
+
+Route::post('contact-submit', '\App\Http\Controllers\HomeController@ContactUs');
