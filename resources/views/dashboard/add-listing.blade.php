@@ -253,7 +253,7 @@
                 </div>
                 @endif
                 <h3 class="vendor-profile-name">{{ $user->name }}</h3>
-                <a href="#" class="edit-link">edit profile</a>
+                <a href="/profile" class="edit-link">edit profile</a>
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">

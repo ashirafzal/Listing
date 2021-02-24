@@ -244,7 +244,7 @@
                 </div>
                 @endif
                 <h3 class="vendor-profile-name text-bold">{{ $user->name }}</h3>
-                <a href="{{ route('profile') }}" class="edit-link">edit profile</a>
+                <a href="/profile" class="edit-link">edit profile</a>
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
@@ -279,7 +279,7 @@
                                 <div class="summary-icon"><i class="icon-051-wedding-arch"></i></div>
 
                             </div>
-                            <div class="card-footer text-center"><a href="mylisting">View All</a></div>
+                            <div class="card-footer text-center"><a href="/listing">View All</a></div>
 
                         </div>
                     </div>
@@ -292,7 +292,7 @@
                                 </div>
                                 <div class="summary-icon"><i class="icon-021-love-1"></i></div>
                             </div>
-                            <div class="card-footer text-center"><a href="requestquote-view">View All</a></div>
+                            <div class="card-footer text-center"><a href="/request-quote">View All</a></div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
@@ -304,7 +304,7 @@
                                 </div>
                                 <div class="summary-icon"><i class="icon-004-chat"></i></div>
                             </div>
-                            <div class="card-footer text-center"><a href="Reviews">View All</a></div>
+                            <div class="card-footer text-center"><a href="/reviews">View All</a></div>
                         </div>
                     </div>
                 </div>
