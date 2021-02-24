@@ -26,6 +26,10 @@ class HomeController extends Controller
             $ListingCount = Listing::where('vendor_id', $vendor->id)->count();
             $ReviewsCount = Reviews::where('vendor_id', $vendor->id)->count();
             $RequestQuotesCount = RequestQuotes::where('vendor_id', $vendor->id)->count();
+        }else{
+            $ListingCount = 0;
+            $ReviewsCount = 0;
+            $RequestQuotesCount = 0;
         }
 
         if (!$user) {
