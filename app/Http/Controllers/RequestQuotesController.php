@@ -18,6 +18,10 @@ class RequestQuotesController extends Controller
         if(!$user){
             return redirect()->back()->withErrors('Please Login for viewing the request quotes.');
         }
+
+        if($user->isUser()){
+            return redirect()->back()->withErrors('You must have to be a vendor to view request quotes.');
+        }
         
         $RequestQuote = RequestQuotes::where('user_id', $user->id)->paginate(10);
 

@@ -38,7 +38,7 @@ class HomeController extends Controller
             return redirect()->back()->withErrors('Please Login to view dashboard.');
         }
 
-        return view('home', [ 'user' => $user, 'ListingCount' => $ListingCount, 'ReviewsCount' => $ReviewsCount, 'RequestQuotesCount' => $RequestQuotesCount ]);
+        return view('home', [ 'user' => $user, 'vendor' => $vendor, 'ListingCount' => $ListingCount, 'ReviewsCount' => $ReviewsCount, 'RequestQuotesCount' => $RequestQuotesCount ]);
     }
 
     public function profile()
@@ -59,8 +59,6 @@ class HomeController extends Controller
 
     public function ContactUs(Request $request)
     {
-        dd($request);
-        
         $validate = Validator::make($request->all(), [
             'firstname' => 'required',
             'lastname' => 'required',

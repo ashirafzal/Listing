@@ -415,7 +415,6 @@
                                         <div class="col-xl-5 col-lg-4 col-md-4 col-sm-12 col-12">
                                             <!-- select -->
                                             <select class="wide">
-                                                <option value="Venue Type">Vendor Type</option>
                                                 <option value="Venue">Venue</option>
                                                 <option value="Florist">Florist</option>
                                                 <option value="Cake">Cake</option>

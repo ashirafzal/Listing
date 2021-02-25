@@ -31,6 +31,10 @@ class ListingController extends Controller
             return redirect()->route('login')->withErrors('Please login to view listing.');
         }
 
+        if($user->isUser()){
+            return redirect()->back()->withErrors('You must have to be a vendor to view listing.');
+        }
+
         $vendor = Vendor::where('user_id', $user->id)->first();
 
         $Listing = Listing::where('vendor_id', $vendor->id)->paginate(10);

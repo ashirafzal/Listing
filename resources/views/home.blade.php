@@ -102,6 +102,24 @@
         .float-left>p {
             color: #00a591;
         }
+
+        .alert-info {
+            background: #00a591;
+            color: #ffffff;
+        }
+
+        .alert-info>.close {
+            color: #ffffff;
+        }
+
+        .alert-danger {
+            background: #ff4d4d;
+            color: #ffffff;
+        }
+
+        .alert-danger>.close {
+            color: #ffffff;
+        }
     </style>
 </head>
 
@@ -212,9 +230,11 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="/home">Dashboard</a>
+                                        @if($vendor)
                                         <a class="dropdown-item" href="/listing"> My Listed Item </a>
                                         <a class="dropdown-item" href="/request-quote">Request Quotes</a>
                                         <a class="dropdown-item" href="/reviews">Reviews </a>
+                                        @endif
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
                                     </div>
@@ -249,15 +269,39 @@
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
                     <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    @if($vendor)
                     <li><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
                     <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    @endif
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
         </div>
         <div class="dashboard-content">
+            <div class="container-fluid">
+                 @if(session('success'))
+                <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{session('success')}}</strong>
+                </div>
+                @endif
+                @if(session('errors'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{session('errors')}}</strong>
+                </div>
+                @endif
+                <div class="row">
+                    @if(!$vendor) 
+                        <div class="row">
+                            <a href="become-a-vendor" class="btn btn-primary">Be a vendor</a>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <br>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12 col-lg-10 col-md-9 col-sm-12 col-12">
