@@ -233,7 +233,7 @@
                                         <a class="dropdown-item" href="admin-listings">Listings</a>
                                         <a class="dropdown-item" href="#">Request Quotes</a>
                                         <a class="dropdown-item" href="#">Reviews</a>
-                                        <a class="dropdown-item" href="#">Vendors</a>
+                                        <a class="dropdown-item" href="admin-vendors">Vendors</a>
                                         <a class="dropdown-item" href="admin-users">Users</a>
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
@@ -272,7 +272,7 @@
                     <li class="active"><a href="admin-listings"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="admin-vendors"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
                     <li><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
@@ -281,7 +281,7 @@
         </div>
         <div class="dashboard-content">
             <div class="container-fluid">
-                 @if(session('success'))
+                @if(session('success'))
                 <div class="alert alert-info alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{{session('success')}}</strong>
@@ -296,41 +296,54 @@
             </div>
             <br>
             <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card request-list-table table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="color: #00a591; font-weight:500;">ID</th>
-                                        <th style="color: #00a591; font-weight:500;">Title</th>
-                                        <th style="color: #00a591; font-weight:500;">Vendor Name</th>
-                                        <th style="color: #00a591; font-weight:500;">Vendor Email</th>
-                                        <th style="color: #00a591; font-weight:500;">Category</th>
-                                        <th style="color: #00a591; font-weight:500;">City</th>
-                                        <th style="color: #00a591; font-weight:500;">Country</th>
-                                        <th style="color: #00a591; font-weight:500;">Created At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($TotalListings as $TotalListings)
-                                    <tr>
-                                        <td class="requester-name" style="color: #00a591; font-weight:500;">{{ $TotalListings->id }}</td>
-                                        <td class="requester-name">{{ $TotalListings->title }}</td>
-                                        <td class="requester-name">{{ $TotalListings->vendor_name }}</td>
-                                        <td class="requester-name">{{ $TotalListings->vendor_email }}</td>
-                                        <td class="wedding-date">{{ $TotalListings->category }}</td>
-                                        <td class="requester-id">{{ $TotalListings->city }}</td>
-                                        <td class="requester-phone">{{ $TotalListings->country }}</td>
-                                        <td class="requester-phone">{{ $TotalListings->created_at->diffForHumans() }}</td>
-                                        <td class="requester-action"><a href="#" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                        <td class="requester-action"><a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card request-list-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="color: #00a591; font-weight:500;">ID</th>
+                                    <th style="color: #00a591; font-weight:500;">Title</th>
+                                    <th style="color: #00a591; font-weight:500;">Vendor Name</th>
+                                    <th style="color: #00a591; font-weight:500;">Vendor Email</th>
+                                    <th style="color: #00a591; font-weight:500;">Category</th>
+                                    <th style="color: #00a591; font-weight:500;">Active</th>
+                                    <th style="color: #00a591; font-weight:500;">City</th>
+                                    <th style="color: #00a591; font-weight:500;">Featured</th>
+                                    <th style="color: #00a591; font-weight:500;">Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($TotalListing as $TotalListings)
+                                <tr>
+                                    <td class="requester-name" style="color: #00a591; font-weight:500;">{{ $TotalListings->id }}</td>
+                                    <td class="requester-name">{{ $TotalListings->title }}</td>
+                                    <td class="requester-name">{{ $TotalListings->vendor_name }}</td>
+                                    <td class="requester-name">{{ $TotalListings->vendor_email }}</td>
+                                    <td class="wedding-date">{{ $TotalListings->category }}</td>
+                                    @if($TotalListings->status == 0)
+                                    <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    @else
+                                    <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
+                                    @endif
+                                    <td class="requester-id">{{ $TotalListings->city }}</td>
+                                    @if($TotalListings->featured == 0)
+                                    <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    @else
+                                    <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
+                                    @endif
+                                    <td class="requester-phone">{{ $TotalListings->created_at->diffForHumans() }}</td>
+                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                {{ $TotalListing->links() }}
+            </div>
         </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>

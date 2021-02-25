@@ -74,3 +74,5 @@ Route::get('search-view', '\App\Http\Controllers\ListingController@SearchView');
 Route::get('admin-listings', '\App\Http\Controllers\AdminController@TotalListingView');
 
 Route::get('admin-users', '\App\Http\Controllers\AdminController@TotalUsersView');
+
+Route::get('admin-vendors', '\App\Http\Controllers\AdminController@TotalVendorsView');

@@ -233,7 +233,7 @@
                                         <a class="dropdown-item" href="admin-listings">Listings</a>
                                         <a class="dropdown-item" href="#">Request Quotes</a>
                                         <a class="dropdown-item" href="#">Reviews</a>
-                                        <a class="dropdown-item" href="#">Vendors</a>
+                                        <a class="dropdown-item" href="admin-vendors">Vendors</a>
                                         <a class="dropdown-item" href="admin-users">Users</a>
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
@@ -272,7 +272,7 @@
                     <li><a href="admin-listings"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="admin-vendors"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
                     <li><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
@@ -301,7 +301,7 @@
                         <div class="dashboard-page-header">
 
                             <h3 class="dashboard-page-title">Hi, {{ $user->name }}.</h3>
-                            <p class="d-block">Here’s what’s happening with your wedding venue business today.</p>
+                            <p class="d-block">Overall statistics of app what is happening.</p>
                         </div>
                     </div>
                 </div>
@@ -316,7 +316,7 @@
                                 <div class="summary-icon"><i class="icon-051-wedding-arch"></i></div>
 
                             </div>
-                            <div class="card-footer text-center"><a href="#">View All</a></div>
+                            <div class="card-footer text-center"><a href="/admin-users">View All</a></div>
 
                         </div>
                     </div>
@@ -330,7 +330,7 @@
                                 <div class="summary-icon"><i class="icon-051-wedding-arch"></i></div>
 
                             </div>
-                            <div class="card-footer text-center"><a href="#">View All</a></div>
+                            <div class="card-footer text-center"><a href="/admin-vendors">View All</a></div>
 
                         </div>
                     </div>
@@ -344,7 +344,7 @@
                                 <div class="summary-icon"><i class="icon-051-wedding-arch"></i></div>
 
                             </div>
-                            <div class="card-footer text-center"><a href="/listing">View All</a></div>
+                            <div class="card-footer text-center"><a href="/admin-listings">View All</a></div>
 
                         </div>
                     </div>
@@ -357,7 +357,7 @@
                                 </div>
                                 <div class="summary-icon"><i class="icon-021-love-1"></i></div>
                             </div>
-                            <div class="card-footer text-center"><a href="/request-quote">View All</a></div>
+                            <div class="card-footer text-center"><a href="#">View All</a></div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
@@ -369,7 +369,7 @@
                                 </div>
                                 <div class="summary-icon"><i class="icon-004-chat"></i></div>
                             </div>
-                            <div class="card-footer text-center"><a href="/reviews">View All</a></div>
+                            <div class="card-footer text-center"><a href="#">View All</a></div>
                         </div>
                     </div>
                 </div>

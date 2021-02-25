@@ -230,11 +230,11 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="/home">Dashboard</a>
-                                        @if($vendor)
-                                        <a class="dropdown-item" href="/listing"> My Listed Item </a>
-                                        <a class="dropdown-item" href="/request-quote">Request Quotes</a>
-                                        <a class="dropdown-item" href="/reviews">Reviews </a>
-                                        @endif
+                                        <a class="dropdown-item" href="admin-listings">Listings</a>
+                                        <a class="dropdown-item" href="#">Request Quotes</a>
+                                        <a class="dropdown-item" href="#">Reviews</a>
+                                        <a class="dropdown-item" href="admin-vendors">Vendors</a>
+                                        <a class="dropdown-item" href="admin-users">Users</a>
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
                                     </div>
@@ -268,12 +268,12 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    @if($vendor)
-                    <li><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
-                    <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
-                    <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    @endif
+                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li><a href="admin-listings"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
+                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
+                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    <li class="active"><a href="admin-vendors"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
@@ -281,7 +281,7 @@
         </div>
         <div class="dashboard-content">
             <div class="container-fluid">
-                 @if(session('success'))
+                @if(session('success'))
                 <div class="alert alert-info alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{{session('success')}}</strong>
@@ -293,65 +293,46 @@
                     <strong>{{session('errors')}}</strong>
                 </div>
                 @endif
-                <div class="row">
-                    @if(!$vendor) 
-                        <div class="row">
-                            <a href="become-a-vendor" class="btn btn-primary">Be a vendor</a>
-                        </div>
-                    @endif
-                </div>
             </div>
             <br>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-10 col-md-9 col-sm-12 col-12">
-                        <div class="dashboard-page-header">
-
-                            <h3 class="dashboard-page-title">Hi, {{ $user->name }}.</h3>
-                            <p class="d-block">Here’s what’s happening today.</p>
-                        </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card request-list-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="color: #00a591; font-weight:500;">ID</th>
+                                    <th style="color: #00a591; font-weight:500;">Name</th>
+                                    <th style="color: #00a591; font-weight:500;">Email</th>
+                                    <th style="color: #00a591; font-weight:500;">Number</th>
+                                    <th class="text-center" style="color: #00a591; font-weight:500;">Status</th>
+                                    <th style="color: #00a591; font-weight:500;">Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($TotalVendor as $TotalVendors)
+                                <tr>
+                                    <td class="requester-name" style="color: #00a591; font-weight:500;">{{ $TotalVendors->id }}</td>
+                                    <td class="requester-name">{{ $TotalVendors->name }}</td>
+                                    <td class="requester-name">{{ $TotalVendors->email }}</td>
+                                    <td class="requester-name">{{ $TotalVendors->phone_number }}</td>
+                                    @if($TotalVendors->status == 0)
+                                    <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
+                                    @else
+                                    <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
+                                    @endif
+                                    <td class="requester-phone">{{ $TotalVendors->created_at->diffForHumans() }}</td>
+                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="card card-summary">
-                            <div class="card-body">
-                                <div class="float-left">
-                                    <div class="summary-count">{{$ListingCount}}</div>
-                                    <p>Total Listed Item</p>
-                                </div>
-                                <div class="summary-icon"><i class="icon-051-wedding-arch"></i></div>
-
-                            </div>
-                            <div class="card-footer text-center"><a href="/listing">View All</a></div>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="card card-summary">
-                            <div class="card-body">
-                                <div class="float-left">
-                                    <div class="summary-count">{{$ReviewsCount}}</div>
-                                    <p>Request Quote</p>
-                                </div>
-                                <div class="summary-icon"><i class="icon-021-love-1"></i></div>
-                            </div>
-                            <div class="card-footer text-center"><a href="/request-quote">View All</a></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="card card-summary">
-                            <div class="card-body">
-                                <div class="float-left">
-                                    <div class="summary-count">{{$RequestQuotesCount}}</div>
-                                    <p>Your Reviews</p>
-                                </div>
-                                <div class="summary-icon"><i class="icon-004-chat"></i></div>
-                            </div>
-                            <div class="card-footer text-center"><a href="/reviews">View All</a></div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="row">
+                {{ $TotalVendor->links() }}
             </div>
         </div>
     </div>
