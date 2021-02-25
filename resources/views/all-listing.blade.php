@@ -398,7 +398,7 @@
         </div>
         <main>
             <div class="container-fluid p-4">
-                @if($Listing)
+                @if($Listing->count() > 0)
                     @foreach($Listing as $Listings)
                         @if($Listings->featured == 1)
                         <div class="container container-a">

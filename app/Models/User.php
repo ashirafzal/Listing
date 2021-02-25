@@ -45,6 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public const BLOCKED = 1;
+    public const NOT_BLOCKED = 0;
+
     public const ROLE_USER = 1;
     public const ROLE_VENDOR = 2;
     public const ROLE_ADMIN = 3;

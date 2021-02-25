@@ -307,9 +307,12 @@
                                         <div class="form-group">
                                             <label class="control-label" for="Category">Category</label>
                                             <select class="wide" id="category" name="category">
-                                                <option value="Select Category">Select Category</option>
-                                                <option value="1">Hotel</option>
-                                                <option value="2">Restaurant</option>
+                                                <option value="Venue">Venue</option>
+                                                <option value="Florist">Florist</option>
+                                                <option value="Cake">Cake</option>
+                                                <option value="Photographer">Photographer</option>
+                                                <option value="Catering">Catering</option>
+                                                <option value="Dress">Dress</option>
                                             </select>
                                         </div>
                                     </div>
@@ -323,9 +326,11 @@
                                         <div class="form-group">
                                             <label class="control-label" for="city">City</label>
                                             <select class="wide" name="city" id="city">
-                                                <option value="karachi">karachi</option>
-                                                <option value="Hyderebad">Hyderebad</option>
+                                                <option value="Karachi">Karachi</option>
+                                                <option value="Lahore">Lahore</option>
                                                 <option value="Islamabad">Islamabad</option>
+                                                <option value="Rawalpindi">Rawalpindi</option>
+                                                <option value="Hyderabad">Hyderabad</option>
                                             </select>
                                         </div>
                                     </div>
