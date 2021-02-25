@@ -69,4 +69,4 @@ Route::post('contact-submit', '\App\Http\Controllers\ListingController@ContactUs
 
 Route::get('all-listing', '\App\Http\Controllers\ListingController@AllListing');
 
-Route::post('search-view', '\App\Http\Controllers\ListingController@SearchView');
+Route::get('search-view', '\App\Http\Controllers\ListingController@SearchView');
