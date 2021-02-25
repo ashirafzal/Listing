@@ -7,6 +7,7 @@ use App\Models\ContactInfo;
 use App\Models\Listing;
 use App\Models\RequestQuotes;
 use App\Models\Reviews;
+use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,18 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+
+        if($user->isAdmin() || $user->isSuperAdmin()){
+
+            $UsersCount = User::count();
+            $VendorsCount = Vendor::count();
+            $ListingCount = Listing::count();
+            $ReviewsCount = Reviews::count();
+            $RequestQuotesCount = RequestQuotes::count();
+
+            return view('admin-dashboard.admin-home', [ 'user' => $user, 'UsersCount' => $UsersCount ,'VendorsCount' => $VendorsCount, 'ListingCount' => $ListingCount, 'ReviewsCount' => $ReviewsCount, 'RequestQuotesCount' => $RequestQuotesCount ]);
+        }
+
         $vendor = Vendor::where('user_id', $user->id)->first();
 
         if($vendor){
@@ -34,7 +47,7 @@ class HomeController extends Controller
             $ReviewsCount = 0;
             $RequestQuotesCount = 0;
         }
-
+        
         if (!$user) {
             return redirect()->back()->withErrors('Please Login to view dashboard.');
         }
