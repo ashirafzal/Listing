@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\ContactInfo;
 use App\Models\Listing;
 use App\Models\RequestQuotes;
@@ -56,32 +57,5 @@ class HomeController extends Controller
             'vendor' => $Vendor
         ]);
     }
-
-    public function ContactUs(Request $request)
-    {
-        $validate = Validator::make($request->all(), [
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'address' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'message' => 'required'
-        ]);
-
-        if ($validate->fails()){
-            return redirect()->back()->withErrors($validate->errors());
-        }
-
-        $contact = new ContactInfo();
-
-        $contact->firstname = $request->firstname;
-        $contact->lastname = $request->lastname;
-        $contact->email = $request->email;
-        $contact->phone = $request->phone;
-        $contact->message = $request->message;
-
-        $contact->save();
-
-        return redirect()->back()->withSuccess('We will contact you soon. tour request has been submitted.');
-    }
+    
 }

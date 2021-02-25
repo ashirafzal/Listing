@@ -13,7 +13,7 @@ class ContactInfo extends Migration
      */
     public function up()
     {
-        Schema::create('contact_info', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
@@ -32,6 +32,6 @@ class ContactInfo extends Migration
      */
     public function down()
     {
-            Schema::dropIfExists('contact_info');
+            Schema::dropIfExists('contacts');
     }
 }

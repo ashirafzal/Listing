@@ -65,4 +65,8 @@ Route::get('delete-list/{id}', '\App\Http\Controllers\ListingController@delete')
 
 Route::get('reviews', '\App\Http\Controllers\ReviewsController@index');
 
-Route::post('contact-submit', '\App\Http\Controllers\HomeController@ContactUs');
+Route::post('contact-submit', '\App\Http\Controllers\ListingController@ContactUs');
+
+Route::get('all-listing', '\App\Http\Controllers\ListingController@AllListing');
+
+Route::post('search-view', '\App\Http\Controllers\ListingController@SearchView');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Listing;
 use App\Models\Reviews;
 use App\Models\Vendor;
@@ -11,11 +12,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ListingController extends Controller
 {
-    
-    public function WelcomeIndex(){
-        $FeaturedListing = Listing::where('featured',true)->paginate(10);
 
-        $NonFeaturedListing = Listing::where('featured',false)->paginate(10);
+    public function WelcomeIndex()
+    {
+        $FeaturedListing = Listing::where('featured', true)->paginate(10);
+
+        $NonFeaturedListing = Listing::where('featured', false)->paginate(10);
 
         return view('welcome', [
             'FeaturedListing' => $FeaturedListing,
@@ -27,11 +29,11 @@ class ListingController extends Controller
     {
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             return redirect()->route('login')->withErrors('Please login to view listing.');
         }
 
-        if($user->isUser()){
+        if ($user->isUser()) {
             return redirect()->back()->withErrors('You must have to be a vendor to view listing.');
         }
 
@@ -45,11 +47,27 @@ class ListingController extends Controller
         ]);
     }
 
+    public function AllListing()
+    {
+        $Listing = Listing::paginate(15);
+
+        return view('all-listing', ['Listing' => $Listing]);
+    }
+
+    public function SearchView(Request $request)
+    {
+        $Listing = Listing::where('category', $request->category)
+            ->where('city', $request->city)
+            ->paginate(15);
+
+        return view('all-listing', ['Listing' => $Listing]);
+    }
+
     public function AddListingIndex()
     {
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             return redirect()->back()->withErrors('Please login to add listing.');
         }
 
@@ -78,11 +96,11 @@ class ListingController extends Controller
     {
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             return redirect()->back()->withErrors('Please login to create listing.');
         }
 
-        if($user->isUser()){
+        if ($user->isUser()) {
             return redirect()->back()->withErrors('You must have to be a vendor to create listing.');
         }
 
@@ -100,7 +118,7 @@ class ListingController extends Controller
             'youtube' => 'required',
         ]);
 
-        if ($validate->fails()){
+        if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors());
         }
 
@@ -174,10 +192,10 @@ class ListingController extends Controller
     {
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             return redirect()->back()->withErrors('Please login to edit listing.');
         }
-        
+
         $Listing = Listing::where('id', $id)->first();
 
         return view('dashboard.edit-listing', [
@@ -191,7 +209,7 @@ class ListingController extends Controller
 
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             return redirect()->back()->withErrors('Please login to edit listing.');
         }
 
@@ -209,7 +227,7 @@ class ListingController extends Controller
             'youtube' => 'required',
         ]);
 
-        if ($validate->fails()){
+        if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors());
         }
 
@@ -274,12 +292,39 @@ class ListingController extends Controller
     {
         $user = Auth::user();
 
-        if(!$user){
+        if (!$user) {
             return redirect()->back()->withErrors('Please login to create listing.');
         }
 
         Listing::where('id', $id)->delete();
 
         return redirect('listing')->withSuccess('List Deleted Successfully.');
+    }
+
+    public function ContactUs(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'message' => 'required'
+        ]);
+
+        if ($validate->fails()){
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        $contact = new Contact();
+
+        $contact->firstname = $request->firstname;
+        $contact->lastname = $request->lastname;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+
+        $contact->save();
+
+        return redirect()->back()->withSuccess('We will contact you soon. Your request has been submitted.');
     }
 }
