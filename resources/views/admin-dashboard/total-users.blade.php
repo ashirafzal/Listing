@@ -333,7 +333,7 @@
                                     @endif
                                     <td class="requester-phone">{{ $TotalUsers->created_at->diffForHumans() }}</td>
                                     <td class="requester-action"><a href="user-show/{{ $TotalUsers->id }}" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                    <td class="requester-action"><a href="user-delete/{{ $TotalUsers->id }}" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
