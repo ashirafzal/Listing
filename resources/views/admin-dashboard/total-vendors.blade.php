@@ -322,7 +322,7 @@
                                     <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
                                     @endif
                                     <td class="requester-phone">{{ $TotalVendors->created_at->diffForHumans() }}</td>
-                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                    <td class="requester-action"><a href="vendor-show/{{$TotalVendors->id}}" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                     <td class="requester-action"><a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                                 </tr>
                                 @endforeach

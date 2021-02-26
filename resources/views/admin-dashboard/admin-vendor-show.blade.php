@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard - Overview</title>
+    <title>Vendor - Overview</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
@@ -26,6 +26,10 @@
         label,
         input {
             color: #484848;
+        }
+
+        .blue-text {
+            color: #00a591;
         }
 
         a:hover {
@@ -119,6 +123,18 @@
 
         .alert-danger>.close {
             color: #ffffff;
+        }
+
+        .contact-form {
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+
+        .list-image {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background: #e3e3e3;
         }
     </style>
 </head>
@@ -219,11 +235,11 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)
                                         <span class="user-icon">
-                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
+                                            <img src="../user-image/{{$user->image}}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">{{ $user->name }}</span>
@@ -256,11 +272,11 @@
             <div class="vendor-user-profile">
                 @if($user->image)
                 <div class="vendor-profile-img">
-                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                    <img src="../user-image/{{ $user->image }}" alt="" class="rounded-circle">
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle">
+                    <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle">
                 </div>
                 @endif
                 <h3 class="vendor-profile-name text-bold">{{ $user->name }}</h3>
@@ -268,12 +284,12 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
                     <li><a href="admin-listings"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
                     <li><a href="admin-vendors"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
-                    <li class="active"><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
+                    <li><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
@@ -295,56 +311,103 @@
                 @endif
             </div>
             <br>
+            <!-- <div class="row px-4">
+                <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fas fa-edit"></i></a>
+                <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </div> -->
+            <br>
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card request-list-table table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="color: #00a591; font-weight:500;">ID</th>
-                                    <th style="color: #00a591; font-weight:500;">Name</th>
-                                    <th style="color: #00a591; font-weight:500;">Email</th>
-                                    <th style="color: #00a591; font-weight:500;">Number</th>
-                                    <th style="color: #00a591; font-weight:500;">Role</th>
-                                    <th style="color: #00a591; font-weight:500;">Blocked</th>
-                                    <th style="color: #00a591; font-weight:500;">Created At</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($TotalUser as $TotalUsers)
-                                <tr>
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">{{ $TotalUsers->id }}</td>
-                                    <td class="requester-name">{{ $TotalUsers->name }}</td>
-                                    <td class="requester-name">{{ $TotalUsers->email }}</td>
-                                    <td class="requester-name">{{ $TotalUsers->phone_number }}</td>
-                                    @if($TotalUsers->role == 1)
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Users</td>
-                                    @elseif($TotalUsers->role == 2)
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Vendor</td>
-                                    @elseif($TotalUsers->role == 3)
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Admin</td>
-                                    @else
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Super Admin</td>
-                                    @endif
-                                    @if($TotalUsers->blocked == 0)
-                                    <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    @else
-                                    <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
-                                    @endif
-                                    <td class="requester-phone">{{ $TotalUsers->created_at->diffForHumans() }}</td>
-                                    <td class="requester-action"><a href="user-show/{{ $TotalUsers->id }}" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                    <td class="requester-action"><a href="#" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 col-md-12 col-sm-12 col-12">
+                    <div class="row float-right px-4 py-2">
+                        <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fas fa-edit"></i></a>
+                        <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                    <br><br>
+                    <div class="border p-4 bg-white text-dark">
+                        <div class="contact-form">
+                            <div class="row py-3 border-bottom">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="border-right">ID</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p>{{$Vendors->id}}</p>
+                                </div>
+                            </div>
+                            <div class="row py-3 border-bottom">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="border-right">Name</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="blue-text font-weight-bold">{{$Vendors->name}}</p>
+                                </div>
+                            </div>
+                            <div class="row py-3 border-bottom">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="border-right">Email</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="blue-text font-weight-bold">{{$Vendors->email}}</p>
+                                </div>
+                            </div>
+                            <div class="row py-3 border-bottom">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="border-right">Number</p>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p>{{$Vendors->phone_number}}</p>
+                                </div>
+                            </div>
+                            <div class="row py-3 border-bottom">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="border-right">User Image</p>
+                                </div>
+                                @if($Vendors->image)
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <img class="list-image" src="../user-image/{{$Vendors->image}}" alt="">
+                                </div>
+                                @else
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <img class="list-image" src="../user-image/grey.jpg" alt="">
+                                </div>
+                                @endif
+                            </div>
+                            <div class="row py-3 border-bottom">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p class="border-right">Status</p>
+                                </div>
+                                @if($Vendors->status == 1)
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></p>
+                                </div>
+                                @else
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <p style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></p>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row py-3 border-bottom">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <p class="border-right">Created At</p>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <p>{{$Vendors->created_at}}</p>
+                            </div>
+                        </div>
+                        <div class="row py-3 border-bottom">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <p class="border-right">Updated At</p>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <p>{{$Vendors->updated_at}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                {{ $TotalUser->links() }}
-            </div>
         </div>
+        <br>
+    </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/menumaker.min.js') }}"></script>

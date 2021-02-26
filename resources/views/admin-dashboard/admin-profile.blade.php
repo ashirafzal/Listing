@@ -195,7 +195,7 @@
                                                 <div class="list-group">
                                                     <a href="#" class="list-group-item list-group-item-action active">
                                                         <div class="notification-info">
-                                                            <div class="notification-list-user-img"><img src="images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                            <div class="notification-list-user-img"><img src="{{ asset('images/avatar-2.jpg') }}" alt="" class="user-avatar-md rounded-circle"></div>
                                                             <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
                                                                 <div class="notification-date">2 min ago</div>
                                                             </div>
@@ -213,22 +213,22 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)
                                         <span class="user-icon">
-                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
+                                            <img src="../user-image/{{$user->image}}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">{{ $user->name }}</span>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="/home">Dashboard</a>
-                                        @if($vendor->count() >= 1)
-                                        <a class="dropdown-item" href="/listing"> My Listed Item </a>
-                                        <a class="dropdown-item" href="/request-quote">Request Quotes</a>
-                                        <a class="dropdown-item" href="/reviews">Reviews </a>
-                                        @endif
+                                        <a class="dropdown-item" href="admin-listings">Listings</a>
+                                        <a class="dropdown-item" href="#">Request Quotes</a>
+                                        <a class="dropdown-item" href="#">Reviews</a>
+                                        <a class="dropdown-item" href="admin-vendors">Vendors</a>
+                                        <a class="dropdown-item" href="admin-users">Users</a>
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
                                     </div>
@@ -250,40 +250,30 @@
             <div class="vendor-user-profile">
                 @if($user->image)
                 <div class="vendor-profile-img">
-                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                    <img src="../user-image/{{ $user->image }}" alt="" class="rounded-circle">
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle">
+                    <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle">
                 </div>
                 @endif
-                <h3 class="vendor-profile-name">{{ $user->name }}</h3>
+                <h3 class="vendor-profile-name text-bold">{{ $user->name }}</h3>
                 <a href="/profile" class="edit-link">edit profile</a>
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    @if($vendor->count() >= 1)
-                    <li><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
-                    <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
-                    <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    @endif
-                    <li class="active"><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
+                    <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li><a href="admin-listings"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
+                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
+                    <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    <li><a href="admin-vendors"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
+                    <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
         </div>
         <div class="dashboard-content">
-            <div class="container">
-                <div class="row">
-                    @if($vendor->count() < 1) 
-                        <div class="row">
-                            <a href="become-a-vendor" class="btn btn-primary">Be a vendor</a>
-                        </div>
-                    @endif
-                </div>
-            </div>
-            <br>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -305,116 +295,114 @@
                     <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                
-                            <div class="card">
-                                <div class="card-header">Profile</div>
-                                <div class="card-body">
-                                    @if(session('success'))
-                                    <div class="alert alert-info alert-block">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong>{{session('success')}}</strong>
+
+                                <div class="card">
+                                    <div class="card-header">Profile</div>
+                                    <div class="card-body">
+                                        @if(session('success'))
+                                        <div class="alert alert-info alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{session('success')}}</strong>
+                                        </div>
+                                        @endif
+                                        @if(session('errors'))
+                                        <div class="alert alert-danger alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{session('errors')}}</strong>
+                                        </div>
+                                        @endif
+                                        <form action="edit" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <!-- Form Name -->
+                                            <div class="profile-upload-img">
+                                                <div class="row">
+                                                    @if($user->image)
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                        <div id="image-preview">
+                                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                                                        </div>
+                                                        <input type="file" name="image" id="image" class="upload-profile-input">
+                                                    </div>
+                                                    @else
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                        <div id="image-preview">
+                                                            <img src="#" alt="" class="rounded-circle">
+                                                        </div>
+                                                        <input type="file" name="image" id="image" class="upload-profile-input">
+                                                    </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="personal-form-info">
+                                                <div class="row">
+                                                    <!-- Text input-->
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="vendorname">User Name</label>
+                                                            <input name="name" type="text" placeholder="" value="{{ $user->name }}" class="form-control ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="email">Email</label>
+                                                            <input name="email" type="email" placeholder="" value="{{ $user->email }}" class="form-control ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="phone">Phone</label>
+                                                            <input name="phone" type="text" placeholder="" value="{{ $user->phone_number }}" class="form-control ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="summernote">Description</label>
+                                                            <textarea class="form-control" name="description" rows="6" placeholder="Write Descriptions for your venue">{{ $user->description }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="social-form-info mb-0">
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                    <button class="btn btn-default" type="submit">Update profile</button>
+                                                </div>
+                                            </div>
                                     </div>
-                                    @endif
-                                    @if(session('errors'))
-                                    <div class="alert alert-danger alert-block">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong>{{session('errors')}}</strong>
-                                    </div>
-                                    @endif
-                                    <form action="edit" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <!-- Form Name -->
-                                        <div class="profile-upload-img">
-                                            <div class="row">
-                                                @if($user->image)
-                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                                    <div id="image-preview">
-                                                        <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
-                                                    </div>
-                                                    <input type="file" name="image" id="image" class="upload-profile-input">
-                                                </div>
-                                                @else
-                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                                    <div id="image-preview">
-                                                        <img src="#" alt="" class="rounded-circle">
-                                                    </div>
-                                                    <input type="file" name="image" id="image" class="upload-profile-input">
-                                                </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="personal-form-info">
-                                            <div class="row">
-                                                <!-- Text input-->
-                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="vendorname">User Name</label>
-                                                        <input name="name" type="text" placeholder="" value="{{ $user->name }}" class="form-control ">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="email">Email</label>
-                                                        <input name="email" type="email" placeholder="" value="{{ $user->email }}" class="form-control ">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="phone">Phone</label>
-                                                        <input name="phone" type="text" placeholder="" value="{{ $user->phone_number }}" class="form-control ">
-                                                    </div>
-                                                </div>
-                                                @if($vendor->count() > 0)
-                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="summernote">Description</label>
-                                                        <textarea class="form-control" name="description" rows="6" placeholder="Write Descriptions for your venue">{{ $user->description }}</textarea>
-                                                    </div>
-                                                </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="social-form-info mb-0">
-                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <button class="btn btn-default" type="submit">Update profile</button>
-                                            </div>
-                                        </div>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <div class="card">
-                                <div class="card-header">Password Change</div>
-                                <div class="card-body">
-                                    <form class="row" method="POST" action="update-password">
-                                        @csrf
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="currentpassword">Current Password</label>
-                                                <input name="currentpassword" type="password" placeholder="" class="form-control ">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="newpassword">New Password</label>
-                                                <input name="newpassword" type="password" placeholder="" class="form-control ">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <div class="form-group">
-                                                <label class="control-label" for="retypepassword">Retype Password</label>
-                                                <input name="retypepassword" type="password" placeholder="" class="form-control ">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                            <button class="btn btn-default" type="submit">Save Changes</button>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <div class="card">
+                                    <div class="card-header">Password Change</div>
+                                    <div class="card-body">
+                                        <form class="row" method="POST" action="update-password">
+                                            @csrf
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="currentpassword">Current Password</label>
+                                                    <input name="currentpassword" type="password" placeholder="" class="form-control ">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="newpassword">New Password</label>
+                                                    <input name="newpassword" type="password" placeholder="" class="form-control ">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="retypepassword">Retype Password</label>
+                                                    <input name="retypepassword" type="password" placeholder="" class="form-control ">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <button class="btn btn-default" type="submit">Save Changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                             <div class="card">
                                 <div class="card-header">Email Notifications</div>
                                 <div class="">
@@ -466,11 +454,11 @@
                                 </div>
                             </div>
                         </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

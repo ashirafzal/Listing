@@ -76,3 +76,9 @@ Route::get('admin-listings', '\App\Http\Controllers\AdminController@TotalListing
 Route::get('admin-users', '\App\Http\Controllers\AdminController@TotalUsersView');
 
 Route::get('admin-vendors', '\App\Http\Controllers\AdminController@TotalVendorsView');
+
+Route::get('listing-show/{id}', '\App\Http\Controllers\AdminController@AdminListShow');
+
+Route::get('user-show/{id}', '\App\Http\Controllers\AdminController@UserShow');
+
+Route::get('vendor-show/{id}', '\App\Http\Controllers\AdminController@VendorShow');

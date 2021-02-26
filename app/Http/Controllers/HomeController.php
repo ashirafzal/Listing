@@ -63,6 +63,10 @@ class HomeController extends Controller
             return redirect()->back()->withErrors('Please Login to view your profile.');
         }
 
+        if($user->isAdmin() || $user->isSuperAdmin()){
+            return view('admin-dashboard.admin-profile', ['user' => $user]);
+        }
+
         $Vendor = Vendor::where('user_id', $user->id)->get();
 
         return view('dashboard.profile', [

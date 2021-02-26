@@ -34,4 +34,28 @@ class AdminController extends Controller
         return view('admin-dashboard.total-vendors', [ 'user' => $user, 'TotalVendor' => $TotalVendor]);
     }
 
+    public function AdminListShow($id)
+    {
+        $user = Auth::user();
+        $Listing = Listing::where('id', $id)->first();
+
+        return view('admin-dashboard.admin-list-show', [ 'user' => $user, 'Listing' => $Listing]);
+    }
+
+    public function UserShow($id)
+    {
+        $user = Auth::user();
+        $Users = User::where('id', $id)->first();
+
+        return view('admin-dashboard.admin-user-show', [ 'user' => $user, 'Users' => $Users]);
+    }
+
+    public function VendorShow($id)
+    {
+        $user = Auth::user();
+        $Vendors = Vendor::where('id', $id)->first();
+
+        return view('admin-dashboard.admin-vendor-show', [ 'user' => $user, 'Vendors' => $Vendors]);
+    }
+
 }
