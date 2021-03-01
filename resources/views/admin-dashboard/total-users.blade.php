@@ -272,7 +272,7 @@
                     <li><a href="{{ route('admin-listings') }}"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="{{ route('admin-vendorsv"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="{{ route('admin-vendors') }}"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
                     <li class="active"><a href="{{ route('admin-users') }}"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
