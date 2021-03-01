@@ -73,3 +73,7 @@ Route::get('user-delete/{id}', '\App\Http\Controllers\AdminController@UserDelete
 Route::get('vendor-show/{id}', '\App\Http\Controllers\AdminController@VendorShow');
 
 Route::get('vendor-delete/{id}', '\App\Http\Controllers\AdminController@VendorDelete');
+
+Route::get('admin-list-show/{id}', '\App\Http\Controllers\AdminController@AdminEditListShow');
+
+Route::post('admin-edit-list', '\App\Http\Controllers\AdminController@AdminEditList');

@@ -318,7 +318,7 @@
             <div class="row">
                 <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 col-md-12 col-sm-12 col-12">
                     <div class="row float-right px-4 py-2">
-                        <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fas fa-edit"></i></a>
+                        <a class="bg-white px-2 py-1 mx-2" href="/admin-list-show/{{$Listing->id}}"><i class="fas fa-edit"></i></a>
                         <a class="bg-white px-2 py-1 mx-2" href="/list-delete/{{$Listing->id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </div>
                     <br><br>

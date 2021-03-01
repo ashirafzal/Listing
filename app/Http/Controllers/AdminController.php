@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -40,6 +41,125 @@ class AdminController extends Controller
         $Listing = Listing::where('id', $id)->first();
 
         return view('admin-dashboard.admin-list-show', [ 'user' => $user, 'Listing' => $Listing]);
+    }
+
+    public function AdminEditListShow($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to edit listing.');
+        }
+
+        $Listing = Listing::where('id', $id)->first();
+
+        return view('admin-dashboard.admin-list-edit', [
+            'user' => $user,
+            'listings' => $Listing,
+        ]);
+    }
+
+    public function AdminEditList(Request $request)
+    {
+        $featured = false;
+        $status = false;
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to edit listing.');
+        }
+
+        if (isset($request->featured)) {
+            $featured = true;
+        }
+        else
+        {
+            $featured = false;
+        }
+
+        if (isset($request->status)) {
+            $status = true;
+        }
+        else
+        {
+            $status = false;
+        }
+
+        $validate = Validator::make($request->all(), [
+            'title' => 'required',
+            'category' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'description' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
+            'instagram' => 'required',
+            'youtube' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        $listing = Listing::where('id', $request->id)->first();
+
+        if ($request->hasFile('hero_image')) {
+            $hero_image = $request->file('hero_image');
+            $extention = $hero_image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $hero_image->move('listing-image', $filename);
+            $hero_image = $filename;
+        }
+
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1');
+            $extention = $image1->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $image1->move('listing-image', $filename);
+            $image1 = $filename;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2');
+            $extention = $image2->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $image2->move('listing-image', $filename);
+            $image2 = $filename;
+        }
+
+        if ($request->hasFile('image3')) {
+            $image3 = $request->file('image3');
+            $extention = $image3->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $image3->move('listing-image', $filename);
+            $image3 = $filename;
+        }
+
+        $listing->title = $request->title ?? $listing->title;
+        $listing->category = $request->category ?? $listing->category;
+        $listing->city = $request->city ?? $listing->city;
+        $listing->country = $request->country ?? $listing->country;
+        $listing->zipcode = $request->zipcode ?? $listing->zipcode;
+        $listing->address = $request->address ?? $listing->address;
+        $listing->description = $request->description ?? $listing->description;
+        $listing->latitude = $request->latitude ?? $listing->latitude;
+        $listing->longitude = $request->longitude ?? $listing->longitude;
+        $listing->hero_image = $hero_image ?? $listing->hero_image;
+        $listing->image1 = $image1 ?? $listing->image1;
+        $listing->image2 = $image2 ?? $listing->image2;
+        $listing->image3 = $image3 ?? $listing->image3;
+        $listing->facebook = $request->facebook ?? $listing->facebook;
+        $listing->twitter = $request->twitter ?? $listing->twitter;
+        $listing->instagram = $request->instagram ?? $listing->instagram;
+        $listing->youtube = $request->youtube ?? $listing->youtube;
+        $listing->featured = $featured;
+        $listing->status = $status;
+
+        $listing->save();
+
+        return redirect()->back()->withSuccess('List has been updated .');
     }
 
     public function ListDelete($id)
