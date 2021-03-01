@@ -56,11 +56,11 @@ Route::get('all-listing', '\App\Http\Controllers\ListingController@AllListing');
 
 Route::get('search-view', '\App\Http\Controllers\ListingController@SearchView');
 
-Route::get('admin-listings', '\App\Http\Controllers\AdminController@TotalListingView');
+Route::get('admin-listings', '\App\Http\Controllers\AdminController@TotalListingView')->name('admin-listings');
 
-Route::get('admin-users', '\App\Http\Controllers\AdminController@TotalUsersView');
+Route::get('admin-users', '\App\Http\Controllers\AdminController@TotalUsersView')->name('admin-users');
 
-Route::get('admin-vendors', '\App\Http\Controllers\AdminController@TotalVendorsView');
+Route::get('admin-vendors', '\App\Http\Controllers\AdminController@TotalVendorsView')->name('admin-vendors');
 
 Route::get('listing-show/{id}', '\App\Http\Controllers\AdminController@AdminListShow');
 
@@ -77,3 +77,11 @@ Route::get('vendor-delete/{id}', '\App\Http\Controllers\AdminController@VendorDe
 Route::get('admin-list-show/{id}', '\App\Http\Controllers\AdminController@AdminEditListShow');
 
 Route::post('admin-edit-list', '\App\Http\Controllers\AdminController@AdminEditList');
+
+Route::get('admin-user-edit-show/{id}', '\App\Http\Controllers\AdminController@AdminEditUserShow');
+
+Route::post('admin-edit-user', '\App\Http\Controllers\AdminController@AdminEditUser');
+
+Route::get('admin-vendor-edit-show/{id}', '\App\Http\Controllers\AdminController@AdminEditVendorShow');
+
+Route::post('admin-edit-vendor', '\App\Http\Controllers\AdminController@AdminEditVendor');

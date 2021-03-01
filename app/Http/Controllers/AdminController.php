@@ -183,6 +183,74 @@ class AdminController extends Controller
         return view('admin-dashboard.admin-user-show', [ 'user' => $user, 'Users' => $Users]);
     }
 
+    public function AdminEditUserShow($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to user listing.');
+        }
+
+        $EditUser = User::where('id', $id)->first();
+
+        return view('admin-dashboard.admin-user-edit', [
+            'user' => $user,
+            'EditUser' => $EditUser,
+        ]);
+    }
+
+    public function AdminEditUser(Request $request)
+    {
+        $blocked = false;
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to edit user.');
+        }
+
+        if (isset($request->blocked)) {
+            $blocked = true;
+        }
+        else
+        {
+            $blocked = false;
+        }
+
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+            'role' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $extention = $img->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $img->move('user-image', $filename);
+            $userimage = $filename;
+        }
+
+        $EditUser = User::where('id',$request->id)->first();
+
+        $EditUser->name = $request->name;
+        $EditUser->email = $request->email;
+        $EditUser->phone_number = $request->phone_number;
+        $EditUser->role = $request->role;
+        $EditUser->blocked = $blocked;
+        $EditUser->description = $request->description ?? $EditUser->description;
+        $EditUser->image = $userimage ?? $EditUser->image;
+
+        $EditUser->save();
+
+        return redirect()->back()->withSuccess('User has been updated .');
+    }
+
     public function UserDelete($id)
     {
         $user = User::where('id',$id)->first();
@@ -217,6 +285,71 @@ class AdminController extends Controller
         $Vendors = Vendor::where('id', $id)->first();
 
         return view('admin-dashboard.admin-vendor-show', [ 'user' => $user, 'Vendors' => $Vendors]);
+    }
+
+    public function AdminEditVendorShow($id)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to edit vendor.');
+        }
+
+        $Vendor = Vendor::where('id', $id)->first();
+
+        return view('admin-dashboard.admin-vendor-edit', [
+            'user' => $user,
+            'Vendor' => $Vendor,
+        ]);
+    }
+
+    public function AdminEditVendor(Request $request)
+    {
+        $status = false;
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to edit vendor.');
+        }
+
+        if (isset($request->status)) {
+            $status = true;
+        }
+        else
+        {
+            $status = false;
+        }
+
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $extention = $img->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $img->move('user-image', $filename);
+            $userimage = $filename;
+        }
+
+        $Vendor = Vendor::where('id',$request->id)->first();
+
+        $Vendor->name = $request->name;
+        $Vendor->email = $request->email;
+        $Vendor->phone_number = $request->phone_number;
+        $Vendor->status = $status;
+        $Vendor->image = $userimage ?? $Vendor->image;
+
+        $Vendor->save();
+
+        return redirect()->back()->withSuccess('Vendor has been updated .');
     }
 
     public function VendorDelete($id)

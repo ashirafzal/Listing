@@ -245,12 +245,12 @@
                                         <span class="user-vendor-name">{{ $user->name }}</span>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="/home">Dashboard</a>
-                                        <a class="dropdown-item" href="admin-listings">Listings</a>
+                                        <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ route('admin-listings') }}">Listings</a>
                                         <a class="dropdown-item" href="#">Request Quotes</a>
                                         <a class="dropdown-item" href="#">Reviews</a>
-                                        <a class="dropdown-item" href="admin-vendors">Vendors</a>
-                                        <a class="dropdown-item" href="admin-users">Users</a>
+                                        <a class="dropdown-item" href="{{ route('admin-vendors') }}">Vendors</a>
+                                        <a class="dropdown-item" href="{{ route('admin-users') }}">Users</a>
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
                                     </div>
@@ -284,12 +284,12 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    <li><a href="admin-listings"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
+                    <li><a href="{{ route('home') }}"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li><a href="{{ route('admin-listings') }}"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="admin-vendors"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
-                    <li><a href="admin-users"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
+                    <li class="active"><a href="{{ route('admin-vendors') }}"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="{{ route('admin-users') }}"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
@@ -319,7 +319,7 @@
             <div class="row">
                 <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 col-md-12 col-sm-12 col-12">
                     <div class="row float-right px-4 py-2">
-                        <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fas fa-edit"></i></a>
+                        <a class="bg-white px-2 py-1 mx-2" href="/admin-vendor-edit-show/{{$Vendors->id}}"><i class="fas fa-edit"></i></a>
                         <a class="bg-white px-2 py-1 mx-2" href="/vendor-delete/{{$Vendors->id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </div>
                     <br><br>

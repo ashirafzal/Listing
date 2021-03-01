@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User - Overview</title>
+    <title>Edit User</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/offcanvas.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/offcanvas.css') }}">
     <style>
         .header-logo {
             width: 100px;
@@ -26,10 +27,6 @@
         label,
         input {
             color: #484848;
-        }
-
-        .blue-text{
-            color: #00a591;
         }
 
         a:hover {
@@ -91,19 +88,7 @@
             border-color: #00a591;
         }
 
-        .d-block {
-            color: #00a591;
-        }
-
-        .summary-count {
-            color: #00a591;
-        }
-
-        .summary-icon {
-            color: #00a591;
-        }
-
-        .float-left>p {
+        .dashboard-page-header>p {
             color: #00a591;
         }
 
@@ -125,16 +110,13 @@
             color: #ffffff;
         }
 
-        .contact-form {
-            font-size: 1rem;
-            font-family: sans-serif;
+        .form-check-input {
+            width: 20px;
+            height: 20px;
         }
 
-        .list-image {
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            background: #e3e3e3;
+        .form-check-label {
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -145,7 +127,7 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-8 col-md-8 col-sm-6 col-6">
                     <div class="header-logo">
-                        <!-- <a href="/"><img src="{{ asset('images/logo.png') }}" alt="logo"></a> -->
+                        <!-- <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Weddings | Find A Wedding Venue &amp; Supplier WordPress Theme"></a> -->
                         <a href="/" class="logo">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 170 50" enable-background="new 0 0 170 50" xml:space="preserve">
                                 <path fill="#00A591" d="M48,50H25C11.3,50,0,38.8,0,25v0C0,11.2,11.2,0,25,0l23,0c1.1,0,2,0.9,2,2v46C50,49.1,49.1,50,48,50z"></path>
@@ -297,146 +279,161 @@
         </div>
         <div class="dashboard-content">
             <div class="container-fluid">
-                @if(session('success'))
-                <div class="alert alert-info alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{session('success')}}</strong>
-                </div>
-                @endif
-                @if(session('errors'))
-                <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{session('errors')}}</strong>
-                </div>
-                @endif
-            </div>
-            <br>
-            <!-- <div class="row px-4">
-                <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fas fa-edit"></i></a>
-                <a class="bg-white px-2 py-1 mx-2" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
-            </div> -->
-            <br>
-            <div class="row">
-                <div class="offset-xl-1 col-xl-10 offset-lg-1 col-lg-10 col-md-12 col-sm-12 col-12">
-                    <div class="row float-right px-4 py-2">
-                        <a class="bg-white px-2 py-1 mx-2" href="/admin-user-edit-show/{{$Users->id}}"><i class="fas fa-edit"></i></a>
-                        <a class="bg-white px-2 py-1 mx-2" href="/user-delete/{{$Users->id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="dashboard-page-header">
+                            <h3 class="dashboard-page-title">Edit User</h3>
+                        </div>
                     </div>
-                    <br><br>
-                    <div class="border p-4 bg-white text-dark">
-                        <div class="contact-form">
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">ID</p>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p>{{$Users->id}}</p>
+                </div>
+                <div class="card">
+                    @if(session('success'))
+                    <div class="alert alert-info alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{session('success')}}</strong>
+                    </div>
+                    @endif
+                    @if(session('errors'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{session('errors')}}</strong>
+                    </div>
+                    @endif
+                    <div class="card-header">
+                        <h4 class="mb0">About User</h4>
+                    </div>
+                    <div class="">
+                        <form action="{{ url('admin-edit-user') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="venue-form-info card-body">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <input name="id" type="hidden" value="{{ $EditUser->id }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="name">Name</label>
+                                            <input id="name" name="name" type="text" placeholder="Name" value="{{ $EditUser->name }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="email">Email</label>
+                                            <input id="email" name="email" value="{{ $EditUser->email }}" type="text" placeholder="Email" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="Password">Password</label>
+                                            <input id="password" name="password" type="password" type="text" placeholder="Password" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="Role">Role</label>
+                                            <select class="wide" name="role" id="role">
+                                                @if($EditUser->role == 1)
+                                                <option value="1">User</option>
+                                                <option value="2">Vendor</option>
+                                                <option value="3">Admin</option>
+                                                <option value="4">Super Admin</option>
+                                                @elseif($EditUser->role == 2)
+                                                <option value="2">Vendor</option>
+                                                <option value="1">User</option>
+                                                <option value="3">Admin</option>
+                                                <option value="4">Super Admin</option>
+                                                @elseif($EditUser->role == 3)
+                                                <option value="3">Admin</option>
+                                                <option value="1">User</option>
+                                                <option value="2">Vendor</option>
+                                                <option value="4">Super Admin</option>
+                                                @else
+                                                <option value="4">Super Admin</option>
+                                                <option value="1">User</option>
+                                                <option value="2">Vendor</option>
+                                                <option value="3">Admin</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="Phone Number">Phone Number</label>
+                                            <input id="phone_number" name="phone_number" value="{{ $EditUser->phone_number }}" type="text" placeholder="Phone Number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="profile-upload-img">
+                                            <div class="row">
+                                                @if($EditUser->image)
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                    <div id="image-preview">
+                                                        <img src="../user-image/{{ $EditUser->image }}" alt="" class="rounded-circle">
+                                                    </div>
+                                                    <input type="file" name="image" id="image" class="upload-profile-input">
+                                                </div>
+                                                @else
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                    <div id="image-preview">
+                                                        <img src="../user-image/grey.jpg" alt="" class="rounded-circle">
+                                                    </div>
+                                                    <input type="file" name="image" id="image" class="upload-profile-input">
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="summernote">Description</label>
+                                            <textarea class="form-control" id="description" name="description" rows="6" placeholder="Write Descriptions for your venue">
+                                            {{ $EditUser->description }}
+                                            </textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">Name</p>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="blue-text font-weight-bold">{{$Users->name}}</p>
-                                </div>
-                            </div>
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">Email</p>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="blue-text font-weight-bold">{{$Users->email}}</p>
-                                </div>
-                            </div>
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">Number</p>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p>{{$Users->phone_number}}</p>
-                                </div>
-                            </div>
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">User Image</p>
-                                </div>
-                                @if($Users->image)
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <img class="list-image" src="../user-image/{{$Users->image}}" alt="">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                @if($EditUser->blocked == 0)
+                                <div class="form-group px-4">
+                                    <input class="form-check-input" name="blocked" type="checkbox" value="blocked" id="flexCheckDefault">
+                                    <label class="form-check-label font-weight-bold" for="flexCheckDefault">
+                                        Status
+                                    </label>
                                 </div>
                                 @else
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <img class="list-image" src="../user-image/grey.jpg" alt="">
+                                <div class="form-group px-4">
+                                    <input class="form-check-input" name="blocked" type="checkbox" value="blocked" id="flexCheckChecked" checked>
+                                    <label class="form-check-label font-weight-bold" for="flexCheckDefault">
+                                        Blocked
+                                    </label>
                                 </div>
                                 @endif
                             </div>
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">Status</p>
+                            <div class="social-form-info card-body border-top">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <button class="btn btn-default" type="submit">Submit</button>
+                                    </div>
                                 </div>
-                                @if($Users->status == 1)
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></p>
-                                </div>
-                                @else
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></p>
-                                </div>
-                                @endif
                             </div>
-                            <div class="row py-3 border-bottom">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="border-right">Role</p>
-                                </div>
-                                @if($Users->role == 1)
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="blue-text font-weight-bold">User</p>
-                                </div>
-                                @elseif($Users->role == 2)
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="blue-text font-weight-bold">Vendor</p>
-                                </div>
-                                @elseif($Users->role == 3)
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="blue-text font-weight-bold">Admin</p>
-                                </div>
-                                @else
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <p class="blue-text font-weight-bold">Super Admin</p>
-                                </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row py-3 border-bottom">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p class="border-right">Created At</p>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p>{{$Users->created_at}}</p>
-                            </div>
-                        </div>
-                        <div class="row py-3 border-bottom">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p class="border-right">Updated At</p>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p>{{$Users->updated_at}}</p>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-    </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/menumaker.min.js') }}"></script>
     <script src="{{ asset('js/custom-script.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/fastclick.js') }}"></script>
     <script src="{{ asset('js/offcanvas.js') }}"></script>
+    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('js/summernote-bs4.js') }}"></script>
 </body>
 
 </html>
