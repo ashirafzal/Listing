@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard - Overview</title>
+    <title>Create User</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/offcanvas.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/offcanvas.css') }}">
     <style>
         .header-logo {
             width: 100px;
@@ -87,19 +88,7 @@
             border-color: #00a591;
         }
 
-        .d-block {
-            color: #00a591;
-        }
-
-        .summary-count {
-            color: #00a591;
-        }
-
-        .summary-icon {
-            color: #00a591;
-        }
-
-        .float-left>p {
+        .dashboard-page-header>p {
             color: #00a591;
         }
 
@@ -120,6 +109,15 @@
         .alert-danger>.close {
             color: #ffffff;
         }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-check-label {
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -129,7 +127,7 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-8 col-md-8 col-sm-6 col-6">
                     <div class="header-logo">
-                        <!-- <a href="/"><img src="{{ asset('images/logo.png') }}" alt="logo"></a> -->
+                        <!-- <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Weddings | Find A Wedding Venue &amp; Supplier WordPress Theme"></a> -->
                         <a href="/" class="logo">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 170 50" enable-background="new 0 0 170 50" xml:space="preserve">
                                 <path fill="#00A591" d="M48,50H25C11.3,50,0,38.8,0,25v0C0,11.2,11.2,0,25,0l23,0c1.1,0,2,0.9,2,2v46C50,49.1,49.1,50,48,50z"></path>
@@ -219,11 +217,11 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)
                                         <span class="user-icon">
-                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
+                                            <img src="../user-image/{{$user->image}}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">{{ $user->name }}</span>
@@ -256,11 +254,11 @@
             <div class="vendor-user-profile">
                 @if($user->image)
                 <div class="vendor-profile-img">
-                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                    <img src="../user-image/{{ $user->image }}" alt="" class="rounded-circle">
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="images/dashboard-profile.jpg" alt="" class="rounded-circle">
+                    <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle">
                 </div>
                 @endif
                 <h3 class="vendor-profile-name text-bold">{{ $user->name }}</h3>
@@ -281,81 +279,119 @@
         </div>
         <div class="dashboard-content">
             <div class="container-fluid">
-                @if(session('success'))
-                <div class="alert alert-info alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{session('success')}}</strong>
-                </div>
-                @endif
-                @if(session('errors'))
-                <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{session('errors')}}</strong>
-                </div>
-                @endif
-            </div>
-            <br>
-            <div class="container-fluid">
-                <a class="btn btn-primary" href="/create-user">Create User</a>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card request-list-table table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="color: #00a591; font-weight:500;">ID</th>
-                                    <th style="color: #00a591; font-weight:500;">Name</th>
-                                    <th style="color: #00a591; font-weight:500;">Email</th>
-                                    <th style="color: #00a591; font-weight:500;">Number</th>
-                                    <th style="color: #00a591; font-weight:500;">Role</th>
-                                    <th style="color: #00a591; font-weight:500;">Blocked</th>
-                                    <th style="color: #00a591; font-weight:500;">Created At</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($TotalUser as $TotalUsers)
-                                <tr>
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">{{ $TotalUsers->id }}</td>
-                                    <td class="requester-name">{{ $TotalUsers->name }}</td>
-                                    <td class="requester-name">{{ $TotalUsers->email }}</td>
-                                    <td class="requester-name">{{ $TotalUsers->phone_number }}</td>
-                                    @if($TotalUsers->role == 1)
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Users</td>
-                                    @elseif($TotalUsers->role == 2)
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Vendor</td>
-                                    @elseif($TotalUsers->role == 3)
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Admin</td>
-                                    @else
-                                    <td class="requester-name" style="color: #00a591; font-weight:500;">Super Admin</td>
-                                    @endif
-                                    @if($TotalUsers->blocked == 0)
-                                    <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
-                                    @else
-                                    <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
-                                    @endif
-                                    <td class="requester-phone">{{ $TotalUsers->created_at->diffForHumans() }}</td>
-                                    <td class="requester-action"><a href="user-show/{{ $TotalUsers->id }}" class=""><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                    <td class="requester-action"><a href="user-delete/{{ $TotalUsers->id }}" class=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="dashboard-page-header">
+                            <h3 class="dashboard-page-title">Edit User</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                {{ $TotalUser->links() }}
+                <div class="card">
+                    @if(session('success'))
+                    <div class="alert alert-info alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{session('success')}}</strong>
+                    </div>
+                    @endif
+                    @if(session('errors'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{session('errors')}}</strong>
+                    </div>
+                    @endif
+                    <div class="card-header">
+                        <h4 class="mb0">Create User</h4>
+                    </div>
+                    <div class="">
+                        <form action="{{ url('admin-create-user') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="venue-form-info card-body">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="name">Name</label>
+                                            <input id="name" name="name" type="text" placeholder="Name" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="email">Email</label>
+                                            <input id="email" name="email" value="" type="text" placeholder="Email" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="Password">Password</label>
+                                            <input id="password" name="password" type="password" type="text" placeholder="Password" class="form-control ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="Role">Role</label>
+                                            <select class="wide" name="role" id="role">
+                                                <option value="1">User</option>
+                                                <option value="2">Vendor</option>
+                                                <option value="3">Admin</option>
+                                                <option value="4">Super Admin</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="Phone Number">Phone Number</label>
+                                            <input id="phone_number" name="phone_number" value="" type="text" placeholder="Phone Number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="profile-upload-img">
+                                            <div class="row">
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                                    <div id="image-preview">
+                                                        <img src="#" alt="" class="rounded-circle">
+                                                    </div>
+                                                    <input type="file" name="image" id="image" class="upload-profile-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="control-label" for="summernote">Description</label>
+                                            <textarea class="form-control" id="description" name="description" rows="6" placeholder="Write Descriptions for your venue"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group px-4">
+                                    <input class="form-check-input" name="blocked" type="checkbox" value="blocked" id="flexCheckDefault">
+                                    <label class="form-check-label font-weight-bold" for="flexCheckDefault">
+                                        Status
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="social-form-info card-body border-top">
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <button class="btn btn-default" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/menumaker.min.js') }}"></script>
     <script src="{{ asset('js/custom-script.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/fastclick.js') }}"></script>
     <script src="{{ asset('js/offcanvas.js') }}"></script>
+    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('js/summernote-bs4.js') }}"></script>
 </body>
 
 </html>

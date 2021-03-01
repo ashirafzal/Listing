@@ -85,3 +85,9 @@ Route::post('admin-edit-user', '\App\Http\Controllers\AdminController@AdminEditU
 Route::get('admin-vendor-edit-show/{id}', '\App\Http\Controllers\AdminController@AdminEditVendorShow');
 
 Route::post('admin-edit-vendor', '\App\Http\Controllers\AdminController@AdminEditVendor');
+
+Route::get('admin-users', '\App\Http\Controllers\AdminController@TotalUsersView')->name('admin-users');
+
+Route::get('create-user', '\App\Http\Controllers\AdminController@CreateUserShow')->name('create-user');
+
+Route::post('admin-create-user', '\App\Http\Controllers\AdminController@CreateUser');

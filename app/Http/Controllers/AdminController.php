@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -175,6 +176,67 @@ class AdminController extends Controller
         return redirect('admin-listings')->withSuccess('List deleted Successfully .');
     }
 
+    public function CreateUserShow()
+    {
+        $user = Auth::user();
+
+        return view('admin-dashboard.admin-create-user', [ 'user' => $user]);
+    }
+
+    public function CreateUser(Request $request)
+    {
+        $blocked = false;
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to create user.');
+        }
+
+        if (isset($request->blocked)) {
+            $blocked = true;
+        }
+        else
+        {
+            $blocked = false;
+        }
+
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'phone_number' => 'required',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        if ($request->hasFile('image')) {
+            $img = $request->file('image');
+            $extention = $img->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $img->move('user-image', $filename);
+            $userimage = $filename;
+        }
+
+        $NewUser = new User();
+
+        $NewUser->name = $request->name;
+        $NewUser->email = $request->email;
+        $NewUser->phone_number = $request->phone_number;
+        $NewUser->password = Hash::make($request->password);
+        $NewUser->role = $request->role;
+        $NewUser->blocked = $blocked;
+        $NewUser->description = $request->description;
+        $NewUser->image = $userimage ?? $NewUser->image;
+
+        $NewUser->save();
+
+        return redirect()->back()->withSuccess('User has been created .');
+    }
+
     public function UserShow($id)
     {
         $user = Auth::user();
@@ -241,6 +303,7 @@ class AdminController extends Controller
         $EditUser->name = $request->name;
         $EditUser->email = $request->email;
         $EditUser->phone_number = $request->phone_number;
+        $EditUser->password = Hash::make($request->password) ?? $EditUser->password;
         $EditUser->role = $request->role;
         $EditUser->blocked = $blocked;
         $EditUser->description = $request->description ?? $EditUser->description;
