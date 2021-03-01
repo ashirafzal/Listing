@@ -187,7 +187,7 @@
                     <nav class="navbar navbar-expand-lg float-right db-nav-list">
                         <div>
                             <ul class="navbar-nav">
-                                <li class="nav-item dropdown dropleft notification ">
+                                <!-- <li class="nav-item dropdown dropleft notification ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="notification-icon"> <i class="fas fa-bell"></i></span><span class="user-vendor-name"></span></a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
@@ -210,7 +210,7 @@
                                             <div class="list-footer"> <a href="#">View all notifications</a></div>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li class="nav-item dropdown dropleft user-vendor ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)

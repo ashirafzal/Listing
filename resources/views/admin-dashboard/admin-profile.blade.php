@@ -185,7 +185,7 @@
                     <nav class="navbar navbar-expand-lg float-right db-nav-list">
                         <div>
                             <ul class="navbar-nav">
-                                <li class="nav-item dropdown dropleft notification ">
+                                <!-- <li class="nav-item dropdown dropleft notification ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="notification-icon"> <i class="fas fa-bell"></i></span><span class="user-vendor-name"></span></a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
@@ -208,7 +208,7 @@
                                             <div class="list-footer"> <a href="#">View all notifications</a></div>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li class="nav-item dropdown dropleft user-vendor ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)
@@ -266,7 +266,7 @@
                     <li><a href="{{ route('admin-listings') }}"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span>Listings</a>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="#"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
-                    <li><a href="{{ route('admin-vendor') }}s"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
+                    <li><a href="{{ route('admin-vendors') }}"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Vendors </a></li>
                     <li><a href="{{ route('admin-users') }}"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Users </a></li>
                     <li class="active"><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
@@ -357,7 +357,7 @@
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                         <div class="form-group">
                                                             <label class="control-label" for="summernote">Description</label>
-                                                            <textarea class="form-control" name="description" rows="6" placeholder="Write Descriptions for your venue">{{ $user->description }}</textarea>
+                                                            <textarea class="form-control" name="description" rows="6" placeholder="Write description of your yourself">{{ $user->description }}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
