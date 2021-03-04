@@ -118,6 +118,11 @@
         .form-check-label{
             margin-left: 10px;
         }
+
+        .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+            background: #00bda7;
+            color: #ffffff;
+        }
     </style>
 </head>
 

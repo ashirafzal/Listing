@@ -298,6 +298,11 @@
             background: rgb(2, 28, 255);
         }
 
+        .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+            background: #00bda7;
+            color: #ffffff;
+        }
+
         @media all and (max-width: 766px) {
             .img>img {
                 height: 130px;
