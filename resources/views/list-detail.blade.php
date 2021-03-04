@@ -249,6 +249,11 @@
             margin: 2rem;
         }
 
+        .vendor-owner-profile-img>img{
+            width: 100px;
+            height: 100px;
+        }
+
         @media all and (max-width: 415px) {
             .container-fluid>h1{
                 font-size: 2rem;
@@ -930,7 +935,7 @@
                                 </div>
                                 @else
                                 <div class="vendor-owner-profile-img">
-                                    <img src="{{ asset('images/dashboard-profile.jpg') }}" class="rounded-circle" alt="">
+                                    <img src="{{ asset('images/grey.jpg') }}" class="rounded-circle" alt="">
                                 </div>
                                 @endif
                                 <h4 class="vendor-owner-name mb0">{{ $VendorDetails->name }}</h4>
