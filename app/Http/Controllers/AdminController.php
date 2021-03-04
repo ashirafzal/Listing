@@ -15,6 +15,11 @@ class AdminController extends Controller
     public function TotalListingView()
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $TotalListing = Listing::orderBy('id','DESC')->paginate(30);
 
         return view('admin-dashboard.total-listing', [ 'user' => $user, 'TotalListing' => $TotalListing]);
@@ -23,6 +28,11 @@ class AdminController extends Controller
     public function TotalUsersView()
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $TotalUser = User::orderBy('id','DESC')->paginate(30);
 
         return view('admin-dashboard.total-users', [ 'user' => $user, 'TotalUser' => $TotalUser]);
@@ -31,6 +41,11 @@ class AdminController extends Controller
     public function TotalVendorsView()
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $TotalVendor = Vendor::orderBy('id','DESC')->paginate(30);
 
         return view('admin-dashboard.total-vendors', [ 'user' => $user, 'TotalVendor' => $TotalVendor]);
@@ -39,6 +54,11 @@ class AdminController extends Controller
     public function AdminListShow($id)
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $Listing = Listing::where('id', $id)->first();
 
         return view('admin-dashboard.admin-list-show', [ 'user' => $user, 'Listing' => $Listing]);
@@ -167,6 +187,10 @@ class AdminController extends Controller
     {
         $user = Auth::user();
 
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to perfrom action.');
+        }
+
         if($user->isUser())
         {
             return redirect()->back()->withErrors("You don't have permission to delete listings .");
@@ -179,6 +203,10 @@ class AdminController extends Controller
     public function CreateUserShow()
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
 
         return view('admin-dashboard.admin-create-user', [ 'user' => $user]);
     }
@@ -240,6 +268,11 @@ class AdminController extends Controller
     public function UserShow($id)
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $Users = User::where('id', $id)->first();
 
         return view('admin-dashboard.admin-user-show', [ 'user' => $user, 'Users' => $Users]);
@@ -316,6 +349,12 @@ class AdminController extends Controller
 
     public function UserDelete($id)
     {
+        $LoginUser = Auth::user();
+
+        if (!$LoginUser) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $user = User::where('id',$id)->first();
 
         if($user->isSuperAdmin()){
@@ -345,6 +384,11 @@ class AdminController extends Controller
     public function VendorShow($id)
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
         $Vendors = Vendor::where('id', $id)->first();
 
         return view('admin-dashboard.admin-vendor-show', [ 'user' => $user, 'Vendors' => $Vendors]);
@@ -418,6 +462,10 @@ class AdminController extends Controller
     public function VendorDelete($id)
     {
         $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
         
         if($user->isUser() || $user->isVendor())
         {
