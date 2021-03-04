@@ -123,6 +123,16 @@
             background: #00bda7;
             color: #ffffff;
         }
+
+        .user-icon>img{
+            width: 40px;
+            height: 40px;
+        }
+
+        .vendor-profile-img>img{
+            width: 80px;
+            height: 80px;
+        }
     </style>
 </head>
 
@@ -226,7 +236,7 @@
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="../images/grey.jpg" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">{{ $user->name }}</span>
@@ -263,7 +273,7 @@
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="../images/dashboard-profile.jpg" alt="" class="rounded-circle">
+                    <img src="../images/grey.jpg" alt="" class="rounded-circle">
                 </div>
                 @endif
                 <h3 class="vendor-profile-name text-bold">{{ $user->name }}</h3>
