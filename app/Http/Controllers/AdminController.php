@@ -64,6 +64,125 @@ class AdminController extends Controller
         return view('admin-dashboard.admin-list-show', [ 'user' => $user, 'Listing' => $Listing]);
     }
 
+    public function CreateListShow()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect('login')->withErrors('Please login to veiw.');
+        }
+
+        return view('admin-dashboard.admin-create-listing', [ 'user' => $user]);
+    }
+
+    public function CreateList(Request $request)
+    {
+        $featured = false;
+        $status = false;
+
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->withErrors('Please login to create listing.');
+        }
+
+        if (isset($request->featured)) {
+            $featured = true;
+        }
+        else
+        {
+            $featured = false;
+        }
+
+        if (isset($request->status)) {
+            $status = true;
+        }
+        else
+        {
+            $status = false;
+        }
+
+        $validate = Validator::make($request->all(), [
+            'title' => 'required',
+            'category' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'description' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
+            'instagram' => 'required',
+            'youtube' => 'required',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors());
+        }
+
+        $listing = new Listing();
+
+        if ($request->hasFile('hero_image')) {
+            $hero_image = $request->file('hero_image');
+            $extention = $hero_image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $hero_image->move('listing-image', $filename);
+            $hero_image = $filename;
+        }
+
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1');
+            $extention = $image1->getClientOriginalExtension();
+            $filename1 = time() . '.' . $extention;
+            $image1->move('listing-image', $filename1);
+            $image1 = $filename1;
+        }
+
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2');
+            $extention = $image2->getClientOriginalExtension();
+            $filename2 = time() . '.' . $extention;
+            $image2->move('listing-image', $filename2);
+            $image2 = $filename2;
+        }
+
+        if ($request->hasFile('image3')) {
+            $image3 = $request->file('image3');
+            $extention = $image3->getClientOriginalExtension();
+            $filename3 = time() . '.' . $extention;
+            $image3->move('listing-image', $filename3);
+            $image3 = $filename3;
+        }
+
+        $listing->title = $request->title;
+        $listing->category = $request->category;
+        $listing->city = $request->city;
+        $listing->country = $request->country;
+        $listing->zipcode = $request->zipcode;
+        $listing->address = $request->address;
+        $listing->description = $request->description;
+        $listing->latitude = $request->latitude;
+        $listing->longitude = $request->longitude;
+        $listing->hero_image = $hero_image;
+        $listing->image1 = $image1 ?? NULL;
+        $listing->image2 = $image2 ?? NULL;
+        $listing->image3 = $image3 ?? NULL;
+        $listing->facebook = $request->facebook;
+        $listing->twitter = $request->twitter;
+        $listing->instagram = $request->instagram;
+        $listing->youtube = $request->youtube;
+        $listing->featured = $featured;
+        $listing->status = $status;
+        $listing->vendor_name = $user->name;
+        $listing->vendor_email = $user->email;
+        $listing->vendor_phone_number = $user->phone_number;
+        $listing->vendor_id = $user->id;
+        $listing->vendor_status = $user->blocked;
+
+        $listing->save();
+
+        return redirect()->back()->withSuccess('List has been created .');
+    }
+
     public function AdminEditListShow($id)
     {
         $user = Auth::user();

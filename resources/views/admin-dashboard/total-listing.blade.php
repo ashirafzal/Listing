@@ -296,7 +296,7 @@
             </div>
             <br>
             <div class="container-fluid">
-                <a class="btn btn-primary" href="#">Create Listing</a>
+                <a class="btn btn-primary" href="create-list">Create Listing</a>
             </div>
             <br>
             <div class="row">

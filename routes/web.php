@@ -91,3 +91,7 @@ Route::get('admin-users', '\App\Http\Controllers\AdminController@TotalUsersView'
 Route::get('create-user', '\App\Http\Controllers\AdminController@CreateUserShow')->name('create-user');
 
 Route::post('admin-create-user', '\App\Http\Controllers\AdminController@CreateUser');
+
+Route::get('create-list', '\App\Http\Controllers\AdminController@CreateListShow')->name('create-list');
+
+Route::post('admin-create-list', '\App\Http\Controllers\AdminController@CreateList');
