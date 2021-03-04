@@ -80,6 +80,20 @@ class ListingController extends Controller
     {
         $Listing = Listing::where('id', $request->id)->first();
 
+        if(!$Listing)
+        {
+            $VendorDetails = 0;
+            $Reviews = 0;
+            $ReviewsCount = 0;
+            $AvgReviewsRating = 0;
+            $SimiliarListing = 0;
+
+            return view('list-detail', [
+                'listings' => $Listing, 'VendorDetails' => $VendorDetails, 'Reviews' => $Reviews, 'AvgReviewsRating' => $AvgReviewsRating,
+                'ReviewsCount' => $ReviewsCount, 'SimiliarListing' => $SimiliarListing
+            ]);
+        }
+
         $VendorDetails = Vendor::where('id', $Listing->vendor_id)->first();
         $Reviews = Reviews::where('listing_id', $Listing->id)->paginate(5);
         $ReviewsCount = Reviews::where('listing_id', $Listing->id)->count();

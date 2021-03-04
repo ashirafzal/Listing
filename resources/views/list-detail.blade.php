@@ -233,6 +233,27 @@
                 opacity: 0;
             }
         }
+
+        .container-fluid{
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+        }
+
+        .container-fluid>h1{
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            color: #00a591;
+            background: #ffffff;
+            margin: 2rem;
+        }
+
+        @media all and (max-width: 415px) {
+            .container-fluid>h1{
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 
@@ -303,7 +324,14 @@
         <!-- navigation close -->
     </div>
     <!-- /.header -->
+    @empty($listings)
+    <div class="container-fluid text-center">
+        <h1>LIST NOT FOUND</h1>
+    </div>
+    <br>
+    @endempty
     <!-- page-header -->
+    @isset($listings)
     <div class="venue-pageheader" style="background-image: url({{ asset('listing-image/' . $listings->hero_image) }})">
         <div class="container">
             <div class="row align-items-end page-section">
@@ -989,6 +1017,7 @@
             </div>
         </div>
     </div>
+    @endisset
     <!-- /.vendor-thumbnail section -->
     <!-- social-media-section -->
     <div class="social-media-block">
@@ -1173,6 +1202,7 @@
             });
         });
     </script>
+    @isset($listings)
     <script>
         if ($('#open-popup').length) {
             $('#open-popup').magnificPopup({
@@ -1197,6 +1227,7 @@
 
         }
     </script>
+    @endisset
     <script src="{{ asset('js/return-to-top.js') }}"></script>
 </body>
 
