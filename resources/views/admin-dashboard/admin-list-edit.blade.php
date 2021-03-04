@@ -583,7 +583,7 @@
             var marker = new google.maps.Marker({
                 position: uluru,
                 map: map,
-                icon: "{{ asset('images/map-pin(2).png') }}",
+                icon: "{{ asset('images/map-pin(3).png') }}",
             });
         }
     </script>

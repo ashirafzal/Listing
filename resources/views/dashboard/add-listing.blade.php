@@ -525,7 +525,7 @@
             var marker = new google.maps.Marker({
                 position: uluru,
                 map: map,
-                icon: 'images/map-pin.png',
+                icon: 'images/map-pin(3).png',
             });
         }
     </script>

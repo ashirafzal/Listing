@@ -254,6 +254,11 @@
             height: 100px;
         }
 
+        img.mfp-img {
+            width: 1000px;
+            height: cover;
+        }
+
         @media all and (max-width: 415px) {
             .container-fluid>h1{
                 font-size: 2rem;
