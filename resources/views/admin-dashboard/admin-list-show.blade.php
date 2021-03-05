@@ -131,8 +131,8 @@
         }
 
         .list-image {
-            height: 200px;
-            width: 400px;
+            height: 300px;
+            width: 300px;
             background: #e3e3e3;
         }
 

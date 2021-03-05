@@ -303,9 +303,10 @@
             color: #ffffff;
         }
 
-        @media all and (max-width: 766px) {
+        @media all and (max-width: 768px) {
             .img>img {
                 height: 130px;
+                width: 220px;
             }
 
             .img3 {
@@ -324,6 +325,7 @@
 
             .img>img {
                 height: 220px;
+                width: 420px;
             }
 
             .pdb0 {

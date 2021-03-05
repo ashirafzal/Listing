@@ -123,32 +123,32 @@ class AdminController extends Controller
 
         if ($request->hasFile('hero_image')) {
             $hero_image = $request->file('hero_image');
-            $extention = $hero_image->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $extention = $hero_image->getClientOriginalName();
+            $filename = $extention;
             $hero_image->move('listing-image', $filename);
             $hero_image = $filename;
         }
 
         if ($request->hasFile('image1')) {
             $image1 = $request->file('image1');
-            $extention = $image1->getClientOriginalExtension();
-            $filename1 = time() . '.' . $extention;
+            $extention = $image1->getClientOriginalName();
+            $filename1 = $extention;
             $image1->move('listing-image', $filename1);
             $image1 = $filename1;
         }
 
         if ($request->hasFile('image2')) {
             $image2 = $request->file('image2');
-            $extention = $image2->getClientOriginalExtension();
-            $filename2 = time() . '.' . $extention;
+            $extention = $image2->getClientOriginalName();
+            $filename2 = $extention;
             $image2->move('listing-image', $filename2);
             $image2 = $filename2;
         }
 
         if ($request->hasFile('image3')) {
             $image3 = $request->file('image3');
-            $extention = $image3->getClientOriginalExtension();
-            $filename3 = time() . '.' . $extention;
+            $extention = $image3->getClientOriginalName();
+            $filename3 = $extention;
             $image3->move('listing-image', $filename3);
             $image3 = $filename3;
         }
@@ -247,32 +247,32 @@ class AdminController extends Controller
 
         if ($request->hasFile('hero_image')) {
             $hero_image = $request->file('hero_image');
-            $extention = $hero_image->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $extention = $hero_image->getClientOriginalName();
+            $filename = $extention;
             $hero_image->move('listing-image', $filename);
             $hero_image = $filename;
         }
 
         if ($request->hasFile('image1')) {
             $image1 = $request->file('image1');
-            $extention = $image1->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $extention = $image1->getClientOriginalName();
+            $filename = $extention;
             $image1->move('listing-image', $filename);
             $image1 = $filename;
         }
 
         if ($request->hasFile('image2')) {
             $image2 = $request->file('image2');
-            $extention = $image2->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $extention = $image2->getClientOriginalName();
+            $filename = $extention;
             $image2->move('listing-image', $filename);
             $image2 = $filename;
         }
 
         if ($request->hasFile('image3')) {
             $image3 = $request->file('image3');
-            $extention = $image3->getClientOriginalExtension();
-            $filename = time() . '.' . $extention;
+            $extention = $image3->getClientOriginalName();
+            $filename = $extention;
             $image3->move('listing-image', $filename);
             $image3 = $filename;
         }

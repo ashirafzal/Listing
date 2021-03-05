@@ -254,6 +254,10 @@
             height: 100px;
         }
 
+        .img-fluid{
+            height: 230px;
+        }
+
         img.mfp-img {
             width: 1000px;
             height: cover;

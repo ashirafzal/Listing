@@ -320,7 +320,7 @@
                                     <th style="color: #00a591; font-weight:500;">Vendor Name</th>
                                     <th style="color: #00a591; font-weight:500;">Vendor Email</th>
                                     <th style="color: #00a591; font-weight:500;">Category</th>
-                                    <th style="color: #00a591; font-weight:500;">Active</th>
+                                    <th style="color: #00a591; font-weight:500;">Blocked</th>
                                     <th style="color: #00a591; font-weight:500;">City</th>
                                     <th style="color: #00a591; font-weight:500;">Featured</th>
                                     <th style="color: #00a591; font-weight:500;">Created At</th>
@@ -340,7 +340,7 @@
                                     <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
                                     @endif
                                     <td class="requester-id">{{ $TotalListings->city }}</td>
-                                    @if($TotalListings->featured == 0)
+                                    @if(!$TotalListings->featured == 0)
                                     <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
                                     @else
                                     <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>

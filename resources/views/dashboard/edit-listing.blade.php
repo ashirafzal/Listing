@@ -119,6 +119,10 @@
             width: 80px;
             height: 80px;
         }
+
+        .gallery-upload-img>img{
+            width: 300px;
+        }
     </style>
 </head>
 

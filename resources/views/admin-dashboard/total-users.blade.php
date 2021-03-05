@@ -340,7 +340,7 @@
                                     @else
                                     <td class="requester-name" style="color: #00a591; font-weight:500;">Super Admin</td>
                                     @endif
-                                    @if($TotalUsers->blocked == 0)
+                                    @if(!$TotalUsers->blocked == 0)
                                     <td class="requester-name text-center" style="color: green; font-weight:500;"><i class="fa fa-check" aria-hidden="true"></i></td>
                                     @else
                                     <td class="requester-name text-center" style="color: red; font-weight:500;"><i class="fa fa-ban" aria-hidden="true"></i></td>
