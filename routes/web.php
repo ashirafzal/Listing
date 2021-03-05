@@ -6,6 +6,10 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::get('/', '\App\Http\Controllers\ListingController@WelcomeIndex');
 
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
