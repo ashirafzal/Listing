@@ -75,7 +75,12 @@ class User extends Authenticatable
 
     public function vendors()
     {
-        return $this->hasMany(Vendor::class);
+        return $this->hasOne(Vendor::class);
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany(WishList::class);
     }
 
 }

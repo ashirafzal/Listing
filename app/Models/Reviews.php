@@ -19,11 +19,11 @@ class Reviews extends Model
 
     public function listings()
     {
-        return $this->belongsTo(Listing::class);
+        return $this->belongsTo(Listing::class,'id','listing_id');
     }
 
     public function vendors()
     {
-        return $this->hasOne(Vendor::class);
+        return $this->hasOne(Vendor::class,'id','vendor_id');
     }
 }

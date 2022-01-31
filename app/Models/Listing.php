@@ -23,7 +23,7 @@ class Listing extends Model
 
     public function vendors()
     {
-        return $this->hasOne(Vendor::class);
+        return $this->hasOne(Vendor::class,'id','vendor_id');
     }
 
     public function reviews()

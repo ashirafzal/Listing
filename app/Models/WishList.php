@@ -9,4 +9,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class WishList extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'user_id',
+        'listing_id'
+    ];
+
+    public function users()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
+
+    public function listings()
+    {
+        return $this->belongsTo(listings::class,'id','listing_id');
+    }
+
 }

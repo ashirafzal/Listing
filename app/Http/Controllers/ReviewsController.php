@@ -13,6 +13,7 @@ class ReviewsController extends Controller
 
     public function index()
     {
+        
         $user = Auth::user();
 
         if(!$user){
@@ -23,11 +24,12 @@ class ReviewsController extends Controller
             return redirect()->back()->withErrors('You must have to be a vendor to view reviews.');
         }
 
-        $Review = Reviews::where('user_id', $user->id)->paginate(10);
-        $ReviewsCount = Reviews::where('user_id', $user->id)->count();
-        $AvgReviewsRating = Reviews::where('user_id', $user->id)->avg('rating');
+        $Reviews = Reviews::where('vendor_id', $user->id)->paginate(10);
+        $ReviewsCount = Reviews::where('vendor_id', $user->id)->count();
+        $AvgReviewsRating = Reviews::where('vendor_id', $user->id)->avg('rating');
 
-        return view('dashboard.reviews', ['user' => $user,'Review' => $Review, 'ReviewsCount' => $ReviewsCount, 'AvgReviewsRating' => $AvgReviewsRating]);
+        return view('dashboard.reviews', ['user' => $user,'Review' => $Reviews, 'ReviewsCount' => $ReviewsCount, 'AvgReviewsRating' => $AvgReviewsRating]);
+    
     }
 
     public function view(Request $request)

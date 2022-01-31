@@ -23,7 +23,7 @@ class RequestQuotesController extends Controller
             return redirect()->back()->withErrors('You must have to be a vendor to view request quotes.');
         }
         
-        $RequestQuote = RequestQuotes::where('user_id', $user->id)->paginate(10);
+        $RequestQuote = RequestQuotes::where('vendor_id', $user->id)->paginate(10);
 
         return view('dashboard.request-quote', [
             'user' => $user,
