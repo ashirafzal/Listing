@@ -39,25 +39,26 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        if ($user->isDirty('role')) 
+        if ($user->isDirty('role') || $user->isDirty('name') || $user->isDirty('email') 
+            || $user->isDirty('phone_number') || $user->isDirty('image')) 
         {
             if($user->role == User::ROLE_USER)
             {
-                $vendor = Vendor::where('user_id', $user->id)->count();
+                $vendor = Vendor::where('user_id', $user->id)->first();
 
-                if($vendor > 0)
+                if($vendor)
                 {
-                    Vendor::where('user_id', $user->id)->delete();
+                    $vendor->listings()->first()->reviews()->delete();
+                    $vendor->listings()->delete();
+                    $vendor->delete();
                 }
             }
             else
             {
-                $vendor = Vendor::where('user_id', $user->id)->count();
+                $vendor = Vendor::where('user_id', $user->id)->first();
 
-                if($vendor < 1)
+                if($vendor)
                 {
-                    $vendor = new Vendor();
-    
                     $vendor->name = $user->name;
                     $vendor->email = $user->email;
                     $vendor->phone_number = $user->phone_number;
@@ -66,6 +67,18 @@ class UserObserver
                     $vendor->status = Vendor::STATUS_NOT_BLOCKED;
             
                     $vendor->save();
+                }else
+                {
+                    $Vendor = new Vendor();
+
+                    $Vendor->name = $user->name;
+                    $Vendor->email = $user->email;
+                    $Vendor->phone_number = $user->phone_number;
+                    $Vendor->user_id = $user->id;
+                    $Vendor->image = $user->image;
+                    $Vendor->status = Vendor::STATUS_NOT_BLOCKED;
+            
+                    $Vendor->save();
                 }
             }
         }

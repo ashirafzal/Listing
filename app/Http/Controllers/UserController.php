@@ -70,9 +70,10 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->phone_number = $request->phone;
-        $user->description = $request->description;
-        $user->image = $userimage ?? '';
+        $user->password = $request->password ?? $user->password;
+        $user->phone_number = $request->phone ?? $user->phone_number;
+        $user->description = $request->description ?? $user->description;
+        $user->image = $userimage ?? $user->image;
 
         $user->save();
 

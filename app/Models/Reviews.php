@@ -19,7 +19,7 @@ class Reviews extends Model
 
     public function listings()
     {
-        return $this->belongsTo(Listing::class,'id','listing_id');
+        return $this->hasOne(Listing::class,'id','listing_id');
     }
 
     public function vendors()

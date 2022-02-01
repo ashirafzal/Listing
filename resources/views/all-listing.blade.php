@@ -345,7 +345,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div class="bg-light" id="app">
         <div class="header">
             <!-- navigation start -->
             <div class="container">
@@ -401,7 +401,7 @@
                 @if($Listing->count() > 0)
                     @foreach($Listing as $Listings)
                         @if($Listings->featured == 1)
-                        <div class="container container-a">
+                        <div class="container container-a bg-white">
                             <div class="img">
                                 <img class="img1" src="listing-image/{{ $Listings->hero_image }}" alt="">
                                 <img class="img2" src="listing-image/{{ $Listings->image1 }}" alt="">
@@ -421,7 +421,7 @@
                             </div>
                         </div>
                         @else
-                        <div class="container container-a">
+                        <div class="container container-a bg-white">
                             <div class="img">
                                 <img class="img1" src="listing-image/{{ $Listings->hero_image }}" alt="">
                                 <img class="img2" src="listing-image/{{ $Listings->image1 }}" alt="">

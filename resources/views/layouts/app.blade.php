@@ -5,23 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="wedding vendor directory HTML template">
-    <title> Wedding Vendor &amp; Supplier Directory HTML Template - RealWed </title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <title>Listing</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
-    <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet">
-    <link href="{{ asset('css/owl.theme.default.css') }}" type="text/css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
+    <link href="fontello/css/fontello.css" rel="stylesheet">
+    <link href="css/owl.carousel.css" type="text/css" rel="stylesheet">
+    <link href="css/owl.theme.default.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="css/style.css" rel="stylesheet">
     <style>
-        body{
-            font-family: serif;
-        }
-
-        .hero-section{
-            background-image: none;
-            background: #ffffff ; 
+        body {
+            font-family: sans-serif;
+            background: #ffffff;
         }
 
         .link:hover {
@@ -39,6 +35,15 @@
 
         #return-to-top {
             background: #00a591;
+        }
+
+        .container>a {
+            color: #00a591;
+        }
+
+        .container>a:hover {
+            color: #00a591;
+            font-weight: 500;
         }
 
         #return-to-top:hover {
@@ -61,9 +66,9 @@
         }
 
         .social-media-block {
-            background-color: #374252;
+            background-color: #302d34;
             color: #959ba7;
-            border-bottom: 1px solid #959ba7;
+            border-bottom: 1px solid #374252;
         }
 
         .icon-square:hover {
@@ -71,13 +76,13 @@
         }
 
         .footer {
-            background-color: #374252;
-            color: #959ba7;
+            background-color: #302d34;
+            color: #98969b;
         }
 
         .tiny-footer {
-            background-color: #374252;
-            border-top: 1px solid #959ba7;
+            background-color: #302d34;
+            border-top: 1px solid #374252;
         }
 
         .footer-widget .widget-title {
@@ -86,6 +91,10 @@
 
         .tiny-footer {
             color: #aaaaaa;
+        }
+
+        .footer-widget ul li a:hover {
+            color: #00a591;
         }
 
         .mb0 {
@@ -241,6 +250,115 @@
                 opacity: 0;
             }
         }
+
+        .testimonial-block {
+            height: 450px;
+        }
+
+        .container-a {
+            border: 1px solid #e3e3e3;
+            padding: 1rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .container>div {
+            margin: 10px;
+        }
+
+        .img>img {
+            height: 155px;
+            width: 250px;
+            margin: 5px;
+        }
+
+        .title {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title>a {
+            color: #00a591;
+            font-size: 1.3rem;
+        }
+
+        .button>p {
+            width: 6rem;
+            border-radius: 5%;
+            background: rgb(189, 2, 2);
+            color: #ffffff;
+            text-align: center;
+            height: 1.7rem;
+            position: absolute;
+            top: 31px;
+            left: 31px;
+        }
+
+        .blue>p {
+            background: rgb(2, 28, 255);
+        }
+
+        .nice-select .option:hover,
+        .nice-select .option.focus,
+        .nice-select .option.selected.focus {
+            background: #00bda7;
+            color: #ffffff;
+        }
+
+        @media all and (max-width: 768px) {
+            .img>img {
+                height: 130px;
+                width: 220px;
+            }
+
+            .img3 {
+                display: none;
+            }
+
+            .img4 {
+                display: none;
+            }
+        }
+
+        @media all and (max-width: 533px) {
+            .img2 {
+                display: none;
+            }
+
+            .img>img {
+                height: 220px;
+                width: 420px;
+            }
+
+            .pdb0 {
+                padding-right: 1rem;
+                padding-left: 1rem;
+            }
+        }
+
+        @media all and (max-width: 430px) {
+            .img>img {
+                height: 200px;
+            }
+        }
+
+        @media all and (max-width: 400px) {
+            .img>img {
+                height: 180px;
+            }
+        }
+
+        @media all and (max-width: 366px) {
+            .img>img {
+                height: 160px;
+            }
+        }
+
+        @media all and (max-width: 330px) {
+            .img>img {
+                height: 140px;
+            }
+        }
     </style>
 </head>
 
@@ -252,8 +370,8 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <nav class="navbar navbar-expand-lg navbar-classic">
-                            <a class="navbar-brand" href="index-2.html">
-                                <img src="{{ asset('images/adifier-logo.png') }}" alt="">
+                            <a class="navbar-brand" href="/">
+                                <img src="images/adifier-logo.PNG" alt="">
                             </a>
                             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="icon-bar top-bar mt-0"></span>
@@ -263,22 +381,32 @@
                             <div class="collapse navbar-collapse" id="navbar-classic">
                                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-3">
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="index-2.html" id="menu-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="/">
                                             Home
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="/contact">
                                             Contact Us
                                         </a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown" href="#" id="menu-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown" href="/about">
                                             About Us
                                         </a>
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown" href="/login">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown" href="/register">
+                                            Register
+                                        </a>
+                                    </li>
                                 </ul>
-                                <a href="#" class="btn btn-primary">Get Started Now</a>
+                                <a href="/login" class="btn btn-primary">Get Started Now</a>
                             </div>
                         </nav>
                     </div>

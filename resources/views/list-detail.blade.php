@@ -293,7 +293,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <nav class="navbar navbar-expand-lg navbar-classic">
-                        <a class="navbar-brand" href="index-2.html">
+                        <a class="navbar-brand" href="/">
                             <img src="{{ asset('images/adifier-logo.png') }}" alt="">
                         </a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-classic" aria-controls="navbar-classic" aria-expanded="false" aria-label="Toggle navigation">
