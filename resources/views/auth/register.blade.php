@@ -18,7 +18,7 @@
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="name" class="font-weight-bold">{{ __('Name') }}</label>
+                                    <label for="name" class="">{{ __('Name') }}</label>
                                 </div>
                                 <div class="form-group">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
@@ -29,7 +29,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email" class="font-weight-bold">{{ __('E-Mail Address') }}</label>
+                                    <label for="email" class="">{{ __('E-Mail Address') }}</label>
                                 </div>
                                 <div class="form-group">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
@@ -40,7 +40,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="font-weight-bold">{{ __('Password') }}</label>
+                                    <label for="password" class="">{{ __('Password') }}</label>
                                 </div>
                                 <div class="form-group">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
@@ -51,7 +51,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="password-confirm" class="font-weight-bold">{{ __('Confirm Password') }}</label>
+                                    <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
                                 </div>
                                 <div class="form-group">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">

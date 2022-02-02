@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vendor;
 use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,17 @@ class WishListController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+
+        if(!$user){
+            return redirect()->back()->withErrors('Please login to see your wishlist.');
+        }
+
+        $WishList = WishList::with('listings')->where('user_id', $user->id)->paginate(10);
+        $Vendor = Vendor::where('user_id', $user->id)->count();
+        
+        return view('dashboard.wish_list', ['wishlists' => $WishList, 'user' => $user, 'vendor' => $Vendor]);
+
     }
 
     public function create($id)

@@ -22,7 +22,7 @@ class WishList extends Model
 
     public function listings()
     {
-        return $this->belongsTo(listings::class,'id','listing_id');
+        return $this->hasOne(Listing::class,'id','listing_id');
     }
 
 }

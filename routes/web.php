@@ -99,3 +99,5 @@ Route::post('admin-create-user', '\App\Http\Controllers\AdminController@CreateUs
 Route::get('create-list', '\App\Http\Controllers\AdminController@CreateListShow')->name('create-list');
 
 Route::post('admin-create-list', '\App\Http\Controllers\AdminController@CreateList');
+
+Route::get('wishlist', '\App\Http\Controllers\WishListController@index')->name('wishlist');

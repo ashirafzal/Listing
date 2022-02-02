@@ -5,15 +5,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Request Quotes</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Listing</title>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <link href="fontawesome/css/fontawesome-all.css" rel="stylesheet">
-    <link href="fontello/css/fontello.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/offcanvas.css" rel="stylesheet">
+    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/offcanvas.css') }}">
     <style>
+        .listing-img {
+            height: 120px;
+        }
+
         .header-logo {
             width: 100px;
             height: 50px;
@@ -87,8 +92,12 @@
             border-color: #00a591;
         }
 
-        .dashboard-page-header {
+        .dashboard-page-header>p {
             color: #00a591;
+        }
+
+        .mb0 {
+            font-weight: 400;
         }
 
         .alert-info {
@@ -109,12 +118,12 @@
             color: #ffffff;
         }
 
-        .user-icon>img{
+        .user-icon>img {
             width: 40px;
             height: 40px;
         }
 
-        .vendor-profile-img>img{
+        .vendor-profile-img>img {
             width: 80px;
             height: 80px;
         }
@@ -127,7 +136,7 @@
             <div class="row">
                 <div class="col-xl-10 col-lg-8 col-md-8 col-sm-6 col-6">
                     <div class="header-logo">
-                        <!-- <a href="index-2.html"><img src="images/logo.png" alt="Weddings | Find A Wedding Venue &amp; Supplier WordPress Theme"></a> -->
+                        <!-- <a href="/"><img src="images/logo.png" alt="Weddings | Find A Wedding Venue &amp; Supplier WordPress Theme"></a> -->
                         <a href="/" class="logo">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 170 50" enable-background="new 0 0 170 50" xml:space="preserve">
                                 <path fill="#00A591" d="M48,50H25C11.3,50,0,38.8,0,25v0C0,11.2,11.2,0,25,0l23,0c1.1,0,2,0.9,2,2v46C50,49.1,49.1,50,48,50z"></path>
@@ -230,9 +239,11 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="/home">Dashboard</a>
+                                        @if($vendor)
                                         <a class="dropdown-item" href="/listing"> My Listed Item </a>
                                         <a class="dropdown-item" href="/request-quote">Request Quotes</a>
                                         <a class="dropdown-item" href="/reviews">Reviews </a>
+                                        @endif
                                         <a class="dropdown-item" href="/wishlist">WishList </a>
                                         <a class="dropdown-item" href="/profile">My Profile </a>
                                         <a class="dropdown-item" href="/logout">Log Out</a>
@@ -267,79 +278,45 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
-                    <li class="active"><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a></li>
+                    <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    @if($user->role !== 1)
+                    <li><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
                     <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
+                    @endif
                     <li><a href="/wishlist"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>WishList </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
             </div>
         </div>
-        <div class="dashboard-content">
-            <div class="container-fluid">
-                @if(session('success'))
-                <div class="alert alert-info alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{session('success')}}</strong>
-                </div>
-                @endif
-                @if(session('errors'))
-                <div class="alert alert-danger alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{session('errors')}}</strong>
-                </div>
-                @endif
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="dashboard-page-header">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h3 class="dashboard-page-title">Request List</h3>
-                                    <p>Check your request quote.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card request-list-table table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="color: #00a591; font-weight:500;">Name</th>
-                                        <th style="color: #00a591; font-weight:500;">Email</th>
-                                        <th style="color: #00a591; font-weight:500;">Phone</th>
-                                        <th style="color: #00a591; font-weight:500;">Comment</th>
-                                        <th style="color: #00a591; font-weight:500;">Submitted</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($RequestQuote as $RequestQuotes)
-                                    <tr>
-                                        <td class="requester-name">{{ $RequestQuotes->name }}</td>
-                                        <td class="wedding-date">{{ $RequestQuotes->email }}</td>
-                                        <td class="requester-id">{{ $RequestQuotes->phone }}</td>
-                                        <td class="requester-phone">{{ $RequestQuotes->comment }}</td>
-                                        <td class="requester-phone">{{ $RequestQuotes->created_at->diffForHumans() }}</td>
-                                        <td class="requester-action"><a href="request-quote-delete/{{ $RequestQuotes->id }}" class="btn btn-primary">delete</a></td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid text-center">{{ $RequestQuote->links() }}</div>
-        </div>
+        <main>
+            @yield('content')
+        </main>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/menumaker.min.js"></script>
-    <script src="js/custom-script.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/fastclick.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/menumaker.min.js') }}"></script>
+    <script src="{{ asset('js/custom-script.js') }}"></script>
+    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/offcanvas.js"></script>
+    <!-- -->
+    <script>
+        $(document).ready(function() {
+            $.uploadPreview({
+                input_field: "#image-upload", // Default: .image-upload
+                preview_box: "#image-preview", // Default: .image-preview
+                label_field: "#image-label", // Default: .image-label
+                label_default: "Choose File", // Default: Choose File
+                label_selected: "Change File", // Default: Change File
+                no_label: false // Default: false
+            });
+        });
+    </script>
+    <script src="js/jquery.uploadPreview.js"></script>
+    <script src="js/summernote-bs4.js"></script>
     <script src="js/offcanvas.js"></script>
-    <script src="js/jquery.slimscroll.js"></script>
+
 </body>
 
 </html>

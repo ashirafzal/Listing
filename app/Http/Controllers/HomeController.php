@@ -23,6 +23,7 @@ class HomeController extends Controller
 
     public function index()
     {
+    
         $user = Auth::user();
 
         if($user->isAdmin() || $user->isSuperAdmin()){
@@ -53,10 +54,12 @@ class HomeController extends Controller
         }
 
         return view('home', [ 'user' => $user, 'vendor' => $vendor, 'ListingCount' => $ListingCount, 'ReviewsCount' => $ReviewsCount, 'RequestQuotesCount' => $RequestQuotesCount ]);
+    
     }
 
     public function profile()
     {
+
         $user = Auth::user();
 
         if (!$user) {
@@ -69,10 +72,8 @@ class HomeController extends Controller
 
         $Vendor = Vendor::where('user_id', $user->id)->get();
 
-        return view('dashboard.profile', [
-            'user' => $user,
-            'vendor' => $Vendor
-        ]);
+        return view('dashboard.profile', ['user' => $user, 'vendor' => $Vendor]);
+
     }
     
 }
