@@ -11,6 +11,7 @@
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('fontello/css/fontello.css') }}" rel="stylesheet">
     <link href="{{ asset('css/summernote-bs4.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet"> -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/offcanvas.css') }}">
@@ -127,6 +128,10 @@
             width: 80px;
             height: 80px;
         }
+
+        .gallery-upload-img>img{
+            width: 300px;
+        }
     </style>
 </head>
 
@@ -226,11 +231,11 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)
                                         <span class="user-icon">
-                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
+                                            <img src="/user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="images/grey.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="{{ asset('images/grey.jpg') }}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">
@@ -239,7 +244,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="/home">Dashboard</a>
-                                        @if($vendor)
+                                        @if($user->role !== 1)
                                         <a class="dropdown-item" href="/listing"> My Listed Item </a>
                                         <a class="dropdown-item" href="/request-quote">Request Quotes</a>
                                         <a class="dropdown-item" href="/reviews">Reviews </a>
@@ -266,11 +271,11 @@
             <div class="vendor-user-profile">
                 @if($user->image)
                 <div class="vendor-profile-img">
-                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                    <img src="/user-image/{{ $user->image }}" alt="" class="rounded-circle">
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="images/grey.jpg" alt="" class="rounded-circle">
+                    <img src="{{ asset('images/grey.jpg') }}" alt="" class="rounded-circle">
                 </div>
                 @endif
                 <h3 class="vendor-profile-name">{{ $user->name }}</h3>
@@ -278,13 +283,13 @@
             </div>
             <div class="dashboard-nav">
                 <ul class="list-unstyled">
-                    <li class="active"><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
+                    <li><a href="/home"><span class="dash-nav-icon"><i class="fas fa-compass"></i></span>Dashboard</a></li>
                     @if($user->role !== 1)
                     <li><a href="/listing"><span class="dash-nav-icon"><i class="fas fa-list-alt"></i> </span> My Listed Item </a>
                     <li><a href="/request-quote"><span class="dash-nav-icon"><i class="fas fa-edit"></i></span>Request Quotes</a></li>
                     <li><a href="/reviews"><span class="dash-nav-icon"><i class="fas fa-comments"></i></span>Reviews </a></li>
                     @endif
-                    <li><a href="/wishlist"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>WishList </a></li>
+                    <li><a href="/wishlist"><span class="dash-nav-icon"><i class="fas fa fa-heart"></i></span>WishList </a></li>
                     <li><a href="/profile"><span class="dash-nav-icon"><i class="fas fa-user-circle"></i></span>My Profile </a></li>
                     <li><a href="/logout"><span class="dash-nav-icon"><i class="fas fa-sign-out-alt"></i></span>Logout </a></li>
                 </ul>
@@ -294,13 +299,13 @@
             @yield('content')
         </main>
     </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/menumaker.min.js') }}"></script>
     <script src="{{ asset('js/custom-script.js') }}"></script>
-    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/offcanvas.js"></script>
-    <!-- -->
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script>
         $(document).ready(function() {
             $.uploadPreview({
@@ -313,10 +318,40 @@
             });
         });
     </script>
-    <script src="js/jquery.uploadPreview.js"></script>
-    <script src="js/summernote-bs4.js"></script>
-    <script src="js/offcanvas.js"></script>
-
+    <script src="{{ asset('js/jquery.uploadPreview.js') }}"></script>
+    <script src="{{ asset('js/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('js/offcanvas.js') }}"></script>
+    <!-- nice-select js -->
+    <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/fastclick.js') }}"></script>
+    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+    <script>
+        $("#example-one, #example-two, #example-three, #example-four, #example-five, #example-six  ").on("click", function() {
+            var el = $(this);
+            el.text() == el.data("text-swap") ?
+                el.text(el.data("text-original")) :
+                el.text(el.data("text-swap"));
+        });
+    </script>
+    <script>
+        function initMap() {
+            var uluru = {
+                lat: 23.0732195,
+                lng: 72.5646902
+            };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                icon: "{{ asset('images/map-pin(3).png') }}",
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvZiQwPXkkIeXfAn-Cki9RZBj69mg-95M&amp;callback=initMap">
+    </script>
 </body>
 
 </html>

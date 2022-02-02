@@ -20,7 +20,13 @@ class WishListController extends Controller
         $WishList = WishList::with('listings')->where('user_id', $user->id)->paginate(10);
         $Vendor = Vendor::where('user_id', $user->id)->count();
         
-        return view('dashboard.wish_list', ['wishlists' => $WishList, 'user' => $user, 'vendor' => $Vendor]);
+        if($user->isAdmin() || $user->isSuperAdmin())
+        {
+            return view('admin-dashboard.admin_wish_list', ['wishlists' => $WishList, 'user' => $user, 'vendor' => $Vendor]);
+        }
+        else{
+            return view('dashboard.wish_list', ['wishlists' => $WishList, 'user' => $user, 'vendor' => $Vendor]);
+        }
 
     }
 
