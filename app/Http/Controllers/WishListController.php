@@ -27,12 +27,10 @@ class WishListController extends Controller
         else{
             return view('dashboard.wish_list', ['wishlists' => $WishList, 'user' => $user, 'vendor' => $Vendor]);
         }
-
     }
 
     public function create($id)
     {
-
         $user = Auth::user();
 
         if(!$user){
@@ -54,7 +52,9 @@ class WishListController extends Controller
         return redirect()->back()->withSuccess('Added to wishlist successfully.');
     }
 
-    public function delete()
+    public function delete($id)
     {
+        WishList::where('id',$id)->delete();
+        return redirect()->back()->withSuccess('Deleted from wishlist successfully.');
     }
 }

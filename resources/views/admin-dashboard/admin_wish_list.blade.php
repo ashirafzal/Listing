@@ -7,6 +7,18 @@
                 <div class="dashboard-page-header">
                     <h3 class="dashboard-page-title">Your Wish Lists</h3>
                 </div>
+                @if(session('success'))
+                <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{session('success')}}</strong>
+                </div>
+                @endif
+                @if(session('errors'))
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{session('errors')}}</strong>
+                </div>
+                @endif
             </div>
         </div>
         <div class="dashboard-vendor-list">
@@ -28,7 +40,7 @@
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div class="dashboard-list-btn">
-                                        <a href="delete-wishlist/{{ $wishlist->id }}" class="btn btn-outline-danger "><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                        <a href="delete-wishlist/{{ $wishlist->id }}" class="btn btn-outline-primary"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>

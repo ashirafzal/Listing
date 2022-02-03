@@ -132,6 +132,21 @@
             width: 80px;
             height: 80px;
         }
+
+        .list-image {
+            width: 300px;
+            background: #e3e3e3;
+        }
+
+        .gallery-upload-img>img {
+            width: 300px;
+        }
+        .user-list-image {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background: #e3e3e3;
+        }
     </style>
 </head>
 
@@ -231,11 +246,11 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if($user->image)
                                         <span class="user-icon">
-                                            <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
+                                            <img src="/user-image/{{ $user->image }}" alt="" class="rounded-circle mb10">
                                         </span>
                                         @else
                                         <span class="user-icon">
-                                            <img src="images/grey.jpg" alt="" class="rounded-circle mb10">
+                                            <img src="/images/grey.jpg" alt="" class="rounded-circle mb10">
                                         </span>
                                         @endif
                                         <span class="user-vendor-name">{{ $user->name }}</span>
@@ -269,11 +284,11 @@
             <div class="vendor-user-profile">
                 @if($user->image)
                 <div class="vendor-profile-img">
-                    <img src="user-image/{{ $user->image }}" alt="" class="rounded-circle">
+                    <img src="/user-image/{{ $user->image }}" alt="" class="rounded-circle">
                 </div>
                 @else
                 <div class="vendor-profile-img">
-                    <img src="images/grey.jpg" alt="" class="rounded-circle">
+                    <img src="/images/grey.jpg" alt="" class="rounded-circle">
                 </div>
                 @endif
                 <h3 class="vendor-profile-name text-bold">{{ $user->name }}</h3>
@@ -296,7 +311,7 @@
         <main>
             @yield('content')
         </main>
-        </div>
+    </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/menumaker.min.js') }}"></script>
@@ -309,8 +324,8 @@
     <script src="{{ asset('js/fastclick.js') }}"></script>
     <script src="{{ asset('js/offcanvas.js') }}"></script>
     <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-    <script src="js/jquery.uploadPreview.js"></script>
-    <script src="js/summernote-bs4.js"></script>
+    <script src="{{ asset('js/jquery.uploadPreview.js') }}"></script>
+    <script src="{{ asset('js/summernote-bs4.js') }}"></script>
     <script>
         function initMap() {
             var uluru = {
